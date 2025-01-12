@@ -1,13 +1,7 @@
 #pragma once
 #include <gtest/gtest.h>
 #include <iostream>
-
-// #include "../src/s21_containers.hpp"
-
-
+#include "../containers/s21_containers.h"
+#include "../containers/s21_containersplus.h"
 
 
-// int main(int argc, char** argv) {
-//   ::testing::InitGoogleTest(&argc, argv);
-//   return RUN_ALL_TESTS();
-// }

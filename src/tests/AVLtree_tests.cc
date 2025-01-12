@@ -1,6 +1,7 @@
 #include "global_tests.h"
-#include "../containers/AVLtree/avl_tree.hpp"
-#include "../containers/stack/stack.hpp"
+// #include "../containers/AVLtree/avl_tree.hpp"
+// #include "../containers/stack/s21_stack.hpp"
+// #include "../containers/vector/s21_vector.h"
 
 
 TEST(TreeTest, DefaultConstructor_SS) {
@@ -1445,7 +1446,7 @@ TEST(TreeTest, Bonus_SS){
     EXPECT_EQ(tree_str_2.size(), 4);
     EXPECT_EQ(tree_char_2.size(), 17);
 
-    std::vector<std::pair<s21::Tree<int,int>::iterator,bool>> vec;
+    s21::vector<std::pair<s21::Tree<int,int>::iterator,bool>> vec;
     vec = tree_int_2.insert_many(12,44,14,55,0,77,88,99,100,-5,-100,55,55.5,77.77777);
     EXPECT_EQ(tree_int_2.size(), 23);
     EXPECT_EQ(vec.size(),14);

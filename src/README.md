@@ -67,15 +67,15 @@ As a bonus, you can also implement several other container classes from the C++ 
 ### General rules 
 | Check | Task                                                                                                                                          |
 | ----- | --------------------------------------------------------------------------------------------------------------------------------------------- |
-|       | The program must be developed in C++ language of C++17 standard using gcc compiler;                                                           |
-|       | The program code must be located in the src folder;                                                                                           |
+|   ✔   | The program must be developed in C++ language of C++17 standard using gcc compiler;                                                           |
+|   ✔   | The program code must be located in the src folder;                                                                                           |
 |       | When writing code it is necessary to follow the Google style;                                                                                 |
-|       | Make sure to use iterators;                                                                                                                   |
-|       | Classes must be template;                                                                                                                     |
-|       | Classes must be implemented within the `s21` namespace;                                                                                       |
-|       | Prepare full coverage of container classes methods with unit-tests using the GTest library;                                                   |
-|       | Copying of the Standard Template Library (STL) implementation is not allowed;                                                                 |
-|       | The logic of the Standard Template Library (STL) must be followed (in terms of checks, memory handling and behaviour in abnormal situations). |
+|   ✔   | Make sure to use iterators;                                                                                                                   |
+|   ✔   | Classes must be template;                                                                                                                     |
+|   ✔   | Classes must be implemented within the `s21` namespace;                                                                                       |
+|   ✔   | Prepare full coverage of container classes methods with unit-tests using the GTest library;                                                   |
+|   ✔   | Copying of the Standard Template Library (STL) implementation is not allowed;                                                                 |
+|   ✔   | The logic of the Standard Template Library (STL) must be followed (in terms of checks, memory handling and behaviour in abnormal situations). |
 
 ### Part 1. Implementation of the s21_containers.h library
 
@@ -147,11 +147,11 @@ Note: the arguments are the already created elements of the appropriate containe
 | implement `stack`    | riderkri | ✔    | ✔     | ✔               |         |
 | implement `queue`    | orenbran | ✔    | ✔     | ✔               |         |
 | implement `Tree`     | riderkri | ✔    | ✔     | ✔               |         |
-| implement `map`      | troyiggo | ✔    | ✔     |                 |         |
+| implement `map`      | troyiggo |      |       |                 |         |
 | implement `set`      | riderkri | ✔    | ✔     | ✔               |         |
 | implement `multiset` | riderkri | ✔    | ✔     | ✔               |         |
 | implement `vector`   | orenbran | ✔    | ✔     | ✔               |         |
-| implement `array`    | tanishag |      |       | -               |         |
+| implement `array`    | tanishag | ✔    | ✔     | -               |         |
 
 #### Bonus
 * Done and tested table

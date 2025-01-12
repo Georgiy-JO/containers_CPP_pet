@@ -5,10 +5,8 @@
 #include <limits>
 #include <typeinfo>
 #include <cmath>
-#include "../stack/stack.hpp"
-
-//temple 
-#include <vector>
+#include "../stack/s21_stack.hpp"
+#include "../vector/s21_vector.h"
 
 //* end() - is not standart
 
@@ -118,7 +116,7 @@ class Tree {
 
             //bonus functions
             template <typename...Args>
-/*ok*/            std::vector<std::pair<iterator,bool>> insert_many(Args&&... args);
+/*ok*/            s21::vector<std::pair<iterator,bool>> insert_many(Args&&... args);
 /*ok*/            iterator insertMult(const_key_type& key){return insertMult(key,key);}
 /*ok*/            iterator insertMult(const_key_type& key,const_value_type& value);
 /*ok*/            node_* insertMult(node_ *& root,const_key_type& key,const_value_type& value);

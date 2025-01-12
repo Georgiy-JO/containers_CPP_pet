@@ -10,7 +10,7 @@ COVLAGS =-fprofile-arcs -ftest-coverage
 GTEST_FLAGS = -L/usr/lib/ -lgtest -lgtest_main -pthread #-Wl,--no-warn-search-mismatch
 LIBFLAGS= $(GTEST_FLAGS)
 ifeq ($(OS), Linux)
-#	 GTEST_FLAGS += -lsubunit
+#	GTEST_FLAGS += -lsubunit
 endif
 
 # Checkers
@@ -28,16 +28,20 @@ VALG_FILE = $(BUILD_DIR)/RESULT_VALGRIND.txt
 CPPCHECK_FILE = $(BUILD_DIR)/RESULT_CPPCHECK.txt
 
 PROJECT_NAME=s21_containers
-
-# continer files 
-MAIN_HEADER=$(SRC_DIR)/$(PROJECT_NAME:=.hpp)
+# files beg--------------------------------------------------------------------------------------
+# conteiner files 
+MAIN_HEADER=$(SRC_DIR)/$(PROJECT_NAME:=.h)
+SECOND_MAIN_HEADER=$(SRC_DIR)/s21_containersplus.h
 HEAD_FILES_stack = $(shell find $(SRC_DIR)/stack -type f -name '*.hpp')					#stack
 HEAD_FILES_AVLtree = $(shell find $(SRC_DIR)/AVLtree -type f -name '*.hpp')				#AVLtree
-# HEAD_FILES_list = $(shell find $(SRC_DIR)/list -type f -name '*.hpp')					#list
-# HEAD_FILES_map = $(shell find $(SRC_DIR)/map -type f -name '*.hpp')					#map
+HEAD_FILES_list = $(shell find $(SRC_DIR)/list -type f -name '*.hpp')					#list
+HEAD_FILES_map = $(shell find $(SRC_DIR)/map -type f -name '*.h')						#map
 HEAD_FILES_set = $(shell find $(SRC_DIR)/set -type f -name '*.hpp')						#set
 HEAD_FILES_multiset = $(shell find $(SRC_DIR)/multiset -type f -name '*.hpp')			#multiset
-# HEAD_FILES_vector = $(shell find $(SRC_DIR)/vector -type f -name '*.hpp')
+HEAD_FILES_vector = $(shell find $(SRC_DIR)/vector -type f -name '*.h')					#vector
+HEAD_FILES_queue = $(shell find $(SRC_DIR)/queue -type f -name '*.h')					#queue
+HEAD_FILES_array = $(shell find $(SRC_DIR)/array -type f -name '*.h')					#array
+
 
 HEAD_FILES = $(shell find $(SRC_DIR)/*/ -type f -name '*.hpp')
 TPP_FILES = $(shell find $(SRC_DIR)/*/ -type f -name '*.tpp')
@@ -45,109 +49,200 @@ TPP_FILES = $(shell find $(SRC_DIR)/*/ -type f -name '*.tpp')
 # test files
 TEST_SRC_FILES_stack= $(TEST_DIR)/stack_tests.cc $(TEST_DIR)/stack_tests_outsource.cc	#stack
 TEST_SRC_FILES_AVLtree= $(TEST_DIR)/AVLtree_tests.cc									#AVLtree
-# TEST_SRC_FILES_list= $(TEST_DIR)/list_tests.cc										#list
-# TEST_SRC_FILES_map= $(TEST_DIR)/map_tests.cc											#map
+TEST_SRC_FILES_list= $(TEST_DIR)/list_tests.cc											#list
+TEST_SRC_FILES_map= $(TEST_DIR)/map_tests.cc											#map
 TEST_SRC_FILES_set= $(TEST_DIR)/set_tests.cc $(TEST_DIR)/set_tests_outsource.cc			#set
 TEST_SRC_FILES_multiset= $(TEST_DIR)/multiset_tests.cc									#multiset
-TEST_SRC_FILES = $(shell find $(TEST_DIR)/ -type f -name '*.cc')
-TEST_OBJ_FILES = $(addprefix $(OBJ_DIR)/, $(notdir $(TEST_SRC_FILES:.cc=.o)))
+TEST_SRC_FILES_vector= $(TEST_DIR)/vector_tests.cc										#vector
+TEST_SRC_FILES_queue= $(TEST_DIR)/queue_tests.cc										#queue
+TEST_SRC_FILES_array= $(TEST_DIR)/array_tests.cc										#array
+# TEST_SRC_FILES = $(shell find $(TEST_DIR)/ -type f -name '*.cc')
+# TEST_OBJ_FILES = $(addprefix $(OBJ_DIR)/, $(notdir $(TEST_SRC_FILES:.cc=.o)))
+TEST_SRC_FILES = $(TEST_SRC_FILES_stack) $(TEST_SRC_FILES_AVLtree) $(TEST_SRC_FILES_set) \
+	$(TEST_SRC_FILES_multiset) $(TEST_SRC_FILES_list) $(TEST_SRC_FILES_vector) $(TEST_SRC_FILES_queue) \
+	$(TEST_SRC_FILES_array) $(TEST_DIR)/g-tests.cc #$(TEST_SRC_FILES_map)
 TEST_EXEC = $(addprefix $(BUILD_DIR)/, tests) 
 TEST_EXEC_stack=$(addprefix $(BUILD_DIR)/, stack_tests)									#stack
 TEST_EXEC_AVLtree=$(addprefix $(BUILD_DIR)/, AVLtree_tests)								#AVLtree
 TEST_EXEC_set=$(addprefix $(BUILD_DIR)/, set_tests)										#set
 TEST_EXEC_multiset=$(addprefix $(BUILD_DIR)/, multiset_tests)							#multiset
+TEST_EXEC_vector=$(addprefix $(BUILD_DIR)/, vector_tests)								#vector
+TEST_EXEC_queue=$(addprefix $(BUILD_DIR)/, queue_tests)									#queue
+TEST_EXEC_array=$(addprefix $(BUILD_DIR)/, array_tests)									#array
+TEST_EXEC_list=$(addprefix $(BUILD_DIR)/, list_tests)									#list
+TEST_EXEC_map=$(addprefix $(BUILD_DIR)/, map_tests)										#map
 
-
+# files end-------------------------------------------------------------------------------------
 # target specific variables
 $(TEST_EXEC_stack):MAIN_FLAGS:= $(MAIN_FLAGS) $(DEBUG_FLAGS) $(POSIX_FLAG)				#stack
 $(TEST_EXEC_AVLtree):MAIN_FLAGS:= $(MAIN_FLAGS) $(DEBUG_FLAGS) $(POSIX_FLAG)			#AVLtree
 $(TEST_EXEC_set):MAIN_FLAGS:= $(MAIN_FLAGS) $(DEBUG_FLAGS) $(POSIX_FLAG)				#set
 $(TEST_EXEC_multiset):MAIN_FLAGS:= $(MAIN_FLAGS) $(DEBUG_FLAGS) $(POSIX_FLAG)			#multiset	
+$(TEST_EXEC_vector):MAIN_FLAGS:= $(MAIN_FLAGS) $(DEBUG_FLAGS) $(POSIX_FLAG)				#vector
+$(TEST_EXEC_queue):MAIN_FLAGS:= $(MAIN_FLAGS) $(DEBUG_FLAGS) $(POSIX_FLAG)				#queue
+$(TEST_EXEC_array):MAIN_FLAGS:= $(MAIN_FLAGS) $(DEBUG_FLAGS) $(POSIX_FLAG)				#arrray
+$(TEST_EXEC_list):MAIN_FLAGS:= $(MAIN_FLAGS) $(DEBUG_FLAGS) $(POSIX_FLAG)				#list
+$(TEST_EXEC_map):MAIN_FLAGS:= $(MAIN_FLAGS) $(DEBUG_FLAGS) $(POSIX_FLAG)				#map
 $(TEST_EXEC): MAIN_FLAGS:= $(MAIN_FLAGS) $(DEBUG_FLAGS) $(POSIX_FLAG) #$(VALG_FLAGS)
 
-
-.PHONY: test test_stack clean all
-
-# targets
+# targets---------------------------------------------------------------------------------------
+# main block------------------------------------------------------------------------------------
+.PHONY: test clean all
 all: test
 
+TEST_SRC_FILES = $(shell find $(TEST_DIR)/ -type f -name '*.cc')
+TEST_OBJ_FILES = $(addprefix $(OBJ_DIR)/, $(notdir $(TEST_SRC_FILES:.cc=.o)))
+
 # tests
-$(TEST_EXEC): clear_o $(TEST_OBJ_FILES)
-	$(CC) $(MAIN_FLAGS) $(TEST_OBJ_FILES) -o $@ $(LIBFLAGS)
-	make -s clear_o
+$(TEST_EXEC): clear_o $(BUILD_DIR)
+	$(CC) $(MAIN_FLAGS) $(TEST_SRC_FILES) -o $@ $(LIBFLAGS)
+#	 make -s clear_o
 
 test: $(TEST_EXEC)
 	@./$(TEST_EXEC)
 
-# object files
-$(OBJ_DIR)/%.o: %.cc
-	@$(CC) $(MAIN_FLAGS) -c $< -o $@
 
-#stack
+# separate containers---------------------------------------------------------------------------
+#stack------------------------------------------------------------------------------------------
+.PHONY: test_stack valgrind_stack rebuild_test_stack
+
 $(TEST_EXEC_stack): $(BUILD_DIR)
 	$(CC) $(MAIN_FLAGS) $(TEST_SRC_FILES_stack) -o $@ $(LIBFLAGS)
 
 test_stack: $(TEST_EXEC_stack)
 	@./$(TEST_EXEC_stack)
 
-#AVLtree
+valgrind_stack: $(TEST_EXEC_stack)
+	$(VALG)$(TEST_EXEC_stack)
+
+rebuild_test_stack: clear test_stack
+
+#AVLtree----------------------------------------------------------------------------------------
+.PHONY: test_AVLtree valgrind_AVLtree rebuild_test_AVLtree
+
 $(TEST_EXEC_AVLtree): $(BUILD_DIR)
 	$(CC) $(MAIN_FLAGS) $(TEST_SRC_FILES_AVLtree) -o $@ $(LIBFLAGS)
 
 test_AVLtree: $(TEST_EXEC_AVLtree)
 	@./$(TEST_EXEC_AVLtree)
 
-#set
+valgrind_AVLtree: $(TEST_EXEC_AVLtree)
+	$(VALG)$(TEST_EXEC_AVLtree)
+
+rebuild_test_AVLtree: clear test_AVLtree			
+#set--------------------------------------------------------------------------------------------
+.PHONY: test_set valgrind_set rebuild_test_set
+
 $(TEST_EXEC_set): $(BUILD_DIR)
 	$(CC) $(MAIN_FLAGS) $(TEST_SRC_FILES_set) -o $@ $(LIBFLAGS)
 
 test_set: $(TEST_EXEC_set)
 	@./$(TEST_EXEC_set)
 
+valgrind_set: $(TEST_EXEC_set)
+	$(VALG)$(TEST_EXEC_set)
 
-#multiset
+rebuild_test_set: clear test_set							
+#multiset---------------------------------------------------------------------------------------
+.PHONY: test_multiset valgrind_multiset rebuild_test_multiset
+
 $(TEST_EXEC_multiset): $(BUILD_DIR)
 	$(CC) $(MAIN_FLAGS) $(TEST_SRC_FILES_multiset) -o $@ $(LIBFLAGS)
 
 test_multiset: $(TEST_EXEC_multiset)
 	@./$(TEST_EXEC_multiset)
 
+valgrind_multiset: $(TEST_EXEC_multiset)
+	$(VALG)$(TEST_EXEC_multiset)
 
-# coverage & report
+rebuild_test_multiset: clear test_multiset		
+#vector-----------------------------------------------------------------------------------------
+.PHONY: test_vector valgrind_vector rebuild_test_vector
 
+$(TEST_EXEC_vector): $(BUILD_DIR)
+	$(CC) $(MAIN_FLAGS) $(TEST_SRC_FILES_vector) -o $@ $(LIBFLAGS)
 
+test_vector: $(TEST_EXEC_vector)
+	@./$(TEST_EXEC_vector)
 
-# deployment
+valgrind_vector:  $(TEST_EXEC_vector)
+	$(VALG)$(TEST_EXEC_vector)
 
+rebuild_test_vector: clear test_vector		
+#queue------------------------------------------------------------------------------------------
+.PHONY: test_queue valgrind_queue rebuild_test_queue
 
+$(TEST_EXEC_queue): $(BUILD_DIR)
+	$(CC) $(MAIN_FLAGS) $(TEST_SRC_FILES_queue) -o $@ $(LIBFLAGS)
 
-#checkers 
+test_queue: $(TEST_EXEC_queue)
+	@./$(TEST_EXEC_queue)
+
+valgrind_queue:  $(TEST_EXEC_queue)	
+	$(VALG)$(TEST_EXEC_queue)
+
+rebuild_test_queue: clear test_queue	
+#array------------------------------------------------------------------------------------------
+.PHONY: test_array valgrind_array rebuild_test_array rebuild_test_array
+
+#array
+$(TEST_EXEC_array): $(BUILD_DIR)
+	$(CC) $(MAIN_FLAGS) $(TEST_SRC_FILES_array) -o $@ $(LIBFLAGS)
+
+test_array: $(TEST_EXEC_array)
+	@./$(TEST_EXEC_array)
+
+valgrind_arrray:  $(TEST_EXEC_array)
+	$(VALG)$(TEST_EXEC_array)
+
+rebuild_test_array: clear test_array							
+#list-------------------------------------------------------------------------------------------
+.PHONY: test_list valgrind_list rebuild_test_list
+
+#list
+$(TEST_EXEC_list): $(BUILD_DIR)
+	$(CC) $(MAIN_FLAGS) $(TEST_SRC_FILES_list) -o $@ $(LIBFLAGS)
+
+test_list: $(TEST_EXEC_list)
+	@./$(TEST_EXEC_list)
+
+valgrind_list:  $(TEST_EXEC_list)
+	$(VALG)$(TEST_EXEC_list)
+
+rebuild_test_list: clear test_list	
+#map--------------------------------------------------------------------------------------------
+.PHONY: test_map valgrind_map rebuild_test_map
+
+#map
+$(TEST_EXEC_map): $(BUILD_DIR)
+	$(CC) $(MAIN_FLAGS) $(TEST_SRC_FILES_map) -o $@ $(LIBFLAGS)
+
+test_map: $(TEST_EXEC_map)
+	@./$(TEST_EXEC_map)
+
+valgrind_map:  $(TEST_EXEC_map)	
+	$(VALG)$(TEST_EXEC_map)
+
+rebuild_test_map: clear test_map		
+# coverage & report-----------------------------------------------------------------------------
+#-
+# deployment------------------------------------------------------------------------------------
+#-
+#global checkers--------------------------------------------------------------------------------
 clang_all:
-	$(CLANG) -i $(HEAD_FILES) $(TEST_SRC_FILES) $(MAIN_HEADER) $(TPP_FILES) 
+	$(CLANG) -i $(HEAD_FILES) $(TEST_SRC_FILES) $(MAIN_HEADER) $(TPP_FILES) $(SECOND_MAIN_HEADER)
 
 clang_check:
-	@$(CLANG) -n $(HEAD_FILES) $(TEST_SRC_FILES) $(MAIN_HEADER) $(TPP_FILES) 
-	$(CLANG) -n $(shell find ../ -type f -name '*.cc' -o -name '*.hpp' -o -name '*.cc' -o -name '*.h')
+	@$(CLANG) -n $(HEAD_FILES) $(TEST_SRC_FILES) $(MAIN_HEADER) $(TPP_FILES) $(SECOND_MAIN_HEADER) 
+	$(CLANG) -n $(shell find ../ -type f -name '*.cc' -o -name '*.hpp' -o -name '*.tpp' -o -name '*.h')
 
 valgrind_all: $(TEST_EXEC)
 	$(VALG)$(TEST_EXEC)
 
-valgrind_stack: $(TEST_EXEC_stack)														#stack
-	$(VALG)$(TEST_EXEC_stack)
-
-valgrind_AVLtree: $(TEST_EXEC_AVLtree)													#AVLtree
-	$(VALG)$(TEST_EXEC_AVLtree)
-
-valgrind_set: $(TEST_EXEC_set)															#set
-	$(VALG)$(TEST_EXEC_set)
-
-valgrind_multiset: $(TEST_EXEC_multiset)												#multiset
-	$(VALG)$(TEST_EXEC_multiset)
-
 cpp_check:
 	$(CPPCHECK) $(shell find $(TEST_DIR) $(SRC_DIR) -type f \( -name '*.cc' -o -name '*.hpp' -o -name '*.cpp' -o -name '*.h'\))
 
-# service
+# service---------------------------------------------------------------------------------------
 $(OBJ_DIR) $(BUILD_DIR) $(COV_DIR):
 	@mkdir -p $@
 
@@ -159,9 +254,7 @@ clear:  clear_o
 
 clean: clear
 
-rebuild_test_stack: clear test_stack													#stack
-rebuild_test_AVLtree: clear test_AVLtree												#AVLtree
-rebuild_test_set: clear test_set														#set
-rebuild_test_multiset: clear test_multiset												#multiset
+rebuild_tests: clear test
+
 
 

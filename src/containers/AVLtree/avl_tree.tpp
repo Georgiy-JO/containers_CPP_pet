@@ -397,8 +397,8 @@ void Tree<Key_T,T>::merge(Tree<Key_T,T>& other){
 
 template <typename Key_T, typename T>
 template <typename...Args>
-std::vector<std::pair<typename Tree<Key_T,T>::iterator,bool>> Tree<Key_T,T>::insert_many(Args&&... args){
-    std::vector<std::pair<typename Tree<Key_T,T>::iterator,bool>> res;
+s21::vector<std::pair<typename Tree<Key_T,T>::iterator,bool>> Tree<Key_T,T>::insert_many(Args&&... args){
+    s21::vector<std::pair<typename Tree<Key_T,T>::iterator,bool>> res;
     (res.push_back(insert(std::forward<Args>(args))), ...);
     return res;
 }
