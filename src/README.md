@@ -112,12 +112,14 @@ You need to implement the `s21_containersplus.h` library functions:
 
 You need to complete the classes with the appropriate methods, according to the table:
 
-| Modifiers                                                      | Definition                                                     | Containers                  | Done for |
-| -------------------------------------------------------------- | -------------------------------------------------------------- | --------------------------- | -------- |
-| `iterator insert_many(const_iterator pos, Args&&... args)`     | Inserts new elements into the container directly before `pos`. | List, Vector.               |          |
-| `void insert_many_back(Args&&... args)`                        | Appends new elements to the end of the container.              | List, Vector, Queue, Stack. |          |
-| `void insert_many_front(Args&&... args)`                       | Appends new elements to the top of the container.              | List.                       |          |
-| `vector<std::pair<iterator,bool>> insert_many(Args&&... args)` | Inserts new elements into the container.                       | Map, Set, Multiset.         |          |
+| Modifiers                                                      | Definition                                                     | Containers                  |
+| -------------------------------------------------------------- | -------------------------------------------------------------- | --------------------------- |
+| `iterator insert_many(const_iterator pos, Args&&... args)`     | Inserts new elements into the container directly before `pos`. | List, Vector.               |
+| `void insert_many_back(Args&&... args)`                        | Appends new elements to the end of the container.              | List, Vector, Queue, Stack. |
+| `void insert_many_front(Args&&... args)`                       | Appends new elements to the top of the container.              | List.                       |
+| `vector<std::pair<iterator,bool>> insert_many(Args&&... args)` | Inserts new elements into the container.                       | Map, Set, Multiset.         |
+#### [See](#bonus)
+
 
 Note: the arguments are the already created elements of the appropriate container that should be inserted into this container.
 
@@ -137,32 +139,29 @@ Note: the arguments are the already created elements of the appropriate containe
 
 ### Task assignment  
 
-| Task                                           | Nickname | Done | Check |
-| ---------------------------------------------- | -------- | ---- | ----- |
-| `Tree`                                         | riderkri |  ✔   |       |
-| implement `list`                               | tanishag |  ✔   |       |
-| implement `map`                                | troyiggo |  ✔   |       |
-| implement `queue`                              | orenbran |      |       |
-| implement `set`                                |  riderkri|  ✔   |       |
-| implement `stack`                              | riderkri |  ✔   |       |
-| implement `vector`                             |orenbran  |  ✔   |       |
-| implement `array`                              |  tanishag        |      |       |
-| implement `multiset`                           |          |      |       |
-| `iterator insert_many`                         |          |      |       |
-| `insert_many_back`                             |          |      |       |
-| `insert_many_front`                            |          |      |       |
-| `vector<std::pair<iterator,bool>> insert_many` |          |      |       |
+#### Main
 
-**Tree** (riderkri)  готово (с тестами)   --  возможно необходим фикс;
-**list** (tanishag)  готово (с тестами и бонусами)
-**map**  (troyiggo)  готово (с тестами)  --  добавить бонусы
-**queue**   (orenbran) в разработке
-**set**  (riderkri) готово (с тестами)    --  добавить бонусы
-**stack**  (riderkri) готово (с тестами)  --  добавить бонусы
-**vector**  (orenbran) готово (с тестами и бонусами)
-**array**   (tanishag)  в разработке
-**multiset**   (?)
-`
+| Task                 | Nickname | Main | Tests | [Bonus](#bonus) | Checked |
+| -------------------- | -------- | ---- | ----- | --------------- | ------- |
+| implement `list`     | tanishag | ✔    | ✔     | ✔               |         |
+| implement `stack`    | riderkri | ✔    | ✔     |                 |         |
+| implement `queue`    | orenbran |      |       |                 |         |
+| implement `Tree`     | riderkri | ✔    | ✔     |                 |         |
+| implement `map`      | troyiggo | ✔    | ✔     |                 |         |
+| implement `set`      | riderkri | ✔    | ✔     |                 |         |
+| implement `multiset` |          |      |       |                 |         |
+| implement `vector`   | orenbran | ✔    | ✔     | ✔               |         |
+| implement `array`    | tanishag |      |       | -               |         |
+
+#### Bonus
+* Done and tested table
+
+| Containers                                           | List | Stack | Queue | Tree | Map | Set | Multiset | Vector | Array |
+| ---------------------------------------------------- | ---- | ----- | ----- | ---- | --- | --- | -------- | ------ | ----- |
+| `iterator insert_many(...)`                          | ✔    | -     | -     | -    | -   | -   | -        | ✔      | -     |
+| `void insert_many_back(...)`                         | ✔    |       |       | -    | -   | -   | -        | ✔      | -     |
+| `void insert_many_front(...)`                        | ✔    | -     | -     | -    | -   | -   | -        | -      | -     |
+| `vector <std::pair<iterator,bool>> insert_many(...)` | -    | -     | -     |      |     |     |          | -      | -     |
 
 
 
