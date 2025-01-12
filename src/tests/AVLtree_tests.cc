@@ -1,6 +1,6 @@
 #include "global_tests.h"
-#include "../src/AVLtree/avl_tree.hpp"
-#include "../src/stack/stack.hpp"
+#include "../containers/AVLtree/avl_tree.hpp"
+#include "../containers/stack/stack.hpp"
 
 TEST(TreeTest, DefaultConstructor_SS) {
     s21::Tree<int,int> tree_int;
@@ -822,6 +822,7 @@ TEST(TreeTest, CopyConstructor_MS) {
     EXPECT_EQ(tree_db_it.size(), 8);
     EXPECT_EQ(tree_ch_st.size(), 10);
 }
+/*
 // This thest is systrm dependent -- may cause errors 
 TEST(TreeTest, Max_size_SS_MS) {
     s21::Tree<int,int> tree_int{10,2,3,44,5,66,-5,-100,0,0,0,5,33,23,64,55,0,1,1000};
@@ -851,6 +852,7 @@ TEST(TreeTest, Max_size_SS_MS) {
     EXPECT_EQ(tree_ch_st.max_size(),288230376151711743);
     EXPECT_EQ(tree_ch_st_2.max_size(),288230376151711743);
 }
+*/
 TEST(TreeTest, Remove_int_SS) {
     s21::Tree<int,int> tree_int{15,4,26,5,20,0,34,10,16,22,3,32,-5,50,8,18,12,21,1,28,33,-2,43,-10,100};
     EXPECT_EQ(tree_int.size(), 25);
@@ -1285,6 +1287,7 @@ TEST(TreeTest, Mixed_SS_MS){
 
     it=tree_db_it.find(-55.55);
     EXPECT_EQ(*it,6000);
+    EXPECT_EQ(it.assigned(),true);
     std::pair<s21::Tree<std::string,std::string>::iterator_,bool> output;
     output=tree_str.insert("Han");
     EXPECT_EQ(output.second,true);
@@ -1293,6 +1296,7 @@ TEST(TreeTest, Mixed_SS_MS){
     output=tree_str.insert("Han");
     EXPECT_EQ(output.second,false);
     EXPECT_THROW(*output.first,std::out_of_range);
+    EXPECT_EQ(output.first.assigned(),false);
     EXPECT_EQ(tree_str.contains("Han"),true);
 
     

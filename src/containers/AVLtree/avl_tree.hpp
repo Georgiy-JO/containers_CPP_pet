@@ -7,7 +7,7 @@
 #include <cmath>
 #include "../stack/stack.hpp"
 
-//* add exceptions?
+//* end() - is not standart
 
 namespace s21 {
 template <typename Key_T, typename T>
@@ -93,7 +93,7 @@ class Tree {
 /*ok*/        std::pair<iterator, bool> insert(const_key_type& key){return insert(key,key);}
 /*ok*/        std::pair<iterator, bool> insert(const_key_type& key, const_value_type &value);
 /*ok*/        void remove(const_key_type key){root_=remove(root_,key);}
-/*ok*/        void erase(iterator pos){remove(root_,pos.getKey());}
+/*ok*/        void erase(iterator pos){if(pos.assigned())remove(root_,pos.getKey());}
 /*ok*/        inline bool empty(){return root_==nullptr;}
 /*ok*/        void swap(Tree& other) noexcept;
 /*ok*/        void merge(Tree& other);
@@ -111,7 +111,7 @@ class Tree {
 /*ok*/        void showTreeVerticalVal(const node_ *node);
 /*ok*/        Stack<key_type>& getTree(Stack<key_type>& stack)const{return getTree(root_, stack);}
 /*ok*/        std::pair<Stack<key_type>, Stack<value_type>>& getTree(std::pair<Stack<key_type>, Stack<value_type>>& stack)const{return getTree(root_, stack);}
-/*ok*/       key_type getParentData(const_key_type key)const;
+/*ok*/        key_type getParentData(const_key_type key)const;
 /*ok*/        void crazyPrinter(const node_* root)const;
 /*ok*/        void crazyPrinter()const{crazyPrinter(root_);}
         
@@ -139,13 +139,14 @@ class Tree {
 /*ok*/                iterator_& operator-=(int n);
 /*ok*/                iterator_ operator++(int);
 /*ok*/                iterator_ operator--(int);
-/*ok*/                 auto operator*()const{return getValue();}
+/*ok*/                auto operator*()const{return getValue();}
 // /**/                const_pointer operator->()const;
 /*ok*/                bool operator==(const iterator_& other)const{return element_==other.element_;}
 /*ok*/                bool operator!=(const iterator_& other)const{return element_!=other.element_;}
-/*ok*/            inline const_value_type& getValue()const;
-/*ok*/            inline const_key_type& getKey()const;
-/*ok*/            auto getPair()const;
+/*ok*/                inline const_value_type& getValue()const;
+/*ok*/                inline const_key_type& getKey()const;
+/*ok*/                auto getPair()const;
+/*ok*/                bool assigned()const{return element_!=nullptr;}
         };
         
         class constIterator_: public iterator_{

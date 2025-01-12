@@ -135,7 +135,7 @@ inline typename Tree<Key_T,T>::const_value_type& Tree<Key_T,T>::iterator_::getVa
 template <typename Key_T, typename T>
 inline void Tree<Key_T,T>::iterator_::ifElement()const{
     if (!element_)
-        throw std::out_of_range("Iterator is out of range");
+        throw std::out_of_range("Iterator is out of range");     //exception is better than undefined behavior
 
 }
 

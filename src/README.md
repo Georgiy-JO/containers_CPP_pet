@@ -140,15 +140,30 @@ Note: the arguments are the already created elements of the appropriate containe
 | Task                                           | Nickname | Done | Check |
 | ---------------------------------------------- | -------- | ---- | ----- |
 | `Tree`                                         | riderkri |  ✔   |       |
-| implement `list`                               | tanishag |      |       |
-| implement `map`                                | troyiggo |      |       |
+| implement `list`                               | tanishag |  ✔   |       |
+| implement `map`                                | troyiggo |  ✔   |       |
 | implement `queue`                              | orenbran |      |       |
-| implement `set`                                |  riderkri|      |       |
+| implement `set`                                |  riderkri|  ✔   |       |
 | implement `stack`                              | riderkri |  ✔   |       |
 | implement `vector`                             |orenbran  |  ✔   |       |
-| implement `array`                              |          |      |       |
+| implement `array`                              |  tanishag        |      |       |
 | implement `multiset`                           |          |      |       |
 | `iterator insert_many`                         |          |      |       |
 | `insert_many_back`                             |          |      |       |
 | `insert_many_front`                            |          |      |       |
 | `vector<std::pair<iterator,bool>> insert_many` |          |      |       |
+
+**Tree** (riderkri)  готово (с тестами)   --  возможно необходим фикс;
+**list** (tanishag)  готово (с тестами и бонусами)
+**map**  (troyiggo)  готово (с тестами)  --  добавить бонусы
+**queue**   (orenbran) в разработке
+**set**  (riderkri) готово (с тестами)    --  добавить бонусы
+**stack**  (riderkri) готово (с тестами)  --  добавить бонусы
+**vector**  (orenbran) готово (с тестами и бонусами)
+**array**   (tanishag)  в разработке
+**multiset**   (?)
+`
+
+
+
+
