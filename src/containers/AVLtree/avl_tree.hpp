@@ -6,9 +6,7 @@
 #include <typeinfo>
 #include <cmath>
 #include "../stack/stack.hpp"
-
-//temple 
-#include <vector>
+#include "../vector/s21_vector.h"
 
 //* end() - is not standart
 
@@ -40,7 +38,6 @@ class Tree {
                 node_ *left_{nullptr};
                 node_ *right_{nullptr};
                 node_ *parent_{nullptr};
-                // unsigned int hight_{0};
 /*ok*/                node_()=default;
 /*ok*/                node_(const key_type &key, node_* parent=nullptr):key_{key}, data_{key}, parent_{parent}{}/*,hight_{1}*/
 /*ok*/                node_(const key_type &key, const value_type &data, node_* parent=nullptr):key_{key}, data_{data}, parent_{parent}{}/*,hight_{1}*/
@@ -48,6 +45,7 @@ class Tree {
         };
         node_ *root_{nullptr};
         size_type size_ {0};
+        node_* end_node{nullptr};
 
 /*ok*/        node_* find_(node_ * root, const_key_type &key) const;
 /*ok*/        node_* find__(node_ * root, const_value_type &value) const;
@@ -75,9 +73,9 @@ class Tree {
 /*ok*/        std::pair<Stack<key_type>, Stack<value_type>>& getTree(const node_ *node, std::pair<Stack<key_type>, Stack<value_type>>& stack)const;
     protected:
 /*ok*/        const node_* getBeginig()const{return getBeginig(root_);} 
-/*ok*/        const node_* getEnd()const{ return getEnd(root_);} 
+// /*ok*/        const node_* getEnd()const{ return getEnd(root_);}
     public:
-/*ok*/        inline Tree():root_{nullptr},size_ {0}{}
+/*ok*/        inline Tree():root_{nullptr},size_ {0},end_node{nullptr}{}
 /*ok*/        inline Tree(const_key_type key):Tree(key,key){}
 /*ok*/        inline Tree(const_key_type key, const_value_type value):Tree(){insert(key,value);}
 /*ok*/        Tree(std::initializer_list<key_type> const &items);
@@ -100,10 +98,10 @@ class Tree {
 /*ok*/        void merge(Tree& other);
 /*ok*/        inline size_type max_size() const noexcept;
 /*ok*/        inline size_type size(){return size_;}
-/*ok*/        inline void clear(){clear(root_);}
+/*ok*/        inline void clear();
 /*ok*/        void copyTree(Tree<Key_T,T>& TO) const; 
 /*ok*/        iterator_ begin(){return iterator_(getBeginig(root_));} 
-/*ok*/        iterator_ end(){return iterator_(getEnd(root_));}
+/*ok*/        iterator_ end();
 
             //extra functions
 /*ok*/        void showTreeVertical();
@@ -118,7 +116,7 @@ class Tree {
 
             //bonus functions
             template <typename...Args>
-/*ok*/            std::vector<std::pair<iterator,bool>> insert_many(Args&&... args);
+/*ok*/            s21::vector<std::pair<iterator,bool>> insert_many(Args&&... args);
 /*ok*/            iterator insertMult(const_key_type& key){return insertMult(key,key);}
 /*ok*/            iterator insertMult(const_key_type& key,const_value_type& value);
 /*ok*/            node_* insertMult(node_ *& root,const_key_type& key,const_value_type& value);
@@ -127,6 +125,7 @@ class Tree {
     friend class iterator_;
         class iterator_{
                 node_* element_{nullptr};
+                node_* end_node_{nullptr};
                 // Tree* three_ptr_{nullptr};
 /*ok*/                node_* getNext(){return element_?getNext(element_):nullptr;}
 /*ok*/                node_* getNext(node_* node);
@@ -136,8 +135,8 @@ class Tree {
 
             public:
                     friend class constIterator_;
-/*ok*/                iterator_(node_* element=nullptr):element_{element}{}
-/*ok*/                iterator_(const iterator_& other):iterator_(other.element_){}
+/*ok*/                iterator_(node_* element=nullptr, node_* end_n=nullptr):element_{element}, end_node_{end_n}{}
+/*ok*/                iterator_(const iterator_& other):iterator_(other.element_, other.end_node_){}
 /*ok*/                iterator_& operator=(const iterator_& other);
 /*ok*/                iterator_& operator=(const Tree<Key_T,T>& tree);
 /*ok*/                iterator_& operator=(const node_*& node);
@@ -174,6 +173,18 @@ class Tree {
 #include "avl_tree_irterator.tpp"
 //Multiset module
 #include "avl_tree_multiset.tpp"
+
+template <typename Key_T, typename T>
+typename Tree<Key_T,T>::iterator_ Tree<Key_T,T>::end(){
+    if(root_){
+        std::cout<<"here"<<std::endl;
+        if(!end_node)
+            end_node = new node_();
+        end_node->parent_=getEnd(root_);
+    }
+    return iterator_(end_node);
+}
+
 }
 
 

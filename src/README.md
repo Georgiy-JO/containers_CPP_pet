@@ -151,7 +151,7 @@ Note: the arguments are the already created elements of the appropriate containe
 | implement `set`      | riderkri | ✔    | ✔     | ✔               |         |
 | implement `multiset` | riderkri | ✔    | ✔     | ✔               |         |
 | implement `vector`   | orenbran | ✔    | ✔     | ✔               |         |
-| implement `array`    | tanishag |      |       | -               |         |
+| implement `array`    | tanishag | ✔    | ✔     | -               |         |
 
 #### Bonus
 * Done and tested table

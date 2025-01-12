@@ -8,6 +8,7 @@ std::pair<typename Tree<Key_T,T>::iterator, bool> Tree<Key_T,T>::insert(const_ke
         size_++;
         addParents();
         local=find_(key);
+        end();
     }
     return std::make_pair(local,inserted);
 }
@@ -81,6 +82,12 @@ void Tree<Key_T,T>::clear(node_*& root){
             clear(root->left_);
         removeNode(root);
     }
+}
+template <typename Key_T, typename T>
+inline void Tree<Key_T,T>::clear(){
+    clear(root_);
+    if(end_node)
+        delete end_node;
 }
 
 template <typename Key_T, typename T>
@@ -380,12 +387,12 @@ void Tree<Key_T,T>::merge(Tree<Key_T,T>& other){
         iterator tmp=other.begin();
         std::pair <iterator_, bool> pr;
         Stack<Key_T> lst;
-        while(1){
+        while(tmp!=other.end()){
             pr=this->insert(tmp.getKey(),tmp.getValue());
             if(pr.second)
                 lst.push(pr.first.getKey());
-            if(tmp==other.end())
-                break;
+            // if(tmp==other.end())
+            //     break;
             tmp++;
         }
         while(!lst.empty()){
@@ -397,8 +404,8 @@ void Tree<Key_T,T>::merge(Tree<Key_T,T>& other){
 
 template <typename Key_T, typename T>
 template <typename...Args>
-std::vector<std::pair<typename Tree<Key_T,T>::iterator,bool>> Tree<Key_T,T>::insert_many(Args&&... args){
-    std::vector<std::pair<typename Tree<Key_T,T>::iterator,bool>> res;
+s21::vector<std::pair<typename Tree<Key_T,T>::iterator,bool>> Tree<Key_T,T>::insert_many(Args&&... args){
+    s21::vector<std::pair<typename Tree<Key_T,T>::iterator,bool>> res;
     (res.push_back(insert(std::forward<Args>(args))), ...);
     return res;
 }

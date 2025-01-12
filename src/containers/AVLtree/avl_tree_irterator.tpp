@@ -19,7 +19,7 @@ typename Tree<Key_T,T>::node_* Tree<Key_T,T>::iterator_::getNext(node_* node){
         if(parent->key_>node->key_)
             node= parent;
         else 
-            node = nullptr;
+            node = end_node_;
     }
     return node;
 }
@@ -42,7 +42,7 @@ typename Tree<Key_T,T>::node_* Tree<Key_T,T>::iterator_::getPrev( node_* node){
         if(parent->key_<node->key_)
             node= parent;
         else 
-            node = nullptr;
+            node = end_node_;
     }
     return node;
 }
@@ -51,18 +51,21 @@ typename Tree<Key_T,T>::node_* Tree<Key_T,T>::iterator_::getPrev( node_* node){
 template <typename Key_T, typename T>
 typename Tree<Key_T,T>::iterator_& Tree<Key_T,T>::iterator_::operator=(const iterator_& other){
     element_=other.element_;
+    end_node_=other.end_node_;
     return *this;
 }
 
 template <typename Key_T, typename T>
 typename Tree<Key_T,T>::iterator_& Tree<Key_T,T>::iterator_::operator=(const Tree<Key_T,T>& tree){
     element_=tree.root_;
+    end_node_=tree.end_node;
     return *this;
 }
 
 template <typename Key_T, typename T>
 typename Tree<Key_T,T>::iterator_& Tree<Key_T,T>::iterator_::operator=(const node_*& node){
     element_=node;
+    end_node_=nullptr;
     return *this;
 }
 

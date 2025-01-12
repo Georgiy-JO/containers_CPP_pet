@@ -34,7 +34,7 @@ class set: public Tree<Key, Key> {
 *ok*        * bool contains(const Key& key) --  checks if the container contains an element with a specific key 
 *ok*        * iterator begin();         --  returns an iterator to the beginning
 *ok*        * iterator end();           --  returns an iterator to the end
-*ok*        * std::vector<std::pair<iterator,bool>> insert_many(Args&&... args); -- Inserts several new elements into the container
+*ok*        * s21::vector<std::pair<iterator,bool>> insert_many(Args&&... args); -- Inserts several new elements into the container
         */
 /*ok*/        inline set& operator=(set &&s){                         // move assignment        
             Tree<value_type,value_type>::operator=(std::move(s));

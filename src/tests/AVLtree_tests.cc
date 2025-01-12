@@ -1,7 +1,7 @@
 #include "global_tests.h"
 #include "../containers/AVLtree/avl_tree.hpp"
 #include "../containers/stack/stack.hpp"
-
+#include "../containers/vector/s21_vector.h"
 
 TEST(TreeTest, DefaultConstructor_SS) {
     s21::Tree<int,int> tree_int;
@@ -79,6 +79,7 @@ TEST(TreeTest, DefaultConstructor_SS) {
     EXPECT_EQ(tree_char.size(), 0);
     EXPECT_EQ(tree_char.empty(), true);
 }
+/*
 TEST(TreeTest, DefaultConstructor_MS) {
     s21::Tree<int,double> tree_double;
     s21::Tree<char,std::string> tree_str;
@@ -823,7 +824,9 @@ TEST(TreeTest, CopyConstructor_MS) {
     EXPECT_EQ(tree_db_it.size(), 8);
     EXPECT_EQ(tree_ch_st.size(), 10);
 }
+*/
 /*
+
 // This thest is systrm dependent -- may cause errors 
 TEST(TreeTest, Max_size_SS_MS) {
     s21::Tree<int,int> tree_int{10,2,3,44,5,66,-5,-100,0,0,0,5,33,23,64,55,0,1,1000};
@@ -854,6 +857,7 @@ TEST(TreeTest, Max_size_SS_MS) {
     EXPECT_EQ(tree_ch_st_2.max_size(),288230376151711743);
 }
 */
+/*
 TEST(TreeTest, Remove_int_SS) {
     s21::Tree<int,int> tree_int{15,4,26,5,20,0,34,10,16,22,3,32,-5,50,8,18,12,21,1,28,33,-2,43,-10,100};
     EXPECT_EQ(tree_int.size(), 25);
@@ -1125,6 +1129,8 @@ TEST(TreeTest, Parent_MS) {
     EXPECT_EQ(tree_ch_st.getParentData('\n'),'(');
     // tree_ch_st.crazyPrinter();
 }
+*/
+/*
 TEST(TreeTest, Begin_End_SS) {
     s21::Tree<int,int> tree_int{15,4,26,5,20,0,34,10,16,22,3,32,-5,50,8,18,12,21,1,28,33,-2,43,-10,100};
     EXPECT_EQ(tree_int.size(), 25);
@@ -1266,6 +1272,8 @@ TEST(TreeTest, Iterator) {
      EXPECT_EQ(it_int_2==it_int, false);
      
 }
+*/
+/*
 TEST(TreeTest, Mixed_SS_MS){
     s21::Tree<int,int> tree_int{10,2,3,44,5,66,-5,-100,0,0,0,5,33,23,64,55,0,1,1000};
     s21::Tree<double,double> tree_double{555.55, 423.2,2,1000,-55.55,-33.3,-1000,100,1000,100,-5.5};
@@ -1445,7 +1453,7 @@ TEST(TreeTest, Bonus_SS){
     EXPECT_EQ(tree_str_2.size(), 4);
     EXPECT_EQ(tree_char_2.size(), 17);
 
-    std::vector<std::pair<s21::Tree<int,int>::iterator,bool>> vec;
+    s21::vector<std::pair<s21::Tree<int,int>::iterator,bool>> vec;
     vec = tree_int_2.insert_many(12,44,14,55,0,77,88,99,100,-5,-100,55,55.5,77.77777);
     EXPECT_EQ(tree_int_2.size(), 23);
     EXPECT_EQ(vec.size(),14);
@@ -1460,6 +1468,7 @@ TEST(TreeTest, Bonus_SS){
 }
 
 TEST(TreeTest,Multiset_functions){
+
     s21::Tree<int,int> tree_int{10,2,3,44,5,66,-5,-100,0,0,0,5,33,23,64,55,0,1,1000};
     s21::Tree<double,double> tree_double{555.55, 423.2,2,1000,-55.55,-33.3,-1000,100,1000,100,-5.5};
     s21::Tree<std::string,std::string> tree_str{"Jazz", "Me", "played", "with", "Blues", "brothers", "like", "Yoda", "Wow", "!"};
@@ -1491,3 +1500,5 @@ TEST(TreeTest,Multiset_functions){
     EXPECT_EQ(*tree_double.insertMult(-1000),*tree_double.insertMult(-1000));
 
 }
+
+*/

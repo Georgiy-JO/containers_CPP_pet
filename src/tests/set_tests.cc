@@ -1281,7 +1281,7 @@ TEST(SetTest, Bonus) {
     EXPECT_EQ(set_str_1.size(), 12);
     EXPECT_EQ(set_char_1.size(), 18);
 
-    std::vector<std::pair<s21::set<std::string>::iterator,bool>> vec;
+    s21::vector<std::pair<s21::set<std::string>::iterator,bool>> vec;
     vec=set_str_1.insert_many("agents", "J", "and","K", "were not","brothers","but", "played","together", "like", "one","!");
     EXPECT_EQ(vec.size(), 12);
     EXPECT_EQ(*vec[0].first,"agents");
