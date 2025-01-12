@@ -36,6 +36,9 @@ HEAD_FILES_AVLtree = $(shell find $(SRC_DIR)/AVLtree -type f -name '*.hpp')				#
 # HEAD_FILES_list = $(shell find $(SRC_DIR)/list -type f -name '*.hpp')					#list
 # HEAD_FILES_map = $(shell find $(SRC_DIR)/map -type f -name '*.hpp')					#map
 HEAD_FILES_set = $(shell find $(SRC_DIR)/set -type f -name '*.hpp')						#set
+HEAD_FILES_multiset = $(shell find $(SRC_DIR)/multiset -type f -name '*.hpp')			#multiset
+# HEAD_FILES_vector = $(shell find $(SRC_DIR)/vector -type f -name '*.hpp')
+
 HEAD_FILES = $(shell find $(SRC_DIR)/*/ -type f -name '*.hpp')
 TPP_FILES = $(shell find $(SRC_DIR)/*/ -type f -name '*.tpp')
 
@@ -44,19 +47,22 @@ TEST_SRC_FILES_stack= $(TEST_DIR)/stack_tests.cc $(TEST_DIR)/stack_tests_outsour
 TEST_SRC_FILES_AVLtree= $(TEST_DIR)/AVLtree_tests.cc									#AVLtree
 # TEST_SRC_FILES_list= $(TEST_DIR)/list_tests.cc										#list
 # TEST_SRC_FILES_map= $(TEST_DIR)/map_tests.cc											#map
-TEST_SRC_FILES_set= $(TEST_DIR)/set_tests.cc $(TEST_DIR)/set_tests_outsource.cc		#set
+TEST_SRC_FILES_set= $(TEST_DIR)/set_tests.cc $(TEST_DIR)/set_tests_outsource.cc			#set
+TEST_SRC_FILES_multiset= $(TEST_DIR)/multiset_tests.cc									#multiset
 TEST_SRC_FILES = $(shell find $(TEST_DIR)/ -type f -name '*.cc')
 TEST_OBJ_FILES = $(addprefix $(OBJ_DIR)/, $(notdir $(TEST_SRC_FILES:.cc=.o)))
 TEST_EXEC = $(addprefix $(BUILD_DIR)/, tests) 
 TEST_EXEC_stack=$(addprefix $(BUILD_DIR)/, stack_tests)									#stack
 TEST_EXEC_AVLtree=$(addprefix $(BUILD_DIR)/, AVLtree_tests)								#AVLtree
 TEST_EXEC_set=$(addprefix $(BUILD_DIR)/, set_tests)										#set
+TEST_EXEC_multiset=$(addprefix $(BUILD_DIR)/, multiset_tests)							#multiset
 
 
 # target specific variables
 $(TEST_EXEC_stack):MAIN_FLAGS:= $(MAIN_FLAGS) $(DEBUG_FLAGS) $(POSIX_FLAG)				#stack
 $(TEST_EXEC_AVLtree):MAIN_FLAGS:= $(MAIN_FLAGS) $(DEBUG_FLAGS) $(POSIX_FLAG)			#AVLtree
 $(TEST_EXEC_set):MAIN_FLAGS:= $(MAIN_FLAGS) $(DEBUG_FLAGS) $(POSIX_FLAG)				#set
+$(TEST_EXEC_multiset):MAIN_FLAGS:= $(MAIN_FLAGS) $(DEBUG_FLAGS) $(POSIX_FLAG)			#multiset	
 $(TEST_EXEC): MAIN_FLAGS:= $(MAIN_FLAGS) $(DEBUG_FLAGS) $(POSIX_FLAG) #$(VALG_FLAGS)
 
 
@@ -97,6 +103,16 @@ $(TEST_EXEC_set): $(BUILD_DIR)
 
 test_set: $(TEST_EXEC_set)
 	@./$(TEST_EXEC_set)
+
+
+#multiset
+$(TEST_EXEC_multiset): $(BUILD_DIR)
+	$(CC) $(MAIN_FLAGS) $(TEST_SRC_FILES_multiset) -o $@ $(LIBFLAGS)
+
+test_multiset: $(TEST_EXEC_multiset)
+	@./$(TEST_EXEC_multiset)
+
+
 # coverage & report
 
 
@@ -125,6 +141,9 @@ valgrind_AVLtree: $(TEST_EXEC_AVLtree)													#AVLtree
 valgrind_set: $(TEST_EXEC_set)															#set
 	$(VALG)$(TEST_EXEC_set)
 
+valgrind_multiset: $(TEST_EXEC_multiset)												#multiset
+	$(VALG)$(TEST_EXEC_multiset)
+
 cpp_check:
 	$(CPPCHECK) $(shell find $(TEST_DIR) $(SRC_DIR) -type f \( -name '*.cc' -o -name '*.hpp' -o -name '*.cpp' -o -name '*.h'\))
 
@@ -143,5 +162,6 @@ clean: clear
 rebuild_test_stack: clear test_stack													#stack
 rebuild_test_AVLtree: clear test_AVLtree												#AVLtree
 rebuild_test_set: clear test_set														#set
+rebuild_test_multiset: clear test_multiset												#multiset
 
 

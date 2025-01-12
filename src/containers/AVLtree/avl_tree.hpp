@@ -7,6 +7,9 @@
 #include <cmath>
 #include "../stack/stack.hpp"
 
+//temple 
+#include <vector>
+
 //* end() - is not standart
 
 namespace s21 {
@@ -71,12 +74,12 @@ class Tree {
 /*ok*/        Stack<key_type>& getTree(const node_ *node,Stack<key_type>& stack)const;
 /*ok*/        std::pair<Stack<key_type>, Stack<value_type>>& getTree(const node_ *node, std::pair<Stack<key_type>, Stack<value_type>>& stack)const;
     protected:
-/*ok*/        const node_* getBeginig(){return getBeginig(root_);} 
-/*ok*/        const node_* getEnd(){ return getEnd(root_);} 
+/*ok*/        const node_* getBeginig()const{return getBeginig(root_);} 
+/*ok*/        const node_* getEnd()const{ return getEnd(root_);} 
     public:
 /*ok*/        inline Tree():root_{nullptr},size_ {0}{}
 /*ok*/        inline Tree(const_key_type key):Tree(key,key){}
-/*ok*/        inline Tree(const_key_type key, const_value_type value):Tree(){insert_(key,value);}
+/*ok*/        inline Tree(const_key_type key, const_value_type value):Tree(){insert(key,value);}
 /*ok*/        Tree(std::initializer_list<key_type> const &items);
 /*ok*/        Tree(std::initializer_list<std::pair<key_type, value_type>> const &items);
 /*ok*/        Tree(const Tree &other):Tree(){(*this)=other;}       //copy
@@ -88,12 +91,10 @@ class Tree {
 /*ok*/        inline bool contains(const_key_type key)const {return find_(key)?1:0;}
 /*ok*/        inline bool containsVal(const_value_type value)const {return find__(value)?1:0;}
 /*ok*/        inline iterator find(const_key_type& key) const;
-/*ok*/        void insert_(const_key_type key){ insert_(key,key);}
-/*ok*/        void insert_(const_key_type key, const_value_type value);
 /*ok*/        std::pair<iterator, bool> insert(const_key_type& key){return insert(key,key);}
 /*ok*/        std::pair<iterator, bool> insert(const_key_type& key, const_value_type &value);
 /*ok*/        void remove(const_key_type key){root_=remove(root_,key);}
-/*ok*/        void erase(iterator pos){if(pos.assigned())remove(root_,pos.getKey());}
+/*ok*/        void erase(iterator pos){if(pos.assigned())remove(pos.getKey());}
 /*ok*/        inline bool empty(){return root_==nullptr;}
 /*ok*/        void swap(Tree& other) noexcept;
 /*ok*/        void merge(Tree& other);
@@ -114,6 +115,13 @@ class Tree {
 /*ok*/        key_type getParentData(const_key_type key)const;
 /*ok*/        void crazyPrinter(const node_* root)const;
 /*ok*/        void crazyPrinter()const{crazyPrinter(root_);}
+
+            //bonus functions
+            template <typename...Args>
+/*ok*/            std::vector<std::pair<iterator,bool>> insert_many(Args&&... args);
+/*ok*/            iterator insertMult(const_key_type& key){return insertMult(key,key);}
+/*ok*/            iterator insertMult(const_key_type& key,const_value_type& value);
+/*ok*/            node_* insertMult(node_ *& root,const_key_type& key,const_value_type& value);
         
 
     friend class iterator_;
@@ -124,7 +132,7 @@ class Tree {
 /*ok*/                node_* getNext(node_* node);
 /*ok*/                node_* getPrev(){return element_?getPrev(element_):nullptr;}
 /*ok*/                node_* getPrev(node_* node);
-/*ok*/            inline void ifElement()const;
+/*ok*/                inline void ifElement()const;
 
             public:
                     friend class constIterator_;
@@ -164,7 +172,8 @@ class Tree {
 #include "avl_tree.tpp"
 //Iterator
 #include "avl_tree_irterator.tpp"
-
+//Multiset module
+#include "avl_tree_multiset.tpp"
 }
 
 

@@ -45,6 +45,11 @@ class Stack {
         void swap(Stack& other) noexcept;	                                //swaps the contents
         Stack& operator=(Stack &&s);                                   //assignment operator overload for move an object
         Stack& operator=(const Stack &s);                              //assignment operator overload for copying an object
+
+        template <typename ... Args>
+        void insert_many_back(Args&&... args){(push(std::forward<Args>(args)), ...);}
 };
 #include "stack.tpp"
+
+
 }  // namespace s21

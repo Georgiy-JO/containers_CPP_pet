@@ -18,6 +18,8 @@ typename Tree<Key_T,T>::node_* Tree<Key_T,T>::iterator_::getNext(node_* node){
         }
         if(parent->key_>node->key_)
             node= parent;
+        else 
+            node = nullptr;
     }
     return node;
 }
@@ -39,6 +41,8 @@ typename Tree<Key_T,T>::node_* Tree<Key_T,T>::iterator_::getPrev( node_* node){
         }
         if(parent->key_<node->key_)
             node= parent;
+        else 
+            node = nullptr;
     }
     return node;
 }

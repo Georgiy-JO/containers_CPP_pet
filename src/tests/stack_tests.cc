@@ -290,7 +290,6 @@ TEST(StackTest, MoveConstructor) {
 }
 
 TEST(StackTest, CopyAssignment) {
-  using std::move;
   s21::Stack<int> stack_int{4,5,6,7,2,-55};
   s21::Stack<double> stack_double{3.3,5.5,5.555, -110.5,23.44,0};
   s21::Stack<std::string> stack_string{"Hell","to", "you","!"};
@@ -403,7 +402,6 @@ TEST(StackTest, CopyAssignment) {
 }
 
 TEST(StackTest, CopyConstructor) {
-  using std::move;
   s21::Stack<int> stack_int{4,5,6,7,2,-55};
   s21::Stack<double> stack_double{3.3,5.5,5.555, -110.5,23.44,0};
   s21::Stack<std::string> stack_string{"Hell","to", "you","!"};
@@ -493,5 +491,103 @@ TEST(StackTest, CopyConstructor) {
   EXPECT_THROW(stack_double2.top(),std::out_of_range);
   EXPECT_THROW(stack_string2.top(),std::out_of_range);
   EXPECT_THROW(stach_char2.top(),std::out_of_range);
+}
+TEST(StackTest, BonusFunctions) {
+  s21::Stack<int> stack_int{4,5,6,7,2,-55};
+  s21::Stack<double> stack_double{3.3,5.5,5.555, -110.5,23.44,0};
+  s21::Stack<std::string> stack_string{"Hell","to", "you","!"};
+  s21::Stack<char> stach_char{'f', '0','\0','d','1','k'};
+
+  stack_int.insert_many_back(44,32,434,322,44,55,66,77,22,34,5435,5345,545,345,435,35,35,-55);
+  EXPECT_EQ(stack_int.top(),-55);
+  EXPECT_EQ(stack_int.size(), 24);
+  EXPECT_EQ(stack_int.empty(), false);
+  stack_double.insert_many_back(132.13,31231.312313,1.1,2.2,3.3,4.4,5.5,6.6);
+  EXPECT_EQ(stack_double.top(), 6.6);
+  EXPECT_EQ(stack_double.size(), 14);
+  EXPECT_EQ(stack_double.empty(), false);
+  stack_string.insert_many_back("Hello","World","!");
+  EXPECT_EQ(stack_string.top(), "!");
+  EXPECT_EQ(stack_string.size(), 7);
+  EXPECT_EQ(stack_string.empty(), false);
+  stach_char.insert_many_back('1','2','3','4','5','6','\t');
+  EXPECT_EQ(stach_char.top(), '\t');
+  EXPECT_EQ(stach_char.size(), 13);
+  EXPECT_EQ(stach_char.empty(), false);
+
+  stack_int.insert_many_back(5);
+  EXPECT_EQ(stack_int.top(),5);
+  EXPECT_EQ(stack_int.size(), 25);
+  stack_double.insert_many_back(5);
+  EXPECT_EQ(stack_double.top(), 5);
+  EXPECT_EQ(stack_double.size(), 15);
+  stack_string.insert_many_back("5");
+  EXPECT_EQ(stack_string.top(), "5");
+  EXPECT_EQ(stack_string.size(), 8);
+  stach_char.insert_many_back('5');
+  EXPECT_EQ(stach_char.top(), '5'); 
+  EXPECT_EQ(stach_char.size(), 14);
+
+  stack_int.insert_many_back();
+  EXPECT_EQ(stack_int.top(),5);
+  EXPECT_EQ(stack_int.size(), 25);
+  stack_double.insert_many_back();
+  EXPECT_EQ(stack_double.top(), 5);
+  EXPECT_EQ(stack_double.size(), 15);
+  stack_string.insert_many_back();
+  EXPECT_EQ(stack_string.top(), "5");
+  EXPECT_EQ(stack_string.size(), 8);
+  stach_char.insert_many_back();
+  EXPECT_EQ(stach_char.top(), '5');
+  EXPECT_EQ(stach_char.size(), 14);
+
+  s21::Stack<int> stack_int_2;
+  s21::Stack<double> stack_double_2;
+  s21::Stack<std::string> stack_string_2;
+  s21::Stack<char> stach_char_2;
+  EXPECT_EQ(stack_int_2.empty(), true);
+  EXPECT_EQ(stack_double_2.empty(), true);
+  EXPECT_EQ(stack_string_2.empty(), true);
+  EXPECT_EQ(stach_char_2.empty(), true);
+  EXPECT_EQ(stack_int_2.size(), 0);
+  EXPECT_EQ(stack_double_2.size(), 0);
+  EXPECT_EQ(stack_string_2.size(), 0);
+  EXPECT_EQ(stach_char_2.size(), 0);
+  
+  stack_int_2.insert_many_back();
+  stack_double_2.insert_many_back();
+  stack_string_2.insert_many_back();
+  stach_char_2.insert_many_back();
+  EXPECT_EQ(stack_int_2.empty(), true);
+  EXPECT_EQ(stack_double_2.empty(), true);
+  EXPECT_EQ(stack_string_2.empty(), true);
+  EXPECT_EQ(stach_char_2.empty(), true);
+  EXPECT_EQ(stack_int_2.size(), 0);
+  EXPECT_EQ(stack_double_2.size(), 0);
+  EXPECT_EQ(stack_string_2.size(), 0);
+  EXPECT_EQ(stach_char_2.size(), 0);
+
+  stack_int_2.insert_many_back(1,2,3,4,5);
+  stack_double_2.insert_many_back(1.1,2.2,3.3,4.4,5.5);
+  stack_string_2.insert_many_back("1","2","3","4","5");
+  stach_char_2.insert_many_back('1','2','3','4','5');
+  EXPECT_EQ(stack_int_2.empty(), false);
+  EXPECT_EQ(stack_double_2.empty(), false);
+  EXPECT_EQ(stack_string_2.empty(), false);
+  EXPECT_EQ(stach_char_2.empty(), false);
+  EXPECT_EQ(stack_int_2.size(), 5);
+  EXPECT_EQ(stack_double_2.size(), 5);
+  EXPECT_EQ(stack_string_2.size(), 5);
+  EXPECT_EQ(stach_char_2.size(), 5);
+  EXPECT_EQ(stack_int_2.top(), 5);
+  EXPECT_EQ(stack_double_2.top(), 5.5);
+  EXPECT_EQ(stack_string_2.top(), "5");
+  EXPECT_EQ(stach_char_2.top(), '5');
+
+
+  stack_int_2.insert_many_back(9.9);
+  EXPECT_EQ(stack_int_2.top(), 9);
+  stack_int_2.insert_many_back('9');
+  EXPECT_EQ(stack_int_2.top(), 9+'0');
 }
 

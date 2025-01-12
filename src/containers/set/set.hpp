@@ -2,8 +2,6 @@
 
 #include <iostream>
 #include "../AVLtree/avl_tree.hpp"
-#include <set>
-
 
 namespace s21 {
 template <typename Key>
@@ -27,7 +25,7 @@ class set: public Tree<Key, Key> {
         * Functions and operators that are defined in Tree class and can be used for set
 
 *ok*        * bool empty()              --  checks if the set is empty
-*ok*        * clear();                  --  clear the set
+*ok*        * void clear();                  --  clear the set
 *ok*        * size_type size();         --  ammount of set elements
 *ok*        * size_type max_size();     --  returns the maximum possible number of elements
 *ok*        * void erase(iterator pos)	--  erases an element at "pos"
@@ -35,7 +33,8 @@ class set: public Tree<Key, Key> {
 *ok*        * iterator find(const Key& key) --  finds an element with a specific key
 *ok*        * bool contains(const Key& key) --  checks if the container contains an element with a specific key 
 *ok*        * iterator begin();         --  returns an iterator to the beginning
-*ok*        * iterator end();           --  returns an iterator to the end     
+*ok*        * iterator end();           --  returns an iterator to the end
+*ok*        * std::vector<std::pair<iterator,bool>> insert_many(Args&&... args); -- Inserts several new elements into the container
         */
 /*ok*/        inline set& operator=(set &&s){                         // move assignment        
             Tree<value_type,value_type>::operator=(std::move(s));

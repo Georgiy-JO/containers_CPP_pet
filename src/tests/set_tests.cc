@@ -2,6 +2,9 @@
 #include <set>
 #include "../containers/set/set.hpp"
 
+//temple 
+#include <vector>
+
 TEST(SetTest, ConstructorList){
     s21::set<int> set_int{10,2,3,44,5,66,-5,-100,0,0,0,5,33,23,64,55,0,1,1000};
     std::set<int> set_int_2{10,2,3,44,5,66,-5,-100,0,0,0,5,33,23,64,55,0,1,1000};
@@ -745,7 +748,7 @@ TEST(SetTest, Merge) {
     EXPECT_EQ(set_char_4.size(), 5);
     
 }
-TEST(SET, Erase_Begin_End) {
+TEST(SetTest, Erase_Begin_End) {
     s21::set<int> set_int_1{10,2,3,44,5,66,-5,-100,0,0,0,5,33,23,64,55,0,1,1000};
     std::set<int> set_int_2{10,2,3,44,5,66,-5,-100,0,0,0,5,33,23,64,55,0,1,1000};
     s21::set<double> set_double_1{555.55, 423.2,2,1000,-55.55,-33.3,-1000,100,1000,100,-5.5};
@@ -930,7 +933,7 @@ TEST(SET, Erase_Begin_End) {
     EXPECT_EQ(set_char_5.contains(char_5),false);
  
 }
-TEST(SET, Insert_Find) {
+TEST(SetTest, Insert_Find) {
     s21::set<int> set_int_1{10,2,3,44,5,66,-5,-100,0,0,0,5,33,23,64,55,0,1,1000};
     std::set<int> set_int_2{10,2,3,44,5,66,-5,-100,0,0,0,5,33,23,64,55,0,1,1000};
     s21::set<double> set_double_1{555.55, 423.2,2,1000,-55.55,-33.3,-1000,100,1000,100,-5.5};
@@ -1240,4 +1243,56 @@ TEST(SET, Insert_Find) {
     EXPECT_EQ(set_char_1.contains('\t'),true);
     EXPECT_EQ(set_char_3.contains('\t'),true);
     EXPECT_EQ(set_char_5.contains('\t'),true);
+}
+TEST(SetTest, Bonus) {
+    s21::set<int> set_int_1;
+    s21::set<double> set_double_1;
+    s21::set<std::string> set_str_1;
+    s21::set<char> set_char_1;
+    EXPECT_EQ(set_int_1.size(), 0);
+    EXPECT_EQ(set_double_1.size(), 0);
+    EXPECT_EQ(set_str_1.size(), 0);
+    EXPECT_EQ(set_char_1.size(), 0);
+
+    set_int_1.insert_many();
+    set_double_1.insert_many();
+    set_str_1.insert_many();
+    set_char_1.insert_many();
+    EXPECT_EQ(set_int_1.size(), 0);
+    EXPECT_EQ(set_double_1.size(), 0);
+    EXPECT_EQ(set_str_1.size(), 0);
+    EXPECT_EQ(set_char_1.size(), 0);
+
+    set_int_1.insert_many(10,2,3,44,5,66,-5,-100,0,0,0,5,33,23,64,55,0,1,1000);
+    set_double_1.insert_many(555.55, 423.2,2,1000,-55.55,-33.3,-1000,100,1000,100,-5.5);
+    set_str_1.insert_many("Jazz", "Me", "played", "with", "Blues", "brothers", "like", "Yoda", "Wow", "!");
+    set_char_1.insert_many('a', 'b', 'c', 'd','5','1','a','-','=','+','q','\n','h','y',']','[','(','`');
+    EXPECT_EQ(set_int_1.size(), 15);
+    EXPECT_EQ(set_double_1.size(), 9);
+    EXPECT_EQ(set_str_1.size(), 10);
+    EXPECT_EQ(set_char_1.size(), 17);
+
+    set_int_1.insert_many(100000);
+    set_double_1.insert_many(555.55555);
+    set_str_1.insert_many("J", "K");
+    set_char_1.insert_many('}');
+    EXPECT_EQ(set_int_1.size(), 16);
+    EXPECT_EQ(set_double_1.size(), 10);
+    EXPECT_EQ(set_str_1.size(), 12);
+    EXPECT_EQ(set_char_1.size(), 18);
+
+    std::vector<std::pair<s21::set<std::string>::iterator,bool>> vec;
+    vec=set_str_1.insert_many("agents", "J", "and","K", "were not","brothers","but", "played","together", "like", "one","!");
+    EXPECT_EQ(vec.size(), 12);
+    EXPECT_EQ(*vec[0].first,"agents");
+    
+    for(size_t i=0;i<vec.size();i++){
+        if(i%2)
+            EXPECT_EQ(vec[i].second,false);
+        else{
+            EXPECT_EQ(vec[i].second,true);
+            EXPECT_EQ(set_str_1.contains(*vec[i].first),true);
+        }
+    }
+
 }

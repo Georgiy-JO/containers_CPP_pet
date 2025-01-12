@@ -1,13 +1,5 @@
 #pragma once
 
-
-template <typename Key_T, typename T>
-void Tree<Key_T,T>::insert_(const_key_type key, const_value_type value){
-    if (insert(root_,key,value)){
-        size_++;
-        addParents();
-    }
-}
 template <typename Key_T, typename T>
 std::pair<typename Tree<Key_T,T>::iterator, bool> Tree<Key_T,T>::insert(const_key_type& key, const_value_type &value){
     iterator_ local;
@@ -58,17 +50,17 @@ void Tree<Key_T,T>::balancerInsert(node_ *& root,const_key_type &key){
 
 template <typename Key_T, typename T>
 void Tree<Key_T,T>::rotateLeft(node_ *& root){
-      node_* tmp_ptr=root;
-      root=root->right_;
-      tmp_ptr->right_=root->left_;
-      root->left_=tmp_ptr;
+    node_* tmp_ptr=root;
+    root=root->right_;
+    tmp_ptr->right_=root->left_;
+    root->left_=tmp_ptr;
 }
 template <typename Key_T, typename T>
 void Tree<Key_T,T>::rotateRight(node_ *& root){
-      node_* tmp_ptr=root;
-      root=root->left_;
-      tmp_ptr->left_=root->right_;
-      root->right_=tmp_ptr;
+    node_* tmp_ptr=root;
+    root=root->left_;
+    tmp_ptr->left_=root->right_;
+    root->right_=tmp_ptr;
 }
 
 template <typename Key_T, typename T>
@@ -169,12 +161,12 @@ void Tree<Key_T,T>::showTreeVerticalVal(){
 template <typename Key_T, typename T>
 Tree<Key_T,T>::Tree(std::initializer_list<key_type> const &items):Tree(){
     for(const auto& i:items )
-        insert_(i);
+        insert(i);
 }
 template <typename Key_T, typename T>
 Tree<Key_T,T>::Tree(std::initializer_list<std::pair<key_type, value_type>> const &items){
     for(const auto& i:items )
-        insert_(i.first,i.second);
+        insert(i.first,i.second);
 }
 
 template <typename Key_T, typename T>
@@ -401,4 +393,12 @@ void Tree<Key_T,T>::merge(Tree<Key_T,T>& other){
             lst.pop();
         }
     }
+}
+
+template <typename Key_T, typename T>
+template <typename...Args>
+std::vector<std::pair<typename Tree<Key_T,T>::iterator,bool>> Tree<Key_T,T>::insert_many(Args&&... args){
+    std::vector<std::pair<typename Tree<Key_T,T>::iterator,bool>> res;
+    (res.push_back(insert(std::forward<Args>(args))), ...);
+    return res;
 }

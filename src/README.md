@@ -144,12 +144,12 @@ Note: the arguments are the already created elements of the appropriate containe
 | Task                 | Nickname | Main | Tests | [Bonus](#bonus) | Checked |
 | -------------------- | -------- | ---- | ----- | --------------- | ------- |
 | implement `list`     | tanishag | ✔    | ✔     | ✔               |         |
-| implement `stack`    | riderkri | ✔    | ✔     |                 |         |
-| implement `queue`    | orenbran |      |       |                 |         |
-| implement `Tree`     | riderkri | ✔    | ✔     |                 |         |
+| implement `stack`    | riderkri | ✔    | ✔     | ✔               |         |
+| implement `queue`    | orenbran | ✔    | ✔     | ✔               |         |
+| implement `Tree`     | riderkri | ✔    | ✔     | ✔               |         |
 | implement `map`      | troyiggo | ✔    | ✔     |                 |         |
-| implement `set`      | riderkri | ✔    | ✔     |                 |         |
-| implement `multiset` |          |      |       |                 |         |
+| implement `set`      | riderkri | ✔    | ✔     | ✔               |         |
+| implement `multiset` | riderkri | ✔    | ✔     | ✔               |         |
 | implement `vector`   | orenbran | ✔    | ✔     | ✔               |         |
 | implement `array`    | tanishag |      |       | -               |         |
 
@@ -159,9 +159,9 @@ Note: the arguments are the already created elements of the appropriate containe
 | Containers                                           | List | Stack | Queue | Tree | Map | Set | Multiset | Vector | Array |
 | ---------------------------------------------------- | ---- | ----- | ----- | ---- | --- | --- | -------- | ------ | ----- |
 | `iterator insert_many(...)`                          | ✔    | -     | -     | -    | -   | -   | -        | ✔      | -     |
-| `void insert_many_back(...)`                         | ✔    |       |       | -    | -   | -   | -        | ✔      | -     |
+| `void insert_many_back(...)`                         | ✔    | ✔     | ✔     | -    | -   | -   | -        | ✔      | -     |
 | `void insert_many_front(...)`                        | ✔    | -     | -     | -    | -   | -   | -        | -      | -     |
-| `vector <std::pair<iterator,bool>> insert_many(...)` | -    | -     | -     |      |     |     |          | -      | -     |
+| `vector <std::pair<iterator,bool>> insert_many(...)` | -    | -     | -     | ✔    |     | ✔   | ✔        | -      | -     |
 
 
 
