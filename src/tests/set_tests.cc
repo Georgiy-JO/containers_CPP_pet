@@ -1,6 +1,6 @@
 #include "global_tests.h"
 #include <set>
-// #include "../containers/set/set.hpp"
+#include "../containers/set/set.hpp"
 
 //temple 
 #include <vector>

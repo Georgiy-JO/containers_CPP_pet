@@ -1,7 +1,7 @@
 #include "global_tests.h"
-// #include "../containers/AVLtree/avl_tree.hpp"
-// #include "../containers/stack/s21_stack.hpp"
-// #include "../containers/vector/s21_vector.h"
+#include "../containers/AVLtree/avl_tree.hpp"
+#include "../containers/stack/stack.hpp"
+#include "../containers/vector/s21_vector.h"
 
 
 TEST(TreeTest, DefaultConstructor_SS) {
@@ -1126,6 +1126,7 @@ TEST(TreeTest, Parent_MS) {
     EXPECT_EQ(tree_ch_st.getParentData('\n'),'(');
     // tree_ch_st.crazyPrinter();
 }
+
 TEST(TreeTest, Begin_End_SS) {
     s21::Tree<int,int> tree_int{15,4,26,5,20,0,34,10,16,22,3,32,-5,50,8,18,12,21,1,28,33,-2,43,-10,100};
     EXPECT_EQ(tree_int.size(), 25);

@@ -1,5 +1,5 @@
 #include "global_tests.h"
-// #include "../containers/multiset/multiset.hpp"
+#include "../containers/multiset/multiset.hpp"
 #include <set>
 
 

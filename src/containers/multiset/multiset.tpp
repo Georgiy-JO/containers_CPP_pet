@@ -86,8 +86,8 @@ void multiset<Key>::merge(multiset& other){		//splices nodes from another contai
 
 template <typename Key>
 template <typename...Args>
-std::vector<typename multiset<Key>::iterator> multiset<Key>::insert_many(Args&&... args){ // Inserts several new elements into the container
-    std::vector<typename set<value_type>::iterator> res;
+s21::vector<typename multiset<Key>::iterator> multiset<Key>::insert_many(Args&&... args){ // Inserts several new elements into the container
+    s21::vector<typename set<value_type>::iterator> res;
     (res.push_back(insert(std::forward<Args>(args))), ...);
     return res;
 }

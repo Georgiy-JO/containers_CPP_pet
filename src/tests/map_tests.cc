@@ -1,5 +1,4 @@
 
-/*
 #include "global_tests.h"
 #include <map>
 #include "../containers/map/s21_map.h"
@@ -390,5 +389,3 @@ TEST(map, merge_2) {
   compare(s21_m1, std_m1);
   compare(s21_m2, std_m2);
 }
-
-*/

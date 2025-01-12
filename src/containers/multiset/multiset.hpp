@@ -2,9 +2,7 @@
 
 #include <iostream>
 #include "../set/set.hpp"
-
-//temple
-#include <vector>
+#include "../vector/s21_vector.h"
 
 namespace s21 {
 template <typename Key>
@@ -48,7 +46,7 @@ class multiset: public set<Key> {
 /*ok*/        void swap(multiset& other);	    //swaps the contents
 /*ok*/        void merge(multiset& other);		//splices nodes from another container //!
         template <typename...Args>
-/*ok*/        std::vector<iterator> insert_many(Args&&... args); // Inserts several new elements into the container
+/*ok*/        s21::vector<iterator> insert_many(Args&&... args); // Inserts several new elements into the container
 };
 
 #include "multiset.tpp"

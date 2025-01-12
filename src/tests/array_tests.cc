@@ -1,6 +1,6 @@
 
 #include "global_tests.h"
-// #include "../containers/array/s21_array.h"
+#include "../containers/array/s21_array.h"
 
 TEST(array_test, constructor_default) {
   const size_t size = 0;

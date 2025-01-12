@@ -2,7 +2,7 @@
 
 #include "global_tests.h"
 #include <stack>
-// #include "../containers/stack/stack.hpp"
+#include "../containers/stack/stack.hpp"
 
 // OutSource Tests
 

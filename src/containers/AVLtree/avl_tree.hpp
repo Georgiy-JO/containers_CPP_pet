@@ -5,7 +5,7 @@
 #include <limits>
 #include <typeinfo>
 #include <cmath>
-#include "../stack/s21_stack.hpp"
+#include "../stack/stack.hpp"
 #include "../vector/s21_vector.h"
 
 //* end() - is not standart
@@ -172,6 +172,8 @@ class Tree {
 #include "avl_tree_irterator.tpp"
 //Multiset module
 #include "avl_tree_multiset.tpp"
+
+
 }
 
 
