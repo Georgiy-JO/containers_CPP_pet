@@ -1,6 +1,6 @@
 
 #include "global_tests.h"
-#include "../containers/array/s21_array.h"
+// #include "../containers/array/s21_array.h"
 
 TEST(array_test, constructor_default) {
   const size_t size = 0;
@@ -86,7 +86,7 @@ TEST(array_test, back) {
   s21::array<int, 0> empty_arr;
   EXPECT_THROW({ empty_arr.back(); }, std::out_of_range);
 }
-//capacity
+// capacity
 
 TEST(array_test, empty) {
   s21::array<int, 0> empty_arr;
@@ -96,7 +96,7 @@ TEST(array_test, empty) {
   ASSERT_EQ(0, not_empty_arr.empty());
 }
 
-//modifiers
+// modifiers
 TEST(S21_containers_array, swap) {
   s21::array<int, 3> arr1 = {11, 22, 33};
   s21::array<int, 3> arr2 = {77, 88, 99};

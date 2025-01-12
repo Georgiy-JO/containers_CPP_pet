@@ -1,6 +1,7 @@
-#include "global_tests.h"
 #include <set>
-#include "../containers/set/set.hpp"
+
+#include "global_tests.h"
+// #include "../containers/set/set.hpp"
 
 TEST(set, ConstructorDefaultSet) {
   s21::set<char> my_empty_set;
@@ -113,7 +114,7 @@ TEST(set, EraseSet) {
   s21::set<int> my_set = {5, 4, 3, 2, 7, 8, 9};
   std::set<int> orig_set = {5, 4, 3, 2, 7, 8, 9};
   auto size = my_set.size();
-//   my_set.erase(my_set.end());
+  //   my_set.erase(my_set.end());
   auto new_size = my_set.size();
   EXPECT_EQ(size, new_size);
   my_set.erase(my_set.begin());

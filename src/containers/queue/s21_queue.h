@@ -1,8 +1,9 @@
 #ifndef S21_CONTAINERS_QUEUE_H
 #define S21_CONTAINERS_QUEUE_H
 
-#include <iostream>
 #include <initializer_list>
+#include <iostream>
+
 #include "../vector/s21_vector.h"
 
 namespace s21 {
@@ -20,7 +21,7 @@ class queue {
   Node* data_;
   Node* tail_;
   size_t size_;
- 
+
  public:
   // Queue Member type
   using value_type = T;
@@ -36,15 +37,15 @@ class queue {
   // move constructor
   queue(queue&& q);
   ~queue();
-  queue& operator=(queue && q);
+  queue& operator=(queue&& q);
 
   // Queue Element access
   const_reference front();
   const_reference back();
 
   // Queue Capacity
-  bool empty() const {return size_ == 0; };
-  size_type size() const {return size_;};
+  bool empty() const { return size_ == 0; };
+  size_type size() const { return size_; };
 
   // Queue Modifiers
   void push(const_reference value);

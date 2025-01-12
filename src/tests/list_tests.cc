@@ -1,9 +1,10 @@
 
-#include "global_tests.h"
 #include <iostream>
 #include <list>
 #include <string>
-#include "../containers/list/s21_list.h"
+
+#include "global_tests.h"
+// #include "../containers/list/s21_list.h"
 
 // Тест для функции insert_many
 TEST(ListTest, InsertMany) {
@@ -616,9 +617,4 @@ TEST(list_test, sort) {
     std_iterator++;
   }
   EXPECT_TRUE(result);
-}
-
-GTEST_API_ int main() {
-  testing::InitGoogleTest();
-  return RUN_ALL_TESTS();
 }

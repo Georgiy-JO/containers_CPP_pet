@@ -1,66 +1,63 @@
-#ifndef S21_MAP_H
-#define S21_MAP_H
+#pragma once
+
+#include <iostream>
 
 #include "../AVLtree/avl_tree.hpp"
 #include "../vector/s21_vector.h"
 
 namespace s21 {
-template <typename key, typename t>
-class map : public avl_tree<key, t> {
+template <typename Key, typename T>
+class map : public Tree<Key, T> {
  public:
-  class map_iterator;
-  class const_map_iterator;
-  map() : avl_tree<key, t>(){};
-  map(std::initializer_list<std::pair<const key, t>> const &items);
-  map(const map &other) : avl_tree<key, t>(other){};
-  map(map &&other) noexcept : avl_tree<key, t>(std::move(other)){};
-  map &operator=(map &&other) noexcept;
-  map &operator=(const map &other);
-  ~map() = default;
+  using key_type = Key;
+  using mapped_type = T;
+  using value_type = std::pair<key_type, mapped_type>;
+  using reference = value_type&;
+  using const_reference = const value_type&;
+  using iterator = typename Tree<Key, T>::iterator_;
+  using const_iterator = typename Tree<Key, T>::constIterator_;
+  using size_type = size_t;
 
-  map_iterator begin();
-  map_iterator end();
-  const_map_iterator cbegin() const;
-  const_map_iterator cend() const;
-  void merge(map &other);
+  map() : Tree<key_type, mapped_type>() {}
+  map(std::initializer_list<value_type> const& items)
+      : Tree<key_type, mapped_type>(items) {}
+  map(const map& m) : Tree<key_type, mapped_type>(m) {}  // copy constructor
+  map(map&& m)
+      : Tree<key_type, mapped_type>(std::move(m)) {}  // move constructor
+  ~map() { Tree<key_type, mapped_type>::clear(); }
 
-  class map_iterator : public avl_tree<key, t>::iterator {
-   public:
-    friend class map;
-    map_iterator() : avl_tree<key, t>::iterator(){};
-    map_iterator(typename avl_tree<key, t>::tree_node *node,
-             typename avl_tree<key, t>::tree_node *past_node = nullptr)
-        : avl_tree<key, t>::iterator(node, past_node = nullptr){};
-    std::pair<const key, t> operator*();
+  inline map& operator=(map&& m);  // moving assignment
+  inline map& operator=(map& m);   // copy assignment
+  std::pair<iterator, bool> insert_or_assign(
+      const Key& key,
+      const T& obj);  // inserts an element or assigns to the current element if
+                      // the key already exists
+  std::pair<iterator, bool> insert(const value_type& value);
+  std::pair<iterator, bool> insert(
+      const Key& key,
+      const T& obj);  // inserts a value by key and returns an iterator and flag
+  T& at(const Key& key);
+  T& operator[](const Key& map_key);
+  void swap(map& other);   // swaps the contents
+  void merge(map& other);  // splices nodes from another container
 
-   protected:
-    t &return_value();
-  };
+  /*
+   * Functions and operators that are defined in Tree class and can be used for
+   * iterator begin()	//returns an iterator to the beginning
+   * iterator end()	//returns an iterator to the end
+   * bool empty()	    //checks whether the container is empty
+   * size_type size()	    //returns the number of elements
+   * size_type max_size()	    //returns the maximum possible
+   *number of elements ok*        * void clear()	    //clears the
+   *contents ok*        * void erase(iterator pos)	    //erases an element
+   *at pos ok*        * bool contains(const Key& key)	    //checks if there is
+   *an element with key equivalent to key in the container
+   */
 
-  class const_map_iterator : public map_iterator {
-   public:
-    friend class map;
-    const_map_iterator() : map_iterator(){};
-    const_map_iterator(typename avl_tree<key, t>::tree_node *node,
-                   typename avl_tree<key, t>::tree_node *past_node = nullptr)
-        : map_iterator(node, past_node = nullptr){};
-    const std::pair<const key, t> &operator*() const {
-      return map_iterator::operator*();
-    };
-  };
-  t &at(const key &map_key);
-  t &operator[](const key &map_key);
-  std::pair<map_iterator, bool> insert(const std::pair<const key, t> &map_value);
-  std::pair<map_iterator, bool> insert(const key &map_key, const t &obj);
-  std::pair<map_iterator, bool> insert_or_assign(const key &map_key, const t &obj);
-  template <class... args>
-  s21::vector<std::pair<map_iterator, bool>> insert_many(args &&...args_);
-  void erase(map_iterator pos);
-
- private:
-  map_iterator find(const key &tree_key);
+  template <typename... Args>
+  vector<std::pair<iterator, bool>> insert_many(
+      Args&&... args);  // insert undefined ammount of elements
 };
+#include "s21_map.tpp"
 
 }  // namespace s21
-#include "s21_map.tpp"
-#endif

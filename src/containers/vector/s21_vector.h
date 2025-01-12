@@ -11,7 +11,8 @@ template <typename T>
 class vector {
  private:
   T* data_;  // указатель на массив элементов типа T
-  size_t capacity_;  // текущий максимальный размер вектора без необходимости реаллокации памяти.
+  size_t capacity_;  // текущий максимальный размер вектора без необходимости
+                     // реаллокации памяти.
   size_t size_;  // текущее количество элементов в векторе
 
  public:
@@ -24,7 +25,7 @@ class vector {
   using size_type = size_t;
 
   // Vector Member functions
-  vector() : data_(nullptr), capacity_(0), size_(0) {};
+  vector() : data_(nullptr), capacity_(0), size_(0){};
   vector(size_type n);
   vector(std::initializer_list<value_type> const& items);
   // copy constructor
@@ -60,7 +61,7 @@ class vector {
   // данный момент хранилище
   size_type capacity() const { return capacity_; };
   //	сокращает использование памяти за счет освобождения неиспользуемой
-  //памяти
+  // памяти
   void shrink_to_fit();
 
   // Vector Modifiers

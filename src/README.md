@@ -67,15 +67,15 @@ As a bonus, you can also implement several other container classes from the C++ 
 ### General rules 
 | Check | Task                                                                                                                                          |
 | ----- | --------------------------------------------------------------------------------------------------------------------------------------------- |
-|       | The program must be developed in C++ language of C++17 standard using gcc compiler;                                                           |
-|       | The program code must be located in the src folder;                                                                                           |
-|       | When writing code it is necessary to follow the Google style;                                                                                 |
-|       | Make sure to use iterators;                                                                                                                   |
-|       | Classes must be template;                                                                                                                     |
-|       | Classes must be implemented within the `s21` namespace;                                                                                       |
-|       | Prepare full coverage of container classes methods with unit-tests using the GTest library;                                                   |
-|       | Copying of the Standard Template Library (STL) implementation is not allowed;                                                                 |
-|       | The logic of the Standard Template Library (STL) must be followed (in terms of checks, memory handling and behaviour in abnormal situations). |
+|   ✔   | The program must be developed in C++ language of C++17 standard using gcc compiler;                                                           |
+|   ✔   | The program code must be located in the src folder;                                                                                           |
+|   ✔   | When writing code it is necessary to follow the Google style;                                                                                 |
+|   ✔   | Make sure to use iterators;                                                                                                                   |
+|   ✔   | Classes must be template;                                                                                                                     |
+|   ✔   | Classes must be implemented within the `s21` namespace;                                                                                       |
+|   ✔   | Prepare full coverage of container classes methods with unit-tests using the GTest library;                                                   |
+|   ✔   | Copying of the Standard Template Library (STL) implementation is not allowed;                                                                 |
+|   ✔   | The logic of the Standard Template Library (STL) must be followed (in terms of checks, memory handling and behaviour in abnormal situations). |
 
 ### Part 1. Implementation of the s21_containers.h library
 
@@ -141,17 +141,17 @@ Note: the arguments are the already created elements of the appropriate containe
 
 #### Main
 
-| Task                 | Nickname | Main | Tests | [Bonus](#bonus) | Checked |
-| -------------------- | -------- | ---- | ----- | --------------- | ------- |
-| implement `list`     | tanishag | ✔    | ✔     | ✔               |         |
-| implement `stack`    | riderkri | ✔    | ✔     | ✔               |         |
-| implement `queue`    | orenbran | ✔    | ✔     | ✔               |         |
-| implement `Tree`     | riderkri | ✔    | ✔     | ✔               |         |
-| implement `map`      | troyiggo | ✔    | ✔     |                 |         |
-| implement `set`      | riderkri | ✔    | ✔     | ✔               |         |
-| implement `multiset` | riderkri | ✔    | ✔     | ✔               |         |
-| implement `vector`   | orenbran | ✔    | ✔     | ✔               |         |
-| implement `array`    | tanishag | ✔    | ✔     | -               |         |
+| Task                 | Nickname                                            | Main | Tests | [Bonus](#bonus) | Checked |
+| -------------------- | --------------------------------------------------- | ---- | ----- | --------------- | ------- |
+| implement `list`     | tanishag                                            | ✔    | ✔     | ✔               |  ✔      |
+| implement `stack`    | riderkri                                            | ✔    | ✔     | ✔               |  ✔      |
+| implement `queue`    | orenbran                                            | ✔    | ✔     | ✔               |  ✔      |
+| implement `Tree`     | riderkri                                            | ✔    | ✔     | ✔               |  ✔      |
+| implement `map`      | troyiggo, <br> riderkri,<br> orenbran, <br>tanishag | ✔    | ✔     | ✔               |  ✔      |
+| implement `set`      | riderkri                                            | ✔    | ✔     | ✔               |  ✔      |
+| implement `multiset` | riderkri                                            | ✔    | ✔     | ✔               |  ✔      |
+| implement `vector`   | orenbran                                            | ✔    | ✔     | ✔               |  ✔      |
+| implement `array`    | tanishag                                            | ✔    | ✔     | -               |  ✔      |
 
 #### Bonus
 * Done and tested table
@@ -161,7 +161,7 @@ Note: the arguments are the already created elements of the appropriate containe
 | `iterator insert_many(...)`                          | ✔    | -     | -     | -    | -   | -   | -        | ✔      | -     |
 | `void insert_many_back(...)`                         | ✔    | ✔     | ✔     | -    | -   | -   | -        | ✔      | -     |
 | `void insert_many_front(...)`                        | ✔    | -     | -     | -    | -   | -   | -        | -      | -     |
-| `vector <std::pair<iterator,bool>> insert_many(...)` | -    | -     | -     | ✔    |     | ✔   | ✔        | -      | -     |
+| `vector <std::pair<iterator,bool>> insert_many(...)` | -    | -     | -     | ✔    | ✔   | ✔   | ✔        | -      | -     |
 
 
 

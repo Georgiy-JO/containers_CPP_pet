@@ -1,391 +1,571 @@
+#include <map>
 
 #include "global_tests.h"
-#include <map>
-#include "../containers/map/s21_map.h"
 
-using s21_map = s21::map<const int, int>;
-using std_map = std::map<const int, int>;
+TEST(MapTest, defaultConstructor) {
+  s21::map<const int, int> s21_m;
+  std::map<const int, int> std_m;
 
-void compare(s21_map m1, std_map m2) {
-  auto s21_it = m1.begin();
-  auto std_it = m2.begin();
+  EXPECT_EQ(s21_m.size(), 0);
+  EXPECT_EQ(s21_m.empty(), true);
+  EXPECT_EQ(std_m.size(), 0);
+  EXPECT_EQ(std_m.empty(), true);
+}
+TEST(MapTest, SimpleTests) {
+  s21::map<double, int> map_db_it_1{{555.55, 5},    {423.2, 2},  {1000, 0},
+                                    {-55.55, 6000}, {-33.3, -5}, {-1000, 100},
+                                    {100100, 100},  {-5.5, 15}};
+  std::map<double, int> map_db_it_2{{555.55, 5},    {423.2, 2},  {1000, 0},
+                                    {-55.55, 6000}, {-33.3, -5}, {-1000, 100},
+                                    {100100, 100},  {-5.5, 15}};
+  s21::map<char, std::string> map_ch_st_1{
+      std::pair<char, std::string>{'4', "Jazz"},
+      {'\n', "I"},
+      {'y', "played"},
+      {'(', "with"},
+      {'`', "Blues"},
+      {'-', "brothers"},
+      {'=', "like"},
+      {'b', "Yoda"},
+      {'d', "Wow"},
+      {'c', "!"}};
+  std::map<char, std::string> map_ch_st_2{
+      std::pair<char, std::string>{'4', "Jazz"},
+      {'\n', "I"},
+      {'y', "played"},
+      {'(', "with"},
+      {'`', "Blues"},
+      {'-', "brothers"},
+      {'=', "like"},
+      {'b', "Yoda"},
+      {'d', "Wow"},
+      {'c', "!"}};
 
-  if (m1.size()) {
-    for (; s21_it != m1.end(); s21_it++, std_it++) {
-      EXPECT_EQ((*s21_it).first, (*std_it).first);
-      EXPECT_EQ((*s21_it).second, (*std_it).second);
-    }
+  EXPECT_EQ(map_db_it_1.size(), 8);
+  EXPECT_EQ(map_db_it_2.size(), 8);
+  EXPECT_EQ(map_ch_st_1.size(), 10);
+  EXPECT_EQ(map_ch_st_2.size(), 10);
+  EXPECT_EQ(map_db_it_1.empty(), false);
+  EXPECT_EQ(map_db_it_2.empty(), false);
+  EXPECT_EQ(map_ch_st_1.empty(), false);
+  EXPECT_EQ(map_ch_st_2.empty(), false);
+  EXPECT_EQ(map_db_it_1.contains(-1000), true);
+  EXPECT_EQ(*(map_db_it_1.begin()), 100);
+  EXPECT_EQ(*(map_db_it_1.end()), 100);
+
+  s21::map<double, int> map_db_it_3(std::move(map_db_it_1));
+  std::map<double, int> map_db_it_4(std::move(map_db_it_2));
+  s21::map<char, std::string> map_ch_st_3(std::move(map_ch_st_1));
+  std::map<char, std::string> map_ch_st_4(std::move(map_ch_st_2));
+  EXPECT_EQ(map_db_it_3.size(), 8);
+  EXPECT_EQ(map_db_it_4.size(), 8);
+  EXPECT_EQ(map_ch_st_3.size(), 10);
+  EXPECT_EQ(map_ch_st_4.size(), 10);
+  EXPECT_EQ(map_db_it_3.empty(), false);
+  EXPECT_EQ(map_db_it_4.empty(), false);
+  EXPECT_EQ(map_ch_st_3.empty(), false);
+  EXPECT_EQ(map_ch_st_4.empty(), false);
+  EXPECT_EQ(map_db_it_1.size(), 0);
+  EXPECT_EQ(map_db_it_2.size(), 0);
+  EXPECT_EQ(map_ch_st_1.size(), 0);
+  EXPECT_EQ(map_ch_st_2.size(), 0);
+  EXPECT_EQ(map_db_it_1.empty(), true);
+  EXPECT_EQ(map_db_it_2.empty(), true);
+  EXPECT_EQ(map_ch_st_1.empty(), true);
+  EXPECT_EQ(map_ch_st_2.empty(), true);
+
+  s21::map<double, int> map_db_it_5(map_db_it_3);
+  std::map<double, int> map_db_it_6(map_db_it_4);
+  s21::map<char, std::string> map_ch_st_5(map_ch_st_3);
+  std::map<char, std::string> map_ch_st_6(map_ch_st_4);
+  EXPECT_EQ(map_db_it_3.size(), 8);
+  EXPECT_EQ(map_db_it_4.size(), 8);
+  EXPECT_EQ(map_ch_st_3.size(), 10);
+  EXPECT_EQ(map_ch_st_4.size(), 10);
+  EXPECT_EQ(map_db_it_3.empty(), false);
+  EXPECT_EQ(map_db_it_4.empty(), false);
+  EXPECT_EQ(map_ch_st_3.empty(), false);
+  EXPECT_EQ(map_ch_st_4.empty(), false);
+  EXPECT_EQ(map_db_it_5.size(), 8);
+  EXPECT_EQ(map_db_it_6.size(), 8);
+  EXPECT_EQ(map_ch_st_5.size(), 10);
+  EXPECT_EQ(map_ch_st_6.size(), 10);
+  EXPECT_EQ(map_db_it_5.empty(), false);
+  EXPECT_EQ(map_db_it_6.empty(), false);
+  EXPECT_EQ(map_ch_st_5.empty(), false);
+  EXPECT_EQ(map_ch_st_6.empty(), false);
+
+  s21::map<double, int> map_db_it_7;
+  std::map<double, int> map_db_it_8;
+  s21::map<char, std::string> map_ch_st_7;
+  std::map<char, std::string> map_ch_st_8;
+
+  map_db_it_7 = std::move(map_db_it_1);
+  map_db_it_8 = std::move(map_db_it_2);
+  map_ch_st_7 = std::move(map_ch_st_1);
+  map_ch_st_8 = std::move(map_ch_st_2);
+  EXPECT_EQ(map_db_it_7.size(), 0);
+  EXPECT_EQ(map_db_it_8.size(), 0);
+  EXPECT_EQ(map_ch_st_7.size(), 0);
+  EXPECT_EQ(map_ch_st_8.size(), 0);
+  EXPECT_EQ(map_db_it_7.empty(), true);
+  EXPECT_EQ(map_db_it_8.empty(), true);
+  EXPECT_EQ(map_ch_st_7.empty(), true);
+  EXPECT_EQ(map_ch_st_8.empty(), true);
+  EXPECT_EQ(map_db_it_1.size(), 0);
+  EXPECT_EQ(map_db_it_2.size(), 0);
+  EXPECT_EQ(map_ch_st_1.size(), 0);
+  EXPECT_EQ(map_ch_st_2.size(), 0);
+  EXPECT_EQ(map_db_it_1.empty(), true);
+  EXPECT_EQ(map_db_it_2.empty(), true);
+  EXPECT_EQ(map_ch_st_1.empty(), true);
+  EXPECT_EQ(map_ch_st_2.empty(), true);
+  map_db_it_7 = map_db_it_1;
+  map_db_it_8 = map_db_it_2;
+  map_ch_st_7 = map_ch_st_1;
+  map_ch_st_8 = map_ch_st_2;
+  EXPECT_EQ(map_db_it_7.size(), 0);
+  EXPECT_EQ(map_db_it_8.size(), 0);
+  EXPECT_EQ(map_ch_st_7.size(), 0);
+  EXPECT_EQ(map_ch_st_8.size(), 0);
+  EXPECT_EQ(map_db_it_7.empty(), true);
+  EXPECT_EQ(map_db_it_8.empty(), true);
+  EXPECT_EQ(map_ch_st_7.empty(), true);
+  EXPECT_EQ(map_ch_st_8.empty(), true);
+  EXPECT_EQ(map_db_it_1.size(), 0);
+  EXPECT_EQ(map_db_it_2.size(), 0);
+  EXPECT_EQ(map_ch_st_1.size(), 0);
+  EXPECT_EQ(map_ch_st_2.size(), 0);
+  EXPECT_EQ(map_db_it_1.empty(), true);
+  EXPECT_EQ(map_db_it_2.empty(), true);
+  EXPECT_EQ(map_ch_st_1.empty(), true);
+  EXPECT_EQ(map_ch_st_2.empty(), true);
+
+  map_db_it_5 = map_db_it_7;
+  map_db_it_6 = map_db_it_8;
+  map_ch_st_5 = map_ch_st_7;
+  map_ch_st_6 = map_ch_st_8;
+  EXPECT_EQ(map_db_it_5.size(), 0);
+  EXPECT_EQ(map_db_it_6.size(), 0);
+  EXPECT_EQ(map_ch_st_5.size(), 0);
+  EXPECT_EQ(map_ch_st_6.size(), 0);
+  EXPECT_EQ(map_db_it_5.empty(), true);
+  EXPECT_EQ(map_db_it_6.empty(), true);
+  EXPECT_EQ(map_ch_st_5.empty(), true);
+  EXPECT_EQ(map_ch_st_6.empty(), true);
+
+  map_db_it_5 = std::move(map_db_it_3);
+  map_db_it_6 = std::move(map_db_it_4);
+  map_ch_st_5 = std::move(map_ch_st_3);
+  map_ch_st_6 = std::move(map_ch_st_4);
+  EXPECT_EQ(map_db_it_5.size(), 8);
+  EXPECT_EQ(map_db_it_6.size(), 8);
+  EXPECT_EQ(map_ch_st_5.size(), 10);
+  EXPECT_EQ(map_ch_st_6.size(), 10);
+  EXPECT_EQ(map_db_it_3.size(), 0);
+  EXPECT_EQ(map_db_it_4.size(), 0);
+  EXPECT_EQ(map_ch_st_3.size(), 0);
+  EXPECT_EQ(map_ch_st_4.size(), 0);
+  map_db_it_7 = map_db_it_5;
+  map_db_it_8 = map_db_it_6;
+  map_ch_st_7 = map_ch_st_5;
+  map_ch_st_8 = map_ch_st_6;
+  EXPECT_EQ(map_db_it_7.size(), 8);
+  EXPECT_EQ(map_db_it_8.size(), 8);
+  EXPECT_EQ(map_ch_st_7.size(), 10);
+  EXPECT_EQ(map_ch_st_8.size(), 10);
+  EXPECT_EQ(map_db_it_5.size(), 8);
+  EXPECT_EQ(map_db_it_6.size(), 8);
+  EXPECT_EQ(map_ch_st_5.size(), 10);
+  EXPECT_EQ(map_ch_st_6.size(), 10);
+
+  map_db_it_5.clear();
+  map_db_it_6.clear();
+  map_ch_st_5.clear();
+  map_ch_st_6.clear();
+  EXPECT_EQ(map_db_it_5.size(), 0);
+  EXPECT_EQ(map_db_it_6.size(), 0);
+  EXPECT_EQ(map_ch_st_5.size(), 0);
+  EXPECT_EQ(map_ch_st_6.size(), 0);
+  EXPECT_EQ(map_db_it_5.empty(), true);
+  EXPECT_EQ(map_db_it_6.empty(), true);
+  EXPECT_EQ(map_ch_st_5.empty(), true);
+  EXPECT_EQ(map_ch_st_6.empty(), true);
+
+  EXPECT_EQ(map_db_it_3.size(), 0);
+  EXPECT_EQ(map_db_it_4.size(), 0);
+  EXPECT_EQ(map_ch_st_3.size(), 0);
+  EXPECT_EQ(map_ch_st_4.size(), 0);
+  map_db_it_3.swap(map_db_it_7);
+  map_db_it_4.swap(map_db_it_8);
+  map_ch_st_3.swap(map_ch_st_7);
+  map_ch_st_4.swap(map_ch_st_8);
+  EXPECT_EQ(map_db_it_3.size(), 8);
+  EXPECT_EQ(map_db_it_4.size(), 8);
+  EXPECT_EQ(map_ch_st_3.size(), 10);
+  EXPECT_EQ(map_ch_st_4.size(), 10);
+  EXPECT_EQ(map_db_it_7.size(), 0);
+  EXPECT_EQ(map_db_it_8.size(), 0);
+  EXPECT_EQ(map_ch_st_7.size(), 0);
+  EXPECT_EQ(map_ch_st_8.size(), 0);
+
+  EXPECT_EQ(map_db_it_7.insert(std::pair<double, int>(55.55, 5)).second, true);
+  EXPECT_EQ(map_db_it_7.insert(std::pair<double, int>(55.55, 5)).second, false);
+  EXPECT_EQ(map_db_it_8.insert(std::pair<double, int>(55.55, 5)).second, true);
+  EXPECT_EQ(map_db_it_8.insert(std::pair<double, int>(55.55, 5)).second, false);
+  EXPECT_EQ(map_db_it_7.contains(55.55), true);
+  EXPECT_EQ(map_db_it_7.contains(55.555), false);
+  EXPECT_EQ(map_ch_st_7.insert('5', "Rock").second, true);
+  EXPECT_EQ(map_ch_st_7.insert('5', "Rock").second, false);
+  EXPECT_EQ(
+      map_ch_st_8.insert(std::pair<char, std::string>('5', "Rock")).second,
+      true);
+  EXPECT_EQ(
+      map_ch_st_8.insert(std::pair<char, std::string>('5', "Rock")).second,
+      false);
+
+  map_db_it_3.swap(map_db_it_7);
+  map_db_it_4.swap(map_db_it_8);
+  map_ch_st_3.swap(map_ch_st_7);
+  map_ch_st_4.swap(map_ch_st_8);
+  EXPECT_EQ(map_db_it_3.size(), 1);
+  EXPECT_EQ(map_db_it_4.size(), 1);
+  EXPECT_EQ(map_ch_st_3.size(), 1);
+  EXPECT_EQ(map_ch_st_4.size(), 1);
+  EXPECT_EQ(map_db_it_7.size(), 8);
+  EXPECT_EQ(map_db_it_8.size(), 8);
+  EXPECT_EQ(map_ch_st_7.size(), 10);
+  EXPECT_EQ(map_ch_st_8.size(), 10);
+
+  EXPECT_EQ(map_db_it_7.insert(std::pair<double, int>(55.55, 5)).second, true);
+  EXPECT_EQ(map_db_it_8.insert(std::pair<double, int>(55.55, 5)).second, true);
+  EXPECT_EQ(map_ch_st_7.insert('5', "Rock").second, true);
+  EXPECT_EQ(
+      map_ch_st_8.insert(std::pair<char, std::string>('5', "Rock")).second,
+      true);
+
+  map_db_it_3.merge(map_db_it_7);
+  map_db_it_4.merge(map_db_it_8);
+  map_ch_st_3.merge(map_ch_st_7);
+  map_ch_st_4.merge(map_ch_st_8);
+  EXPECT_EQ(map_db_it_3.size(), 9);
+  EXPECT_EQ(map_db_it_4.size(), 9);
+  EXPECT_EQ(map_ch_st_3.size(), 11);
+  EXPECT_EQ(map_ch_st_4.size(), 11);
+  EXPECT_EQ(map_db_it_7.size(), 1);
+  EXPECT_EQ(map_db_it_8.size(), 1);
+  EXPECT_EQ(map_ch_st_7.size(), 1);
+  EXPECT_EQ(map_ch_st_8.size(), 1);
+
+  s21::map<double, int>::iterator it_1 =
+      map_db_it_7.insert_or_assign(55.55, 1000).first;
+  std::map<double, int>::iterator it_2 =
+      map_db_it_8.insert_or_assign(55.55, 1000).first;
+
+  EXPECT_EQ(map_db_it_7.insert_or_assign(55.55, 1000).second, false);
+  EXPECT_EQ(map_db_it_8.insert_or_assign(55.55, 1000).second, false);
+  EXPECT_EQ(*it_1, 1000);
+  map_db_it_7.erase(it_1);
+  map_db_it_8.erase(it_2);
+  EXPECT_EQ(map_db_it_7.size(), 0);
+  EXPECT_EQ(map_db_it_8.size(), 0);
+
+  EXPECT_EQ(map_ch_st_3['='], "like");
+  EXPECT_EQ(map_db_it_3[555.555], 0);
+}
+
+TEST(Map, test_create_int) {
+  s21::map<int, int> my_map1;
+
+  my_map1.insert(5, 22);
+  my_map1.insert(9, 33);
+  my_map1.insert(12, 44);
+  my_map1.insert(456, 555);
+
+  EXPECT_EQ(my_map1[5], 22);
+  EXPECT_EQ(my_map1[9], 33);
+  EXPECT_EQ(my_map1[12], 44);
+  EXPECT_EQ(my_map1[456], 555);
+}
+TEST(Map, test_insert1) {
+  s21::map<int, int> my_map1;
+
+  std::pair<int, int> w1 = {5, 22};
+  std::pair<int, int> w2 = {9, 33};
+  std::pair<int, int> w3 = {12, 44};
+  std::pair<int, int> w4 = {456, 555};
+
+  my_map1.insert(w1);
+  my_map1.insert(w2);
+  my_map1.insert(w3);
+  my_map1.insert(w4);
+
+  EXPECT_EQ(my_map1[5], 22);
+  EXPECT_EQ(my_map1[9], 33);
+  EXPECT_EQ(my_map1[12], 44);
+  EXPECT_EQ(my_map1[456], 555);
+}
+
+TEST(Map, test_insert_or_assign) {
+  s21::map<int, int> my_map1{{1, 11}, {2, 22}, {3, 33}};
+
+  my_map1.insert_or_assign(1, 66);
+  my_map1.insert_or_assign(4, 44);
+
+  EXPECT_EQ(my_map1[1], 66);
+  EXPECT_EQ(my_map1[2], 22);
+  EXPECT_EQ(my_map1[3], 33);
+  EXPECT_EQ(my_map1[4], 44);
+}
+
+TEST(Map, test_create_double) {
+  s21::map<double, double> my_map1;
+
+  my_map1.insert(5.5, 2e12);
+  my_map1.insert(9.7, 3e-4);
+  my_map1.insert(12.1, 44);
+  my_map1.insert(456.55, 555);
+
+  EXPECT_EQ(my_map1[5.5], 2e12);
+  EXPECT_EQ(my_map1[9.7], 3e-4);
+  EXPECT_EQ(my_map1[12.1], 44);
+  EXPECT_EQ(my_map1[456.55], 555);
+}
+
+TEST(Map, test_create_char) {
+  s21::map<int, char> my_map1;
+
+  my_map1.insert(5, '2');
+  my_map1.insert(9, '\0');
+  my_map1.insert(12, 'e');
+  my_map1.insert(456, ' ');
+
+  EXPECT_EQ(my_map1[5], '2');
+  EXPECT_EQ(my_map1[9], '\0');
+  EXPECT_EQ(my_map1[12], 'e');
+  EXPECT_EQ(my_map1[456], ' ');
+}
+
+TEST(Map, test_empty) {
+  s21::map<int, int> my_map1;
+  std::map<int, int> std_map1;
+
+  EXPECT_EQ(my_map1.empty(), std_map1.empty());
+}
+
+TEST(Map, test_copy_constructor) {
+  s21::map<int, int> my_map1;
+
+  my_map1.insert(5, 50);
+  my_map1.insert(9, 12);
+  my_map1.insert(12, 44);
+
+  s21::map<int, int> my_map2(my_map1);
+
+  EXPECT_EQ(my_map1[5], my_map2[5]);
+  EXPECT_EQ(my_map1[9], my_map2[9]);
+  EXPECT_EQ(my_map1[12], my_map2[12]);
+}
+
+TEST(Map, test_move_constructor) {
+  s21::map<int, int> my_map1;
+
+  my_map1.insert(5, 50);
+  my_map1.insert(9, 12);
+  my_map1.insert(12, 44);
+
+  s21::map<int, int> my_map2(std::move(my_map1));
+
+  EXPECT_EQ(50, my_map2[5]);
+  EXPECT_EQ(12, my_map2[9]);
+  EXPECT_EQ(44, my_map2[12]);
+  EXPECT_EQ(1, my_map1.empty());
+}
+
+TEST(Map, test_init_list_constructor) {
+  s21::map<int, int> my_map1{{-4, 222}, {6, 333}, {1, 5676554}, {2, 4}};
+  std::map<int, int> std_map1{{-4, 222}, {6, 333}, {1, 5676554}, {2, 4}};
+
+  EXPECT_EQ(my_map1[-4], std_map1[-4]);
+  EXPECT_EQ(my_map1[6], std_map1[6]);
+  EXPECT_EQ(my_map1[1], std_map1[1]);
+  EXPECT_EQ(my_map1[2], std_map1[2]);
+}
+
+TEST(Map, test_copy_assign) {
+  s21::map<int, int> my_map1;
+  s21::map<int, int> my_map2;
+
+  my_map1.insert(5, 50);
+  my_map1.insert(9, 12);
+  my_map1.insert(12, 44);
+
+  my_map2 = my_map1;
+
+  EXPECT_EQ(my_map1[5], my_map2[5]);
+  EXPECT_EQ(my_map1[9], my_map2[9]);
+  EXPECT_EQ(my_map1[12], my_map2[12]);
+}
+
+TEST(Map, test_move_assign) {
+  s21::map<int, int> my_map1;
+  s21::map<int, int> my_map2;
+
+  my_map1.insert(5, 50);
+  my_map1.insert(9, 12);
+  my_map1.insert(12, 44);
+
+  my_map2 = std::move(my_map1);
+
+  EXPECT_EQ(50, my_map2[5]);
+  EXPECT_EQ(12, my_map2[9]);
+  EXPECT_EQ(44, my_map2[12]);
+  EXPECT_EQ(1, my_map1.empty());
+}
+
+TEST(Map, test_swap) {
+  s21::map<int, int> my_map1{{1, 11}, {2, 22}, {3, 33}};
+  s21::map<int, int> my_map2{{-1, -11}, {-2, -22}, {-3, -33}};
+
+  my_map1.swap(my_map2);
+
+  EXPECT_EQ(my_map1[-1], -11);
+  EXPECT_EQ(my_map1[-2], -22);
+  EXPECT_EQ(my_map1[-3], -33);
+  EXPECT_EQ(my_map2[1], 11);
+  EXPECT_EQ(my_map2[2], 22);
+  EXPECT_EQ(my_map2[3], 33);
+}
+
+TEST(Map, iterator_operator) {
+  s21::map<int, int> my_map1{{1, 1}, {2, 2}, {3, 3}};
+
+  s21::map<int, int>::iterator my_iter;
+  s21::map<int, int>::const_iterator my_c_iter = my_map1.cend();
+  int i = 1;
+  my_c_iter = my_map1.cbegin();
+
+  for (my_iter = my_map1.begin(); my_iter != my_map1.end(); ++my_iter, ++i) {
+    EXPECT_EQ(*my_iter, i);
   }
+  my_iter = my_map1.begin();
+  s21::map<int, int>::iterator my_iter2 = my_map1.begin();
 
-  EXPECT_EQ(m1.size(), m2.size());
-  EXPECT_EQ(m1.empty(), m2.empty());
+  EXPECT_EQ(my_iter == my_iter2, 1);
+  EXPECT_EQ(my_iter != my_iter2, 0);
 }
 
-TEST(map, defaultConstructor) {
-  s21_map s21_m;
-  std_map std_m;
+TEST(Map, test_size) {
+  s21::map<int, int> my_map1;
 
-  compare(s21_m, std_m);
+  my_map1.insert(5, 44);
+  my_map1.insert(9, 55);
+  my_map1.insert(12, 66);
+  my_map1.insert(456, 77);
+
+  EXPECT_EQ(my_map1.size(), 4);
+}
+/*
+PC related value
+TEST(Map, test_max_size) {
+  s21::map<int, int> my_map1;
+  std::map<int, int> std_map1;
+
+  EXPECT_EQ(my_map1.max_size(), std_map1.max_size());
+}
+*/
+TEST(Map, test_clear) {
+  s21::map<int, int> my_map1;
+
+  my_map1.insert(5, 44);
+  my_map1.insert(9, 55);
+  my_map1.insert(12, 66);
+  my_map1.insert(456, 77);
+
+  my_map1.clear();
+
+  EXPECT_EQ(my_map1.empty(), 1);
 }
 
-TEST(map, initializerListConstructor) {
-  s21_map s21_m = {{1, 1}, {2, 2}, {3, 3}, {4, 4}, {5, 5}};
-  std_map std_m = {{1, 1}, {2, 2}, {3, 3}, {4, 4}, {5, 5}};
+TEST(Map, test_erase1) {
+  s21::map<int, int> my_map1;
+  my_map1.insert(5, 44);
 
-  compare(s21_m, std_m);
+  s21::map<int, int>::iterator my_iter = my_map1.begin();
+  my_map1.erase(my_iter);
+
+  EXPECT_EQ(my_map1.empty(), 1);
+
+  my_map1.insert(5, 44);
+  my_map1.insert(9, 55);
+  my_map1.insert(12, 66);
+  my_map1.insert(456, 77);
+
+  my_iter = my_map1.begin();
+  my_map1.erase(my_iter);
+  my_iter = my_map1.begin();
+  EXPECT_EQ(*my_iter, 55);
 }
 
-TEST(map, copyConstructor) {
-  s21_map s21_m1 = {{1, 1}, {2, 2}, {3, 3}, {4, 4}, {5, 5}};
-  s21_map s21_m2 = s21_m1;
-  std_map std_m1 = {{1, 1}, {2, 2}, {3, 3}, {4, 4}, {5, 5}};
-  std_map std_m2 = std_m1;
+TEST(Map, test_erase2) {
+  s21::map<int, int> my_map1;
+  my_map1.insert(5, 5);
+  my_map1.insert(-4, -4);
 
-  compare(s21_m2, std_m2);
+  s21::map<int, int>::iterator my_iter;
+
+  my_iter = my_map1.begin();
+  ++my_iter;
+  my_map1.erase(my_iter);
+
+  EXPECT_EQ(my_map1.size(), 1);
 }
 
-TEST(map, moveConstructor) {
-  s21_map s21_m1 = {{1, 1}, {2, 2}, {3, 3}, {4, 4}, {5, 5}};
-  s21_map s21_m2 = std::move(s21_m1);
-  std_map std_m1 = {{1, 1}, {2, 2}, {3, 3}, {4, 4}, {5, 5}};
-  std_map std_m2 = std::move(std_m1);
+TEST(Map, test_merge) {
+  s21::map<int, int> my_map1{{1, 11}, {2, 22}, {3, 33}};
+  s21::map<int, int> my_map2{{-1, -11}, {-2, -22}, {-3, -33}};
 
-  compare(s21_m2, std_m2);
+  my_map1.merge(my_map2);
 
-  EXPECT_TRUE(s21_m1.empty());
-  EXPECT_TRUE(std_m1.empty());
+  EXPECT_EQ(my_map1.contains(-1), 1);
+  EXPECT_EQ(my_map1.contains(-2), 1);
+  EXPECT_EQ(my_map1.contains(-3), 1);
 }
 
-TEST(map, copyAssignmentOperator) {
-  s21_map s21_m1 = {{1, 1}, {2, 2}, {3, 3}, {4, 4}, {5, 5}};
-  s21_map s21_m2;
-  s21_m2 = s21_m1;
-  std_map std_m1 = {{1, 1}, {2, 2}, {3, 3}, {4, 4}, {5, 5}};
-  std_map std_m2;
-  std_m2 = std_m1;
+TEST(Map, test_contains) {
+  s21::map<int, int> my_map1{{1, 11}, {2, 22}, {3, 33}};
 
-  EXPECT_EQ(s21_m2.empty(), std_m2.empty());
-  EXPECT_EQ(s21_m2.size(), std_m2.size());
-
-  compare(s21_m2, std_m2);
+  EXPECT_EQ(my_map1.contains(1), 1);
+  EXPECT_EQ(my_map1.contains(44), 0);
 }
 
-TEST(map, moveAssignmentOperator) {
-  s21_map s21_m1 = {{1, 1}, {2, 2}, {3, 3}, {4, 4}, {5, 5}};
-  s21_map s21_m2;
-  s21_m2 = std::move(s21_m1);
-  std_map std_m1 = {{1, 1}, {2, 2}, {3, 3}, {4, 4}, {5, 5}};
-  std_map std_m2;
-  std_m2 = std::move(std_m1);
+TEST(Map, test_bracket) {
+  s21::map<int, int> my_map1{{1, 11}, {2, 22}, {3, 33}};
 
-  compare(s21_m2, std_m2);
-
-  EXPECT_TRUE(s21_m1.empty());
-  EXPECT_TRUE(std_m1.empty());
+  EXPECT_EQ(my_map1[1], 11);
+  EXPECT_EQ(my_map1[0], 0);
 }
 
-TEST(map, insert) {
-  s21_map s21_m;
-  std_map std_m;
+TEST(Map, test_at) {
+  s21::map<int, int> my_map1{{1, 11}, {2, 22}, {3, 33}};
 
-  auto s21_result = s21_m.insert({1, 1});
-  auto std_result = std_m.insert({1, 1});
-  compare(s21_m, std_m);
-
-  s21_result = s21_m.insert({2, 2});
-  std_result = std_m.insert({2, 2});
-  compare(s21_m, std_m);
-
-  s21_result = s21_m.insert({1, 3});
-  std_result = std_m.insert({1, 3});
-  compare(s21_m, std_m);
+  EXPECT_EQ(my_map1.at(1), 11);
+  EXPECT_ANY_THROW(my_map1.at(55));
 }
 
-TEST(map, emplace) {
-  s21_map s21_m;
-  std_map std_m;
+TEST(Map, test_insert_many) {
+  s21::map<int, int> ms{{1, 11}, {2, 22}, {3, 33}};
 
-  auto s21_result = s21_m.emplace(1, 1);
-  auto std_result = std_m.emplace(1, 1);
-  EXPECT_EQ(s21_result.second, std_result.second);
-  EXPECT_EQ((*s21_result.first).first, (*std_result.first).first);
-  EXPECT_EQ((*s21_result.first).second, (*std_result.first).second);
-  EXPECT_EQ(s21_m.size(), std_m.size());
+  s21::map<int, int>::iterator iter;
 
-  s21_result = s21_m.emplace(1, 2);
-  std_result = std_m.emplace(1, 2);
-  EXPECT_EQ(s21_result.second, std_result.second);
-  EXPECT_EQ(s21_m.size(), std_m.size());
+  std::pair<int, int> p1 = {4, 44};
+  std::pair<int, int> p2 = {5, 55};
+  std::pair<int, int> p3 = {6, 66};
+  std::pair<int, int> p4 = {7, 77};
 
-  s21_result = s21_m.emplace(2, 2);
-  std_result = std_m.emplace(2, 2);
-  EXPECT_EQ(s21_result.second, std_result.second);
-  EXPECT_EQ((*s21_result.first).first, (*std_result.first).first);
-  EXPECT_EQ((*s21_result.first).second, (*std_result.first).second);
-  EXPECT_EQ(s21_m.size(), std_m.size());
+  ms.insert_many(p1, p2, p3, p4);
+  iter = ms.end();
 
-  s21_result = s21_m.emplace(3, 3);
-  std_result = std_m.emplace(3, 3);
-  EXPECT_EQ(s21_result.second, std_result.second);
-  EXPECT_EQ((*s21_result.first).first, (*std_result.first).first);
-  EXPECT_EQ((*s21_result.first).second, (*std_result.first).second);
-  EXPECT_EQ(s21_m.size(), std_m.size());
-
-  s21_result = s21_m.emplace(4, 4);
-  std_result = std_m.emplace(4, 4);
-  EXPECT_EQ(s21_result.second, std_result.second);
-  EXPECT_EQ((*s21_result.first).first, (*std_result.first).first);
-  EXPECT_EQ((*s21_result.first).second, (*std_result.first).second);
-  EXPECT_EQ(s21_m.size(), std_m.size());
-
-  s21_result = s21_m.emplace(5, 5);
-  std_result = std_m.emplace(5, 5);
-  EXPECT_EQ(s21_result.second, std_result.second);
-  EXPECT_EQ((*s21_result.first).first, (*std_result.first).first);
-  EXPECT_EQ((*s21_result.first).second, (*std_result.first).second);
-  EXPECT_EQ(s21_m.size(), std_m.size());
-}
-
-TEST(map, insertOrAssign) {
-  s21_map s21_m;
-  std_map std_m;
-
-  auto s21_result = s21_m.insert_or_assign(1, 1);
-  auto std_result = std_m.insert_or_assign(1, 1);
-  EXPECT_EQ(s21_result.second, std_result.second);
-  EXPECT_EQ((*s21_result.first).first, (*std_result.first).first);
-  EXPECT_EQ((*s21_result.first).second, (*std_result.first).second);
-  EXPECT_EQ(s21_m.size(), std_m.size());
-
-  s21_result = s21_m.insert_or_assign(1, 2);
-  std_result = std_m.insert_or_assign(1, 2);
-  EXPECT_EQ(s21_result.second, std_result.second);
-  EXPECT_EQ((*s21_result.first).first, (*std_result.first).first);
-  EXPECT_EQ((*s21_result.first).second, (*std_result.first).second);
-  EXPECT_EQ(s21_m.size(), std_m.size());
-
-  compare(s21_m, std_m);
-}
-
-TEST(map, erase) {
-  s21_map s21_m = {{1, 1}, {2, 2}, {3, 3}, {4, 4}, {5, 5}};
-  std_map std_m = {{1, 1}, {2, 2}, {3, 3}, {4, 4}, {5, 5}};
-
-  auto s21_it = s21_m.begin();
-  auto std_it = std_m.begin();
-
-  s21_m.erase(s21_it);
-  std_m.erase(std_it);
-
-  compare(s21_m, std_m);
-
-  s21_it = s21_m.begin();
-  ++s21_it;
-  std_it = std_m.begin();
-  ++std_it;
-
-  auto s21_check = s21_m.erase(s21_it);
-  auto std_check = std_m.erase(std_it);
-
-  EXPECT_EQ((*s21_check).first, (*std_check).first);
-
-  compare(s21_m, std_m);
-}
-
-TEST(map, eraseAll) {
-  s21_map s21_m = {{1, 1}, {2, 2}, {3, 3}, {4, 4}, {5, 5}};
-  std_map std_m = {{1, 1}, {2, 2}, {3, 3}, {4, 4}, {5, 5}};
-
-  while (s21_m.size()) {
-    s21_m.erase(s21_m.begin());
-    std_m.erase(std_m.begin());
-  }
-
-  EXPECT_EQ(s21_m.size(), std_m.size());
-}
-
-TEST(map, eraseRange_1) {
-  s21_map s21_m = {{11, 11}, {256, 256}, {31, 31},   {44, 44}, {15, 15},
-                   {1, 1},   {7, 7},     {111, 111}, {22, 22}, {222, 222}};
-  std_map std_m = {{11, 11}, {256, 256}, {31, 31},   {44, 44}, {15, 15},
-                   {1, 1},   {7, 7},     {111, 111}, {22, 22}, {222, 222}};
-
-  auto s21_it_begin = s21_m.begin();
-  ++s21_it_begin;
-  ++s21_it_begin;
-  auto s21_it_end = s21_it_begin;
-  ++s21_it_end;
-  ++s21_it_end;
-
-  auto std_it_begin = std_m.begin();
-  ++std_it_begin;
-  ++std_it_begin;
-  auto std_it_end = std_it_begin;
-  ++std_it_end;
-  ++std_it_end;
-
-  auto s21_it = s21_m.erase(s21_it_begin, s21_it_end);
-  auto std_it = std_m.erase(std_it_begin, std_it_end);
-
-  EXPECT_EQ((*s21_it).first, (*std_it).first);
-
-  compare(s21_m, std_m);
-}
-
-TEST(map, eraseRange_2) {
-  s21_map s21_m = {{11, 11}, {256, 256}, {31, 31},   {44, 44}, {15, 15},
-                   {1, 1},   {7, 7},     {111, 111}, {22, 22}, {222, 222}};
-  std_map std_m = {{11, 11}, {256, 256}, {31, 31},   {44, 44}, {15, 15},
-                   {1, 1},   {7, 7},     {111, 111}, {22, 22}, {222, 222}};
-
-  auto s21_it_begin = s21_m.begin();
-  auto s21_it_end = s21_it_begin;
-  ++s21_it_end;
-
-  auto std_it_begin = std_m.begin();
-  auto std_it_end = std_it_begin;
-  ++std_it_end;
-
-  auto s21_it = s21_m.erase(s21_it_begin, s21_it_end);
-  auto std_it = std_m.erase(std_it_begin, std_it_end);
-
-  EXPECT_EQ((*s21_it).first, (*std_it).first);
-
-  compare(s21_m, std_m);
-}
-
-TEST(map, eraseRange_3) {
-  s21_map s21_m = {{11, 11}, {256, 256}, {31, 31},   {44, 44}, {15, 15},
-                   {1, 1},   {7, 7},     {111, 111}, {22, 22}, {222, 222}};
-  std_map std_m = {{11, 11}, {256, 256}, {31, 31},   {44, 44}, {15, 15},
-                   {1, 1},   {7, 7},     {111, 111}, {22, 22}, {222, 222}};
-
-  auto s21_it_begin = s21_m.end();
-  --s21_it_begin;
-  auto s21_it_end = s21_m.end();
-
-  auto std_it_begin = std_m.end();
-  --std_it_begin;
-  auto std_it_end = std_m.end();
-
-  s21_m.erase(s21_it_begin, s21_it_end);
-  std_m.erase(std_it_begin, std_it_end);
-
-  compare(s21_m, std_m);
-}
-
-TEST(map, eraseRange_4) {
-  s21_map s21_m = {{11, 11}, {256, 256}, {31, 31},   {44, 44}, {15, 15},
-                   {1, 1},   {7, 7},     {111, 111}, {22, 22}, {222, 222}};
-  std_map std_m = {{11, 11}, {256, 256}, {31, 31},   {44, 44}, {15, 15},
-                   {1, 1},   {7, 7},     {111, 111}, {22, 22}, {222, 222}};
-
-  auto s21_it_begin = s21_m.begin();
-  auto s21_it_end = s21_m.end();
-
-  auto std_it_begin = std_m.begin();
-  auto std_it_end = std_m.end();
-
-  s21_m.erase(s21_it_begin, s21_it_end);
-  std_m.erase(std_it_begin, std_it_end);
-
-  compare(s21_m, std_m);
-}
-
-TEST(map, eraseRange_5) {
-  s21_map s21_m = {{11, 11}, {256, 256}, {31, 31},   {44, 44}, {15, 15},
-                   {1, 1},   {7, 7},     {111, 111}, {22, 22}, {222, 222}};
-  std_map std_m = {{11, 11}, {256, 256}, {31, 31},   {44, 44}, {15, 15},
-                   {1, 1},   {7, 7},     {111, 111}, {22, 22}, {222, 222}};
-
-  auto s21_it_begin = s21_m.begin();
-
-  auto std_it_begin = std_m.begin();
-
-  s21_m.erase(s21_it_begin, s21_it_begin);
-  std_m.erase(std_it_begin, std_it_begin);
-
-  compare(s21_m, std_m);
-}
-
-TEST(map, clear) {
-  s21_map s21_m = {{1, 1}, {2, 2}, {3, 3}, {4, 4}, {5, 5}};
-  std_map std_m = {{1, 1}, {2, 2}, {3, 3}, {4, 4}, {5, 5}};
-
-  s21_m.clear();
-  std_m.clear();
-  compare(s21_m, std_m);
-}
-
-TEST(map, contains) {
-  s21_map s21_m = {{1, 1}, {2, 2}, {3, 3}, {4, 4}, {5, 5}};
-  std_map std_m = {{1, 1}, {2, 2}, {3, 3}, {4, 4}, {5, 5}};
-
-  compare(s21_m, std_m);
-  EXPECT_FALSE(s21_m.conatains(6));
-}
-
-TEST(map, at) {
-  s21_map s21_m = {{1, 1}, {2, 2}, {3, 3}, {4, 4}, {5, 5}};
-  std_map std_m = {{1, 1}, {2, 2}, {3, 3}, {4, 4}, {5, 5}};
-
-  compare(s21_m, std_m);
-  EXPECT_THROW(s21_m.at(6), std::out_of_range);
-  EXPECT_THROW(std_m.at(6), std::out_of_range);
-}
-
-TEST(map, operatorBracket) {
-  s21_map s21_m = {{1, 1}, {2, 2}, {3, 3}, {4, 4}, {5, 5}};
-  std_map std_m = {{1, 1}, {2, 2}, {3, 3}, {4, 4}, {5, 5}};
-
-  compare(s21_m, std_m);
-  s21_m[6] = 6;
-  std_m[6] = 6;
-  compare(s21_m, std_m);
-  s21_m[3] = 11;
-  std_m[3] = 11;
-  compare(s21_m, std_m);
-}
-
-TEST(map, swap) {
-  s21_map s21_m1 = {{1, 1}, {2, 2}, {3, 3}};
-  s21_map s21_m2 = {{4, 4}, {5, 5}, {6, 6}};
-  std_map std_m1 = {{1, 1}, {2, 2}, {3, 3}};
-  std_map std_m2 = {{4, 4}, {5, 5}, {6, 6}};
-
-  s21_m1.swap(s21_m2);
-  std_m1.swap(std_m2);
-  compare(s21_m1, std_m1);
-  compare(s21_m2, std_m2);
-}
-
-TEST(map, merge_1) {
-  s21_map s21_m1 = {{1, 1}, {2, 2}, {3, 3}};
-  s21_map s21_m2 = {{4, 4}, {5, 5}, {6, 6}};
-  std_map std_m1 = {{1, 1}, {2, 2}, {3, 3}};
-  std_map std_m2 = {{4, 4}, {5, 5}, {6, 6}};
-
-  s21_m1.merge(s21_m2);
-  std_m1.merge(std_m2);
-
-  compare(s21_m1, std_m1);
-  compare(s21_m2, std_m2);
-}
-
-TEST(map, merge_2) {
-  s21_map s21_m1 = {{1, 1},   {2, 2},   {3, 3},   {10, 10},
-                    {20, 20}, {30, 30}, {40, 40}, {50, 50}};
-  s21_map s21_m2 = {{4, 4},    {5, 5},    {6, 6},   {10, 100},
-                    {20, 200}, {30, 300}, {60, 60}, {70, 70}};
-
-  std_map std_m1 = {{1, 1},   {2, 2},   {3, 3},   {10, 10},
-                    {20, 20}, {30, 30}, {40, 40}, {50, 50}};
-  std_map std_m2 = {{4, 4},    {5, 5},    {6, 6},   {10, 100},
-                    {20, 200}, {30, 300}, {60, 60}, {70, 70}};
-
-  s21_m1.merge(s21_m2);
-  std_m1.merge(std_m2);
-
-  compare(s21_m1, std_m1);
-  compare(s21_m2, std_m2);
+  EXPECT_EQ(*iter, 77);
+  EXPECT_EQ(ms.size(), 7);
 }

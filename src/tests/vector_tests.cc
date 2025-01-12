@@ -1,6 +1,6 @@
 
 #include "global_tests.h"
-#include "../containers/vector/s21_vector.h"
+// #include "../containers/vector/s21_vector.h"
 #include <vector>
 
 class MyClass {

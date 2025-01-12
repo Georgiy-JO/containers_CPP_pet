@@ -1,179 +1,218 @@
 #pragma once
 
-#include <iostream>
-#include <stdexcept>
-#include <limits>
-#include <typeinfo>
 #include <cmath>
-#include "../stack/stack.hpp"
-#include "../vector/s21_vector.h"
+#include <iostream>
+#include <limits>
+#include <stdexcept>
+#include <typeinfo>
 
-//* end() - is not standart
+#include "../stack/s21_stack.hpp"
+#include "../vector/s21_vector.h"
 
 namespace s21 {
 template <typename Key_T, typename T>
 class Tree {
-    private:
-        class node_;
-    public:
-        class iterator_;
-        class constIterator_;
-    public:
-        using value_type = T;
-        using key_type = Key_T;
-        using const_key_type = const Key_T;
-        using const_value_type = const T;
-        using reference = T &;
-        using const_reference = const T &;
-        using size_type = size_t;
-        using pointer = T *;
-        using const_pointer = const T *;
-        using iterator = iterator_;
-        using constIterator = constIterator_;
-    private:
-        class node_{
-            public:
-                key_type key_;
-                value_type data_{value_type()};
-                node_ *left_{nullptr};
-                node_ *right_{nullptr};
-                node_ *parent_{nullptr};
-                // unsigned int hight_{0};
-/*ok*/                node_()=default;
-/*ok*/                node_(const key_type &key, node_* parent=nullptr):key_{key}, data_{key}, parent_{parent}{}/*,hight_{1}*/
-/*ok*/                node_(const key_type &key, const value_type &data, node_* parent=nullptr):key_{key}, data_{data}, parent_{parent}{}/*,hight_{1}*/
+ private:
+  class node_;
 
-        };
-        node_ *root_{nullptr};
-        size_type size_ {0};
+ public:
+  class iterator_;
+  class constIterator_;
 
-/*ok*/        node_* find_(node_ * root, const_key_type &key) const;
-/*ok*/        node_* find__(node_ * root, const_value_type &value) const;
-/*ok*/        inline node_* find_( const_key_type &key) const{return find_(root_,key);}
-/*ok*/        inline node_* find__( const_value_type &value) const{return find__(root_,value);}
-/*ok*/        void addParents(node_ *& root);
-/*ok*/        void addParents();
-/*ok*/        inline node_* getParent(const_key_type &key)const;
-/*ok*/        node_* remove(node_ *& root, const_key_type &key);
-/*ok*/        inline void removeNode(node_ *& root);
-/*ok*/        inline int getBalanceFactor(const node_ * node)const;
-/*ok*/        bool insert(node_ *& root,const_key_type& key, const_value_type& value);
-/*ok*/        void balancerInsert(node_ *& root,const_key_type &key);
-/*ok*/        void balancerRemove(node_ *& root);
-/*ok*/        void rotateLeft(node_ *& root);
-/*ok*/        void rotateRight(node_ *& root);
-/*ok*/        unsigned int getHight(const node_* root) const;
-/*ok*/        void clear(node_*& root);
-/*ok*/        void setNull();
-/*ok*/        void copyTreeNode(const node_* from,node_*& to) const;  
-/*ok*/        static node_* getBeginig(node_* root);
-/*ok*/        static node_* getEnd(node_* root);
+ public:
+  using value_type = T;
+  using key_type = Key_T;
+  using const_key_type = const Key_T;
+  using const_value_type = const T;
+  using reference = T&;
+  using const_reference = const T&;
+  using size_type = size_t;
+  using pointer = T*;
+  using const_pointer = const T*;
+  using iterator = iterator_;
+  using constIterator = constIterator_;
 
-/*ok*/        Stack<key_type>& getTree(const node_ *node,Stack<key_type>& stack)const;
-/*ok*/        std::pair<Stack<key_type>, Stack<value_type>>& getTree(const node_ *node, std::pair<Stack<key_type>, Stack<value_type>>& stack)const;
-    protected:
-/*ok*/        const node_* getBeginig()const{return getBeginig(root_);} 
-/*ok*/        const node_* getEnd()const{ return getEnd(root_);} 
-    public:
-/*ok*/        inline Tree():root_{nullptr},size_ {0}{}
-/*ok*/        inline Tree(const_key_type key):Tree(key,key){}
-/*ok*/        inline Tree(const_key_type key, const_value_type value):Tree(){insert(key,value);}
-/*ok*/        Tree(std::initializer_list<key_type> const &items);
-/*ok*/        Tree(std::initializer_list<std::pair<key_type, value_type>> const &items);
-/*ok*/        Tree(const Tree &other):Tree(){(*this)=other;}       //copy
-/*ok*/        Tree(Tree &&other):Tree(){(*this)=std::move(other);} //move
-/*ok*/        inline ~Tree(){clear();}
+ private:
+  class node_ {
+   public:
+    key_type key_;
+    value_type data_{value_type()};
+    node_* left_{nullptr};
+    node_* right_{nullptr};
+    node_* parent_{nullptr};
+    node_() = default;
+    node_(const key_type& key, node_* parent = nullptr)
+        : key_{key}, data_{key}, parent_{parent} {}
+    node_(const key_type& key, const value_type& data, node_* parent = nullptr)
+        : key_{key}, data_{data}, parent_{parent} {}
+  };
+  node_* root_{nullptr};
+  size_type size_{0};
 
-/*ok*/        Tree &operator=(const Tree &other);         //copy
-/*ok*/        Tree &operator=(Tree &&other);              //move
-/*ok*/        inline bool contains(const_key_type key)const {return find_(key)?1:0;}
-/*ok*/        inline bool containsVal(const_value_type value)const {return find__(value)?1:0;}
-/*ok*/        inline iterator find(const_key_type& key) const;
-/*ok*/        std::pair<iterator, bool> insert(const_key_type& key){return insert(key,key);}
-/*ok*/        std::pair<iterator, bool> insert(const_key_type& key, const_value_type &value);
-/*ok*/        void remove(const_key_type key){root_=remove(root_,key);}
-/*ok*/        void erase(iterator pos){if(pos.assigned())remove(pos.getKey());}
-/*ok*/        inline bool empty(){return root_==nullptr;}
-/*ok*/        void swap(Tree& other) noexcept;
-/*ok*/        void merge(Tree& other);
-/*ok*/        inline size_type max_size() const noexcept;
-/*ok*/        inline size_type size(){return size_;}
-/*ok*/        inline void clear(){clear(root_);}
-/*ok*/        void copyTree(Tree<Key_T,T>& TO) const; 
-/*ok*/        iterator_ begin(){return iterator_(getBeginig(root_));} 
-/*ok*/        iterator_ end(){return iterator_(getEnd(root_));}
+  node_* find_(node_* root, const_key_type& key) const;
+  node_* find__(node_* root, const_value_type& value) const;
+  inline node_* find_(const_key_type& key) const { return find_(root_, key); }
+  inline node_* find__(const_value_type& value) const {
+    return find__(root_, value);
+  }
 
-            //extra functions
-/*ok*/        void showTreeVertical();
-/*ok*/        void showTreeVertical(const node_ *node);
-/*ok*/        void showTreeVerticalVal();
-/*ok*/        void showTreeVerticalVal(const node_ *node);
-/*ok*/        Stack<key_type>& getTree(Stack<key_type>& stack)const{return getTree(root_, stack);}
-/*ok*/        std::pair<Stack<key_type>, Stack<value_type>>& getTree(std::pair<Stack<key_type>, Stack<value_type>>& stack)const{return getTree(root_, stack);}
-/*ok*/        key_type getParentData(const_key_type key)const;
-/*ok*/        void crazyPrinter(const node_* root)const;
-/*ok*/        void crazyPrinter()const{crazyPrinter(root_);}
+  void addParents(node_*& root);
+  void addParents();
+  inline node_* getParent(const_key_type& key) const;
 
-            //bonus functions
-            template <typename...Args>
-/*ok*/            s21::vector<std::pair<iterator,bool>> insert_many(Args&&... args);
-/*ok*/            iterator insertMult(const_key_type& key){return insertMult(key,key);}
-/*ok*/            iterator insertMult(const_key_type& key,const_value_type& value);
-/*ok*/            node_* insertMult(node_ *& root,const_key_type& key,const_value_type& value);
-        
+  node_* remove(node_*& root, const_key_type& key);
+  inline void removeNode(node_*& root);
+  inline int getBalanceFactor(const node_* node) const;
+  bool insert(node_*& root, const_key_type& key, const_value_type& value);
+  void balancerInsert(node_*& root, const_key_type& key);
+  void balancerRemove(node_*& root);
+  void rotateLeft(node_*& root);
+  void rotateRight(node_*& root);
+  unsigned int getHight(const node_* root) const;
 
-    friend class iterator_;
-        class iterator_{
-                node_* element_{nullptr};
-                // Tree* three_ptr_{nullptr};
-/*ok*/                node_* getNext(){return element_?getNext(element_):nullptr;}
-/*ok*/                node_* getNext(node_* node);
-/*ok*/                node_* getPrev(){return element_?getPrev(element_):nullptr;}
-/*ok*/                node_* getPrev(node_* node);
-/*ok*/                inline void ifElement()const;
+  void clear(node_*& root);
+  void setNull();
+  void copyTreeNode(const node_* from, node_*& to) const;
 
-            public:
-                    friend class constIterator_;
-/*ok*/                iterator_(node_* element=nullptr):element_{element}{}
-/*ok*/                iterator_(const iterator_& other):iterator_(other.element_){}
-/*ok*/                iterator_& operator=(const iterator_& other);
-/*ok*/                iterator_& operator=(const Tree<Key_T,T>& tree);
-/*ok*/                iterator_& operator=(const node_*& node);
-/*ok*/                iterator_& operator++();
-/*ok*/                iterator_& operator--();
-/*ok*/                iterator_& operator+=(int n);
-/*ok*/                iterator_& operator-=(int n);
-/*ok*/                iterator_ operator++(int);
-/*ok*/                iterator_ operator--(int);
-/*ok*/                auto operator*()const{return getValue();}
-// /**/                const_pointer operator->()const;
-/*ok*/                bool operator==(const iterator_& other)const{return element_==other.element_;}
-/*ok*/                bool operator!=(const iterator_& other)const{return element_!=other.element_;}
-/*ok*/                inline const_value_type& getValue()const;
-/*ok*/                inline const_key_type& getKey()const;
-/*ok*/                auto getPair()const;
-/*ok*/                bool assigned()const{return element_!=nullptr;}
-        };
-        
-        class constIterator_: public iterator_{
-            public:
-/*ok*/                constIterator_(node_* element=nullptr):iterator_(element){}
-/*ok*/                constIterator_(const iterator_& other):iterator_(other.element_){}
-/*ok*/                constIterator_(const constIterator_& other):iterator_(other.element_){}
-/*ok*/                auto operator*() const {return iterator_::operator*();}
-// /**/                const_pointer operator->() const {return iterator_::operator->();}
-/*ok*/                bool operator==(const iterator_& other)const{return iterator_:: operator==(other);}
-/*ok*/                bool operator!=(const iterator_& other)const{return iterator_::operator!=(other);}
-        };
+  static node_* getBeginig(node_* root);
+  static node_* getEnd(node_* root);
+  Stack<key_type>& getTree(const node_* node, Stack<key_type>& stack) const;
+  std::pair<Stack<key_type>, Stack<value_type>>& getTree(
+      const node_* node,
+      std::pair<Stack<key_type>, Stack<value_type>>& stack) const;
+
+ protected:
+  const node_* getBeginig() const { return getBeginig(root_); }
+  const node_* getEnd() const { return getEnd(root_); }
+
+ public:
+  inline Tree() : root_{nullptr}, size_{0} {}
+  inline Tree(const_key_type key) : Tree(key, key) {}
+  inline Tree(const_key_type key, const_value_type value) : Tree() {
+    insert(key, value);
+  }
+  Tree(std::initializer_list<key_type> const& items);
+  Tree(std::initializer_list<std::pair<key_type, value_type>> const& items);
+  Tree(const Tree& other) : Tree() { (*this) = other; }        // copy
+  Tree(Tree&& other) : Tree() { (*this) = std::move(other); }  // move
+  inline ~Tree() { clear(); }
+
+  Tree& operator=(const Tree& other);  // copy
+  Tree& operator=(Tree&& other);       // move
+
+  inline bool contains(const_key_type key) const { return find_(key) ? 1 : 0; }
+  inline bool containsVal(const_value_type value) const {
+    return find__(value) ? 1 : 0;
+  }
+  inline iterator find(const_key_type& key) const;
+
+  std::pair<iterator, bool> insert(const_key_type& key) {
+    return insert(key, key);
+  }
+  std::pair<iterator, bool> insert(const_key_type& key,
+                                   const_value_type& value);
+  void remove(const_key_type key) { root_ = remove(root_, key); }
+  void erase(iterator pos) {
+    if (pos.assigned()) remove(pos.getKey());
+  }
+
+  void swap(Tree& other) noexcept;
+  void merge(Tree& other);
+
+  inline bool empty() { return root_ == nullptr; }
+  inline size_type max_size() const noexcept;
+  inline size_type size() { return size_; }
+  inline void clear() { clear(root_); }
+  void copyTree(Tree<Key_T, T>& TO) const;
+
+  iterator_ begin() { return iterator_(getBeginig(root_)); }
+  iterator_ end() { return iterator_(getEnd(root_)); }
+  constIterator cbegin() const { return getBeginig(root_); }
+  constIterator cend() const { return getEnd(root_); }
+
+  // extra functions
+  void showTreeVertical();
+  void showTreeVertical(const node_* node);
+  void showTreeVerticalVal();
+  void showTreeVerticalVal(const node_* node);
+  Stack<key_type>& getTree(Stack<key_type>& stack) const {
+    return getTree(root_, stack);
+  }
+  std::pair<Stack<key_type>, Stack<value_type>>& getTree(
+      std::pair<Stack<key_type>, Stack<value_type>>& stack) const {
+    return getTree(root_, stack);
+  }
+  key_type getParentData(const_key_type key) const;
+  void crazyPrinter(const node_* root) const;
+  void crazyPrinter() const { crazyPrinter(root_); }
+
+  // bonus functions
+  template <typename... Args>
+  s21::vector<std::pair<iterator, bool>> insert_many(Args&&... args);
+  iterator insertMult(const_key_type& key) { return insertMult(key, key); }
+  iterator insertMult(const_key_type& key, const_value_type& value);
+  node_* insertMult(node_*& root, const_key_type& key, const_value_type& value);
+
+  friend class iterator_;
+  class iterator_ {
+    node_* element_{nullptr};
+    node_* getNext() { return element_ ? getNext(element_) : nullptr; }
+    node_* getNext(node_* node);
+    node_* getPrev() { return element_ ? getPrev(element_) : nullptr; }
+    node_* getPrev(node_* node);
+    inline void ifElement() const;
+
+   public:
+    friend class constIterator_;
+    iterator_(node_* element = nullptr) : element_{element} {}
+    iterator_(const iterator_& other) : iterator_(other.element_) {}
+    iterator_& operator=(const iterator_& other);
+    iterator_& operator=(const Tree<Key_T, T>& tree);
+    iterator_& operator=(const node_*& node);
+    iterator_& operator++();
+    iterator_& operator--();
+    iterator_& operator+=(int n);
+    iterator_& operator-=(int n);
+    iterator_ operator++(int);
+    iterator_ operator--(int);
+    auto operator*() const { return getValue(); }
+    bool operator==(const iterator_& other) const {
+      return element_ == other.element_;
+    }
+    bool operator!=(const iterator_& other) const {
+      return element_ != other.element_;
+    }
+
+    inline value_type& getValue() const;  // const_value_type& ?
+    inline const_key_type& getKey() const;
+    auto getPair() const;
+    bool assigned() const { return element_ != nullptr; }
+    static void replaceVal(iterator_& it, const_value_type& value) {
+      if (it.element_) it.element_->data_ = value;
+    }
+  };
+
+  class constIterator_ : public iterator_ {
+   public:
+    constIterator_(node_* element = nullptr) : iterator_(element) {}
+    constIterator_(const iterator_& other) : iterator_(other.element_) {}
+    constIterator_(const constIterator_& other) : iterator_(other.element_) {}
+    auto operator*() const { return iterator_::operator*(); }
+    bool operator==(const iterator_& other) const {
+      return iterator_::operator==(other);
+    }
+    bool operator!=(const iterator_& other) const {
+      return iterator_::operator!=(other);
+    }
+    constIterator_& operator=(const constIterator_& other);
+  };
 };
 
 #include "avl_tree.tpp"
-//Iterator
+// Iterator
 #include "avl_tree_irterator.tpp"
-//Multiset module
+// Multiset module
 #include "avl_tree_multiset.tpp"
 
-
-}
-
-
+//* end() - is not standart
+}  // namespace s21
