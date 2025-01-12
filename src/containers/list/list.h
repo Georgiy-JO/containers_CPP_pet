@@ -1,12 +1,12 @@
-#ifndef S21_LIST_H
-#define S21_LIST_H
+#ifndef LIST_H
+#define LIST_H
 
 #include <initializer_list>
 #include <iostream>
 
 using namespace std;
 
-namespace s21 {
+namespace my_containers {
 // Определение шаблона класса list, который представляет собой двусвязный список
 template <class T>
 class list {
@@ -135,8 +135,8 @@ class list {
   template <typename... Args>
   void insert_many_front(Args&&... args);
 };
-}  // namespace s21
+}  // namespace my_containers
 
-#include "s21_list.tpp"  // Подключение реализации шаблонных функций
+#include "list.tpp"  // Подключение реализации шаблонных функций
 
-#endif  // S21_LIST_H
+#endif  // LIST_H

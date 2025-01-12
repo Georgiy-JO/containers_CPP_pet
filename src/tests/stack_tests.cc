@@ -6,10 +6,10 @@
 // #include "../containers/stack/stack.hpp"
 
 TEST(StackTest, Constructor_Exclusions) {
-  s21::Stack<int> stack_int;
-  s21::Stack<double> stack_double;
-  s21::Stack<std::string> stack_string;
-  s21::Stack<char> stach_char;
+  my_containers::Stack<int> stack_int;
+  my_containers::Stack<double> stack_double;
+  my_containers::Stack<std::string> stack_string;
+  my_containers::Stack<char> stach_char;
 
   EXPECT_EQ(stack_int.size(), 0);
   EXPECT_EQ(stack_double.size(), 0);
@@ -33,10 +33,10 @@ TEST(StackTest, Constructor_Exclusions) {
 }
 
 TEST(StackTest, ArrayConstructor) {
-  s21::Stack<int> stack_int{4, 5, 6, 7, 2, -55};
-  s21::Stack<double> stack_double{3.3, 5.5, 5.555, -110.5, 23.44, 0};
-  s21::Stack<std::string> stack_string{"Hell", "to", "you", "!"};
-  s21::Stack<char> stach_char{'f', '0', '\0', 'd', '1', 'k'};
+  my_containers::Stack<int> stack_int{4, 5, 6, 7, 2, -55};
+  my_containers::Stack<double> stack_double{3.3, 5.5, 5.555, -110.5, 23.44, 0};
+  my_containers::Stack<std::string> stack_string{"Hell", "to", "you", "!"};
+  my_containers::Stack<char> stach_char{'f', '0', '\0', 'd', '1', 'k'};
 
   EXPECT_EQ(stack_int.size(), 6);
   EXPECT_EQ(stack_double.size(), 6);
@@ -75,15 +75,15 @@ TEST(StackTest, ArrayConstructor) {
 }
 
 TEST(StackTest, Swap) {
-  s21::Stack<int> stack_int{4, 5, 6, 7, 2, -55};
-  s21::Stack<double> stack_double{3.3, 5.5, 5.555, -110.5, 23.44, 0};
-  s21::Stack<std::string> stack_string{"Hell", "to", "you", "!"};
-  s21::Stack<char> stach_char{'f', '0', '\0', 'd', '1', 'k'};
+  my_containers::Stack<int> stack_int{4, 5, 6, 7, 2, -55};
+  my_containers::Stack<double> stack_double{3.3, 5.5, 5.555, -110.5, 23.44, 0};
+  my_containers::Stack<std::string> stack_string{"Hell", "to", "you", "!"};
+  my_containers::Stack<char> stach_char{'f', '0', '\0', 'd', '1', 'k'};
 
-  s21::Stack<int> stack_int2{1, 2, 3};
-  s21::Stack<double> stack_double2{4.5, 7, 6, 10};
-  s21::Stack<std::string> stack_string2{"Hello", ",", "World"};
-  s21::Stack<char> stach_char2{'f', '0', '0', 'l'};
+  my_containers::Stack<int> stack_int2{1, 2, 3};
+  my_containers::Stack<double> stack_double2{4.5, 7, 6, 10};
+  my_containers::Stack<std::string> stack_string2{"Hello", ",", "World"};
+  my_containers::Stack<char> stach_char2{'f', '0', '0', 'l'};
 
   EXPECT_EQ(stack_int.size(), 6);
   EXPECT_EQ(stack_double.size(), 6);
@@ -153,15 +153,15 @@ TEST(StackTest, Swap) {
 
 TEST(StackTest, MoveAssignment) {
   using std::move;
-  s21::Stack<int> stack_int{4, 5, 6, 7, 2, -55};
-  s21::Stack<double> stack_double{3.3, 5.5, 5.555, -110.5, 23.44, 0};
-  s21::Stack<std::string> stack_string{"Hell", "to", "you", "!"};
-  s21::Stack<char> stach_char{'f', '0', '\0', 'd', '1', 'k'};
+  my_containers::Stack<int> stack_int{4, 5, 6, 7, 2, -55};
+  my_containers::Stack<double> stack_double{3.3, 5.5, 5.555, -110.5, 23.44, 0};
+  my_containers::Stack<std::string> stack_string{"Hell", "to", "you", "!"};
+  my_containers::Stack<char> stach_char{'f', '0', '\0', 'd', '1', 'k'};
 
-  s21::Stack<int> stack_int2;
-  s21::Stack<double> stack_double2;
-  s21::Stack<std::string> stack_string2;
-  s21::Stack<char> stach_char2;
+  my_containers::Stack<int> stack_int2;
+  my_containers::Stack<double> stack_double2;
+  my_containers::Stack<std::string> stack_string2;
+  my_containers::Stack<char> stach_char2;
 
   EXPECT_EQ(stack_int.size(), 6);
   EXPECT_EQ(stack_double.size(), 6);
@@ -231,10 +231,10 @@ TEST(StackTest, MoveAssignment) {
 
 TEST(StackTest, MoveConstructor) {
   using std::move;
-  s21::Stack<int> stack_int{4, 5, 6, 7, 2, -55};
-  s21::Stack<double> stack_double{3.3, 5.5, 5.555, -110.5, 23.44, 0};
-  s21::Stack<std::string> stack_string{"Hell", "to", "you", "!"};
-  s21::Stack<char> stach_char{'f', '0', '\0', 'd', '1', 'k'};
+  my_containers::Stack<int> stack_int{4, 5, 6, 7, 2, -55};
+  my_containers::Stack<double> stack_double{3.3, 5.5, 5.555, -110.5, 23.44, 0};
+  my_containers::Stack<std::string> stack_string{"Hell", "to", "you", "!"};
+  my_containers::Stack<char> stach_char{'f', '0', '\0', 'd', '1', 'k'};
 
   EXPECT_EQ(stack_int.size(), 6);
   EXPECT_EQ(stack_double.size(), 6);
@@ -251,10 +251,10 @@ TEST(StackTest, MoveConstructor) {
   EXPECT_EQ(stack_string.top(), "!");
   EXPECT_EQ(stach_char.top(), 'k');
 
-  s21::Stack<int> stack_int2(move(stack_int));
-  s21::Stack<double> stack_double2(move(stack_double));
-  s21::Stack<std::string> stack_string2(move(stack_string));
-  s21::Stack<char> stach_char2(move(stach_char));
+  my_containers::Stack<int> stack_int2(move(stack_int));
+  my_containers::Stack<double> stack_double2(move(stack_double));
+  my_containers::Stack<std::string> stack_string2(move(stack_string));
+  my_containers::Stack<char> stach_char2(move(stach_char));
 
   EXPECT_EQ(stack_int2.size(), 6);
   EXPECT_EQ(stack_double2.size(), 6);
@@ -288,15 +288,15 @@ TEST(StackTest, MoveConstructor) {
 }
 
 TEST(StackTest, CopyAssignment) {
-  s21::Stack<int> stack_int{4, 5, 6, 7, 2, -55};
-  s21::Stack<double> stack_double{3.3, 5.5, 5.555, -110.5, 23.44, 0};
-  s21::Stack<std::string> stack_string{"Hell", "to", "you", "!"};
-  s21::Stack<char> stach_char{'f', '0', '\0', 'd', '1', 'k'};
+  my_containers::Stack<int> stack_int{4, 5, 6, 7, 2, -55};
+  my_containers::Stack<double> stack_double{3.3, 5.5, 5.555, -110.5, 23.44, 0};
+  my_containers::Stack<std::string> stack_string{"Hell", "to", "you", "!"};
+  my_containers::Stack<char> stach_char{'f', '0', '\0', 'd', '1', 'k'};
 
-  s21::Stack<int> stack_int2;
-  s21::Stack<double> stack_double2;
-  s21::Stack<std::string> stack_string2;
-  s21::Stack<char> stach_char2;
+  my_containers::Stack<int> stack_int2;
+  my_containers::Stack<double> stack_double2;
+  my_containers::Stack<std::string> stack_string2;
+  my_containers::Stack<char> stach_char2;
 
   EXPECT_EQ(stack_int.size(), 6);
   EXPECT_EQ(stack_double.size(), 6);
@@ -400,10 +400,10 @@ TEST(StackTest, CopyAssignment) {
 }
 
 TEST(StackTest, CopyConstructor) {
-  s21::Stack<int> stack_int{4, 5, 6, 7, 2, -55};
-  s21::Stack<double> stack_double{3.3, 5.5, 5.555, -110.5, 23.44, 0};
-  s21::Stack<std::string> stack_string{"Hell", "to", "you", "!"};
-  s21::Stack<char> stach_char{'f', '0', '\0', 'd', '1', 'k'};
+  my_containers::Stack<int> stack_int{4, 5, 6, 7, 2, -55};
+  my_containers::Stack<double> stack_double{3.3, 5.5, 5.555, -110.5, 23.44, 0};
+  my_containers::Stack<std::string> stack_string{"Hell", "to", "you", "!"};
+  my_containers::Stack<char> stach_char{'f', '0', '\0', 'd', '1', 'k'};
 
   EXPECT_EQ(stack_int.size(), 6);
   EXPECT_EQ(stack_double.size(), 6);
@@ -420,10 +420,10 @@ TEST(StackTest, CopyConstructor) {
   EXPECT_EQ(stack_string.top(), "!");
   EXPECT_EQ(stach_char.top(), 'k');
 
-  s21::Stack<int> stack_int2 = stack_int;
-  s21::Stack<double> stack_double2 = stack_double;
-  s21::Stack<std::string> stack_string2 = stack_string;
-  s21::Stack<char> stach_char2 = stach_char;
+  my_containers::Stack<int> stack_int2 = stack_int;
+  my_containers::Stack<double> stack_double2 = stack_double;
+  my_containers::Stack<std::string> stack_string2 = stack_string;
+  my_containers::Stack<char> stach_char2 = stach_char;
 
   EXPECT_EQ(stack_int2.size(), 6);
   EXPECT_EQ(stack_double2.size(), 6);
@@ -491,10 +491,10 @@ TEST(StackTest, CopyConstructor) {
   EXPECT_THROW(stach_char2.top(), std::out_of_range);
 }
 TEST(StackTest, BonusFunctions) {
-  s21::Stack<int> stack_int{4, 5, 6, 7, 2, -55};
-  s21::Stack<double> stack_double{3.3, 5.5, 5.555, -110.5, 23.44, 0};
-  s21::Stack<std::string> stack_string{"Hell", "to", "you", "!"};
-  s21::Stack<char> stach_char{'f', '0', '\0', 'd', '1', 'k'};
+  my_containers::Stack<int> stack_int{4, 5, 6, 7, 2, -55};
+  my_containers::Stack<double> stack_double{3.3, 5.5, 5.555, -110.5, 23.44, 0};
+  my_containers::Stack<std::string> stack_string{"Hell", "to", "you", "!"};
+  my_containers::Stack<char> stach_char{'f', '0', '\0', 'd', '1', 'k'};
 
   stack_int.insert_many_back(44, 32, 434, 322, 44, 55, 66, 77, 22, 34, 5435,
                              5345, 545, 345, 435, 35, 35, -55);
@@ -541,10 +541,10 @@ TEST(StackTest, BonusFunctions) {
   EXPECT_EQ(stach_char.top(), '5');
   EXPECT_EQ(stach_char.size(), 14);
 
-  s21::Stack<int> stack_int_2;
-  s21::Stack<double> stack_double_2;
-  s21::Stack<std::string> stack_string_2;
-  s21::Stack<char> stach_char_2;
+  my_containers::Stack<int> stack_int_2;
+  my_containers::Stack<double> stack_double_2;
+  my_containers::Stack<std::string> stack_string_2;
+  my_containers::Stack<char> stach_char_2;
   EXPECT_EQ(stack_int_2.empty(), true);
   EXPECT_EQ(stack_double_2.empty(), true);
   EXPECT_EQ(stack_string_2.empty(), true);

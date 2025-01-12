@@ -1,21 +1,27 @@
-# s21_containers
+# Containers
 
-## Contents
+## Contents 
+ - [Intro](#intro)
+  - [Theory](#theory)
+    - [General](#general)
+      - [Each container's method](#each-containers-method)
+      - [Iterator](#iterator)
+      - [Template usage](#template-usage)
+      - [Containers groups](#containers-groups)
+  - [Task](#task)
+    - [General rules](#general-rules)
+    - [Part 1. Implementation of the containers.h library](#part-1-implementation-of-the-containersh-library)
+    - [Part 2. Bonus. Implementation of the containersplus.h library.](#part-2-bonus-implementation-of-the-containersplush-library)
+    - [Part 3. Bonus. Implementation of the `insert_many` method.](#part-3-bonus-implementation-of-the-insert_many-method)
+      - [See](#see)
+  - [Working process](#working-process)
+    - [Participants list](#participants-list)
+    - [Task assignment](#task-assignment)
+      - [Main](#main)
+      - [Bonus](#bonus)
 
-- [Theory](#theory)
-   - [General](#general)
-   - [Each container's method](#each-containers-method)
-   - [Iterator](#iterator)
-   - [Template usage](#template-usage)
-   - [Containers groups](#containers-groups)
-- [Task](#task)
-   - [General rules](#general-rules)
-   - [Part 1. Implementation of the s21\_containers.h library](#part-1-implementation-of-the-s21_containersh-library)
-   - [Part 2. Bonus. Implementation of the s21\_containersplus.h library.](#part-2-bonus-implementation-of-the-s21_containersplush-library)
-   - [Part 3. Bonus. Implementation of the `insert_many` method.](#part-3-bonus-implementation-of-the-insert_many-method)
-- [Working process](#working-process)
-   - [Participants list](#participants-list)
-   - [Task assignment](#task-assignment)
+## Intro
+Self-written versions of some classical C++ containers. It's just a pet project to practice C++ and get used to the containers themselves. That is a group project with several authors, listed [here](#participants-list).
 
 ## Theory
 ### General
@@ -72,14 +78,14 @@ As a bonus, you can also implement several other container classes from the C++ 
 |   ✔   | When writing code it is necessary to follow the Google style;                                                                                 |
 |   ✔   | Make sure to use iterators;                                                                                                                   |
 |   ✔   | Classes must be template;                                                                                                                     |
-|   ✔   | Classes must be implemented within the `s21` namespace;                                                                                       |
+|   ✔   | Classes must be implemented within the `my_containers` namespace;                                                                                       |
 |   ✔   | Prepare full coverage of container classes methods with unit-tests using the GTest library;                                                   |
 |   ✔   | Copying of the Standard Template Library (STL) implementation is not allowed;                                                                 |
 |   ✔   | The logic of the Standard Template Library (STL) must be followed (in terms of checks, memory handling and behaviour in abnormal situations). |
 
-### Part 1. Implementation of the s21_containers.h library
+### Part 1. Implementation of the containers.h library
 
-You need to implement the `s21_containers.h` library classes:
+You need to implement the `containers.h` library classes:
 - List of classes: 
   - `list`, 
   - `map`, 
@@ -87,24 +93,23 @@ You need to implement the `s21_containers.h` library classes:
   - `set`, 
   - `stack`, 
   - `vector`.
-- Make it as a header file `s21_containers.h` which includes different header files with implementations of the specified containers (`s21_list.h`, `s21_map.h` and etc.); 
-- Specifications: [click](/src/materials/containers_info.md).
+- Make it as a header file `containers.h` which includes different header files with implementations of the specified containers (`list.h`, `map.h` and etc.); 
+- Specifications: [click](/materials/containers_info.md).
 - Provide a Makefile for testing the library (with targets clean, test);
 - The classical implementation of containers should be considered as a basis, but the final choice of implementations remains free. Except for the `list` — it should be implemented via the list structure rather than the array.
 
 *Tip*: You can move the same implementation of container methods to base classes. For example, for a queue and a stack, or for a list and a vector. There is a UML diagram of the STL library in materials as *one possible example* of hierarchical construction. However, your implementation does not have to be strictly tied to this UML diagram.
 
-![UML_diagram](/src/materials/STL_UML.png "UML diagram")
+![UML_diagram](/materials/STL_UML.png "UML diagram")
 
-### Part 2. Bonus. Implementation of the s21_containersplus.h library.
+### Part 2. Bonus. Implementation of the containersplus.h library.
 
-
-You need to implement the `s21_containersplus.h` library functions:
+You need to implement the `containersplus.h` library functions:
 - List of classes to be implemented additionally: 
   - `array`, 
   - `multiset`.
-- Make it as a header file `s21_containersplus.h` which includes different header files with implementations of the specified containers (`s21_array.h`, `s21_multiset.h`); 
-- Specifications: [click](/src/materials/containers_info_extra.md).
+- Make it as a header file `containersplus.h` which includes different header files with implementations of the specified containers (`array.h`, `multiset.h`); 
+- Specifications: [click](/materials/containers_info_extra.md).
 - Provide a Makefile for testing the library (with targets clean, test);
 - The classical implementation of containers should be considered as a basis, but the final choice of the algorithm remains free.
 
@@ -134,7 +139,7 @@ Note: the arguments are the already created elements of the appropriate containe
 - troyiggo
 - tanishag
 - orenbran
-- riderkri
+- Georgy_JO (riderkri)
 
 
 ### Task assignment  
@@ -144,12 +149,12 @@ Note: the arguments are the already created elements of the appropriate containe
 | Task                 | Nickname                                            | Main | Tests | [Bonus](#bonus) | Checked |
 | -------------------- | --------------------------------------------------- | ---- | ----- | --------------- | ------- |
 | implement `list`     | tanishag                                            | ✔    | ✔     | ✔               |  ✔      |
-| implement `stack`    | riderkri                                            | ✔    | ✔     | ✔               |  ✔      |
+| implement `stack`    | Georgy_JO                                            | ✔    | ✔     | ✔               |  ✔      |
 | implement `queue`    | orenbran                                            | ✔    | ✔     | ✔               |  ✔      |
-| implement `Tree`     | riderkri                                            | ✔    | ✔     | ✔               |  ✔      |
-| implement `map`      | troyiggo, <br> riderkri,<br> orenbran, <br>tanishag | ✔    | ✔     | ✔               |  ✔      |
-| implement `set`      | riderkri                                            | ✔    | ✔     | ✔               |  ✔      |
-| implement `multiset` | riderkri                                            | ✔    | ✔     | ✔               |  ✔      |
+| implement `Tree`     | Georgy_JO                                            | ✔    | ✔     | ✔               |  ✔      |
+| implement `map`      | troyiggo, <br> Georgy_JO,<br> orenbran, <br>tanishag | ✔    | ✔     | ✔               |  ✔      |
+| implement `set`      | Georgy_JO                                            | ✔    | ✔     | ✔               |  ✔      |
+| implement `multiset` | Georgy_JO                                            | ✔    | ✔     | ✔               |  ✔      |
 | implement `vector`   | orenbran                                            | ✔    | ✔     | ✔               |  ✔      |
 | implement `array`    | tanishag                                            | ✔    | ✔     | -               |  ✔      |
 

@@ -3,9 +3,9 @@
 #include <iostream>
 
 #include "../AVLtree/avl_tree.hpp"
-#include "../vector/s21_vector.h"
+#include "../vector/vector.h"
 
-namespace s21 {
+namespace my_containers {
 template <typename Key, typename T>
 class map : public Tree<Key, T> {
  public:
@@ -58,6 +58,6 @@ class map : public Tree<Key, T> {
   vector<std::pair<iterator, bool>> insert_many(
       Args&&... args);  // insert undefined ammount of elements
 };
-#include "s21_map.tpp"
+#include "map.tpp"
 
-}  // namespace s21
+}  // namespace my_containers

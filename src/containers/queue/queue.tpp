@@ -1,9 +1,9 @@
-#ifndef S21_CONTAINERS_QUEUE_TPP
-#define S21_CONTAINERS_QUEUE_TPP
+#ifndef CONTAINERS_QUEUE_TPP
+#define CONTAINERS_QUEUE_TPP
 
-#include "s21_queue.h"
+#include "queue.h"
 
-namespace s21 {
+namespace my_containers {
 template <typename T>
 queue<T>::queue() : data_(nullptr), tail_(nullptr), size_(0) {}
 
@@ -105,7 +105,7 @@ template <typename T>
 template <typename... Args>
 void queue<T>::insert_many_back(Args&&... args) {
   // Создаем временный список из переданных аргументов
-  s21::vector<T> temp_args{std::forward<Args>(args)...};
+  my_containers::vector<T> temp_args{std::forward<Args>(args)...};
 
   // Добавляем все элементы временного списка в очередь
   for (const auto& arg : temp_args) {
@@ -113,5 +113,5 @@ void queue<T>::insert_many_back(Args&&... args) {
   }
 }
 
-}  // namespace s21
+}  // namespace my_containers
 #endif

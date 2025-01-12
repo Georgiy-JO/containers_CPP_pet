@@ -1,6 +1,6 @@
-#include "s21_list.h"
+#include "list.h"
 
-namespace s21 {
+namespace my_containers {
 
 template <typename T>
 void list<T>::set_size_node() {
@@ -486,4 +486,4 @@ void list<T>::insert_many_front(Args&&... args) {
     push_front(iter);
   }
 }
-};  // namespace s21
+};  // namespace my_containers

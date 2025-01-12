@@ -1,11 +1,11 @@
-#ifndef S21_CONTAINERS_VECTOR_H
-#define S21_CONTAINERS_VECTOR_H
+#ifndef CONTAINERS_VECTOR_H
+#define CONTAINERS_VECTOR_H
 
 #include <initializer_list>
 #include <iostream>
 #include <limits>
 
-namespace s21 {
+namespace my_containers {
 template <typename T>
 
 class vector {
@@ -86,7 +86,8 @@ class vector {
   template <typename... Args>
   void insert_many_back(Args&&... args);
 };
-}  // namespace s21
+}  // namespace my_containers
 
-#include "s21_vector.tpp"
+#include "vector.tpp"
+
 #endif

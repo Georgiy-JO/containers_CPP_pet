@@ -27,11 +27,11 @@ COV_DIR = $(BUILD_DIR)/coverage
 VALG_FILE = $(BUILD_DIR)/RESULT_VALGRIND.txt
 CPPCHECK_FILE = $(BUILD_DIR)/RESULT_CPPCHECK.txt
 
-PROJECT_NAME=s21_containers
+PROJECT_NAME=containers
 # files beg--------------------------------------------------------------------------------------
 # conteiner files 
 MAIN_HEADER=$(SRC_DIR)/$(PROJECT_NAME:=.h)
-SECOND_MAIN_HEADER=$(SRC_DIR)/s21_containersplus.h
+SECOND_MAIN_HEADER=$(SRC_DIR)/containersplus.h
 HEAD_FILES_stack = $(shell find $(SRC_DIR)/stack -type f -name '*.hpp')					#stack
 HEAD_FILES_AVLtree = $(shell find $(SRC_DIR)/AVLtree -type f -name '*.hpp')				#AVLtree
 HEAD_FILES_list = $(shell find $(SRC_DIR)/list -type f -name '*.hpp')					#list

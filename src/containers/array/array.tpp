@@ -1,6 +1,6 @@
-#include "s21_array.h"
+#include "array.h"
 
-namespace s21 {
+namespace my_containers {
 
 template <class value_type, std::size_t Size>
 array<value_type, Size>::array(std::initializer_list<value_type> const& items) {
@@ -116,4 +116,4 @@ void array<value_type, Size>::fill(const_reference value) {
 }
 
 // template class array<int>;
-}  // namespace s21
+}  // namespace my_containers

@@ -1,9 +1,9 @@
-#ifndef S21_CONTAINERS_VECTOR_TPP
-#define S21_CONTAINERS_VECTOR_TPP
+#ifndef CONTAINERS_VECTOR_TPP
+#define CONTAINERS_VECTOR_TPP
 
-#include "s21_vector.h"
+#include "vector.h"
 
-namespace s21 {
+namespace my_containers {
 
 template <typename T>
 vector<T>::vector(size_type n) : data_(new T[n]), capacity_(n), size_(n) {
@@ -171,6 +171,6 @@ void vector<T>::insert_many_back(Args &&...args) {
   size_ += args_count;
 }
 
-}  // namespace s21
+}  // namespace my_containers
 
 #endif

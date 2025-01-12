@@ -2,7 +2,7 @@
 // #include "../containers/multiset/multiset.hpp"
 #include <set>
 
-void multisetIntConstructor(s21::multiset<int>& multiset_int) {
+void multisetIntConstructor(my_containers::multiset<int>& multiset_int) {
   multiset_int.insert_many(10, 2, 3, 44, 5, 66, -5, -100, 0, 0, 0, 5, 33, 23,
                            64, 55, 0, 1, 1000);
   EXPECT_EQ(multiset_int.size(), 19);
@@ -55,7 +55,8 @@ void multisetIntConstructorSTD(std::multiset<int>& multiset_int_2) {
   multiset_int_2.insert(-100);
   EXPECT_EQ(multiset_int_2.size(), 31);
 }
-void multisetDoubleConstructor(s21::multiset<double>& multiset_double) {
+void multisetDoubleConstructor(
+    my_containers::multiset<double>& multiset_double) {
   multiset_double.insert_many(555.55, 423.2, 2, 1000, -55.55, -33.3, -1000, 100,
                               1000, 100, -5.5);
   EXPECT_EQ(multiset_double.size(), 11);
@@ -98,7 +99,8 @@ void multisetDoubleConstructorSTD(std::multiset<double>& multiset_double_2) {
   multiset_double_2.insert(-55.55);
   EXPECT_EQ(multiset_double_2.size(), 22);
 }
-void multisetStringConstructor(s21::multiset<std::string>& multiset_str) {
+void multisetStringConstructor(
+    my_containers::multiset<std::string>& multiset_str) {
   multiset_str.insert_many("Jazz", "Me", "played", "with", "Blues", "brothers",
                            "like", "Yoda", "Wow", "!");
   EXPECT_EQ(multiset_str.size(), 10);
@@ -148,7 +150,7 @@ void multisetStringConstructorSTD(std::multiset<std::string>& multiset_str_2) {
   multiset_str_2.insert("Rock");
   EXPECT_EQ(multiset_str_2.size(), 25);
 }
-void multisetCharConstructor(s21::multiset<char>& multiset_char) {
+void multisetCharConstructor(my_containers::multiset<char>& multiset_char) {
   multiset_char.insert_many('a', 'b', 'c', 'd', '5', '1', 'a', '-', '=', '+',
                             'q', '\n', '\t', 'y', ']', '[', '(', '`');
   EXPECT_EQ(multiset_char.size(), 18);
@@ -200,23 +202,23 @@ void multisetCharConstructorSTD(std::multiset<char>& multiset_char_2) {
 }
 
 TEST(MultisetTest, ListConstruxtor) {
-  s21::multiset<int> multiset_int{10, 2, 3,  44, 5,  66, -5, -100, 0,   0,
-                                  0,  5, 33, 23, 64, 55, 0,  1,    1000};
+  my_containers::multiset<int> multiset_int{
+      10, 2, 3, 44, 5, 66, -5, -100, 0, 0, 0, 5, 33, 23, 64, 55, 0, 1, 1000};
   std::multiset<int> multiset_int_2{10, 2, 3,  44, 5,  66, -5, -100, 0,   0,
                                     0,  5, 33, 23, 64, 55, 0,  1,    1000};
-  s21::multiset<double> multiset_double{
+  my_containers::multiset<double> multiset_double{
       555.55, 423.2, 2, 1000, -55.55, -33.3, -1000, 100, 1000, 100, -5.5};
   std::multiset<double> multiset_double_2{
       555.55, 423.2, 2, 1000, -55.55, -33.3, -1000, 100, 1000, 100, -5.5};
-  s21::multiset<std::string> multiset_str{"Jazz",  "Me",       "played", "with",
-                                          "Blues", "brothers", "like",   "Yoda",
-                                          "Wow",   "!"};
+  my_containers::multiset<std::string> multiset_str{
+      "Jazz",     "Me",   "played", "with", "Blues",
+      "brothers", "like", "Yoda",   "Wow",  "!"};
   std::multiset<std::string> multiset_str_2{
       "Jazz",     "Me",   "played", "with", "Blues",
       "brothers", "like", "Yoda",   "Wow",  "!"};
-  s21::multiset<char> multiset_char{'a',  'b', 'c', 'd', '5', '1',
-                                    'a',  '-', '=', '+', 'q', '\n',
-                                    '\t', 'y', ']', '[', '(', '`'};
+  my_containers::multiset<char> multiset_char{'a',  'b', 'c', 'd', '5', '1',
+                                              'a',  '-', '=', '+', 'q', '\n',
+                                              '\t', 'y', ']', '[', '(', '`'};
   std::multiset<char> multiset_char_2{'a',  'b', 'c', 'd', '5', '1',
                                       'a',  '-', '=', '+', 'q', '\n',
                                       '\t', 'y', ']', '[', '(', '`'};
@@ -348,13 +350,13 @@ TEST(MultisetTest, ListConstruxtor) {
   EXPECT_EQ(multiset_char_2.size(), 29);
 }
 TEST(MultisetTest, DefaultConstruxtor_Empty_Bonus) {
-  s21::multiset<int> multiset_int;
+  my_containers::multiset<int> multiset_int;
   std::multiset<int> multiset_int_2;
-  s21::multiset<double> multiset_double;
+  my_containers::multiset<double> multiset_double;
   std::multiset<double> multiset_double_2;
-  s21::multiset<std::string> multiset_str;
+  my_containers::multiset<std::string> multiset_str;
   std::multiset<std::string> multiset_str_2;
-  s21::multiset<char> multiset_char;
+  my_containers::multiset<char> multiset_char;
   std::multiset<char> multiset_char_2;
   EXPECT_EQ(multiset_int.size(), 0);
   EXPECT_EQ(multiset_int_2.size(), 0);
@@ -427,13 +429,13 @@ TEST(MultisetTest, DefaultConstruxtor_Empty_Bonus) {
   EXPECT_EQ(multiset_char_2.empty(), true);
 }
 TEST(MultisetTest, Clear) {
-  s21::multiset<int> multiset_int;
+  my_containers::multiset<int> multiset_int;
   std::multiset<int> multiset_int_2;
-  s21::multiset<double> multiset_double;
+  my_containers::multiset<double> multiset_double;
   std::multiset<double> multiset_double_2;
-  s21::multiset<std::string> multiset_str;
+  my_containers::multiset<std::string> multiset_str;
   std::multiset<std::string> multiset_str_2;
-  s21::multiset<char> multiset_char;
+  my_containers::multiset<char> multiset_char;
   std::multiset<char> multiset_char_2;
   multisetIntConstructor(multiset_int);
   multisetIntConstructorSTD(multiset_int_2);
@@ -489,13 +491,13 @@ TEST(MultisetTest, Clear) {
   EXPECT_EQ(multiset_char_2.empty(), true);
 }
 TEST(MultisetTest, MoveConstruxtor) {
-  s21::multiset<int> multiset_int_1;
+  my_containers::multiset<int> multiset_int_1;
   std::multiset<int> multiset_int_2;
-  s21::multiset<double> multiset_double_1;
+  my_containers::multiset<double> multiset_double_1;
   std::multiset<double> multiset_double_2;
-  s21::multiset<std::string> multiset_str_1;
+  my_containers::multiset<std::string> multiset_str_1;
   std::multiset<std::string> multiset_str_2;
-  s21::multiset<char> multiset_char_1;
+  my_containers::multiset<char> multiset_char_1;
   std::multiset<char> multiset_char_2;
   multisetIntConstructor(multiset_int_1);
   multisetIntConstructorSTD(multiset_int_2);
@@ -506,13 +508,15 @@ TEST(MultisetTest, MoveConstruxtor) {
   multisetCharConstructor(multiset_char_1);
   multisetCharConstructorSTD(multiset_char_2);
 
-  s21::multiset<int> multiset_int_3(std::move(multiset_int_1));
+  my_containers::multiset<int> multiset_int_3(std::move(multiset_int_1));
   std::multiset<int> multiset_int_4(std::move(multiset_int_2));
-  s21::multiset<double> multiset_double_3(std::move(multiset_double_1));
+  my_containers::multiset<double> multiset_double_3(
+      std::move(multiset_double_1));
   std::multiset<double> multiset_double_4(std::move(multiset_double_2));
-  s21::multiset<std::string> multiset_str_3(std::move(multiset_str_1));
+  my_containers::multiset<std::string> multiset_str_3(
+      std::move(multiset_str_1));
   std::multiset<std::string> multiset_str_4(std::move(multiset_str_2));
-  s21::multiset<char> multiset_char_3(std::move(multiset_char_1));
+  my_containers::multiset<char> multiset_char_3(std::move(multiset_char_1));
   std::multiset<char> multiset_char_4(std::move(multiset_char_2));
   EXPECT_EQ(multiset_int_3.size(), 31);
   EXPECT_EQ(multiset_int_4.size(), 31);
@@ -548,13 +552,13 @@ TEST(MultisetTest, MoveConstruxtor) {
   EXPECT_EQ(multiset_char_2.empty(), true);
 }
 TEST(MultisetTest, CopyConstruxtor) {
-  s21::multiset<int> multiset_int_1;
+  my_containers::multiset<int> multiset_int_1;
   std::multiset<int> multiset_int_2;
-  s21::multiset<double> multiset_double_1;
+  my_containers::multiset<double> multiset_double_1;
   std::multiset<double> multiset_double_2;
-  s21::multiset<std::string> multiset_str_1;
+  my_containers::multiset<std::string> multiset_str_1;
   std::multiset<std::string> multiset_str_2;
-  s21::multiset<char> multiset_char_1;
+  my_containers::multiset<char> multiset_char_1;
   std::multiset<char> multiset_char_2;
   multisetIntConstructor(multiset_int_1);
   multisetIntConstructorSTD(multiset_int_2);
@@ -565,13 +569,13 @@ TEST(MultisetTest, CopyConstruxtor) {
   multisetCharConstructor(multiset_char_1);
   multisetCharConstructorSTD(multiset_char_2);
 
-  s21::multiset<int> multiset_int_3(multiset_int_1);
+  my_containers::multiset<int> multiset_int_3(multiset_int_1);
   std::multiset<int> multiset_int_4(multiset_int_2);
-  s21::multiset<double> multiset_double_3(multiset_double_1);
+  my_containers::multiset<double> multiset_double_3(multiset_double_1);
   std::multiset<double> multiset_double_4(multiset_double_2);
-  s21::multiset<std::string> multiset_str_3(multiset_str_1);
+  my_containers::multiset<std::string> multiset_str_3(multiset_str_1);
   std::multiset<std::string> multiset_str_4(multiset_str_2);
-  s21::multiset<char> multiset_char_3(multiset_char_1);
+  my_containers::multiset<char> multiset_char_3(multiset_char_1);
   std::multiset<char> multiset_char_4(multiset_char_2);
   EXPECT_EQ(multiset_int_3.size(), 31);
   EXPECT_EQ(multiset_int_4.size(), 31);
@@ -609,13 +613,13 @@ TEST(MultisetTest, CopyConstruxtor) {
 /*
 // This thest is systrm dependent -- may cause errors
 TEST(MultisetTest, MaxSize) {
-    s21::multiset<int> multiset_int_1;
+    my_containers::multiset<int> multiset_int_1;
     std::multiset<int> multiset_int_2;
-    s21::multiset<double> multiset_double_1;
+    my_containers::multiset<double> multiset_double_1;
     std::multiset<double> multiset_double_2;
-    s21::multiset<std::string> multiset_str_1;
+    my_containers::multiset<std::string> multiset_str_1;
     std::multiset<std::string> multiset_str_2;
-    s21::multiset<char> multiset_char_1;
+    my_containers::multiset<char> multiset_char_1;
     std::multiset<char> multiset_char_2;
     multisetIntConstructor(multiset_int_1);
     multisetIntConstructorSTD(multiset_int_2);
@@ -632,13 +636,13 @@ TEST(MultisetTest, MaxSize) {
 }
 */
 TEST(MultisetTest, Begin) {
-  s21::multiset<int> multiset_int_1;
+  my_containers::multiset<int> multiset_int_1;
   std::multiset<int> multiset_int_2;
-  s21::multiset<double> multiset_double_1;
+  my_containers::multiset<double> multiset_double_1;
   std::multiset<double> multiset_double_2;
-  s21::multiset<std::string> multiset_str_1;
+  my_containers::multiset<std::string> multiset_str_1;
   std::multiset<std::string> multiset_str_2;
-  s21::multiset<char> multiset_char_1;
+  my_containers::multiset<char> multiset_char_1;
   std::multiset<char> multiset_char_2;
   multisetIntConstructor(multiset_int_1);
   multisetIntConstructorSTD(multiset_int_2);
@@ -655,13 +659,13 @@ TEST(MultisetTest, Begin) {
   EXPECT_EQ(*multiset_char_1.begin(), *multiset_char_2.begin());
 }
 TEST(MultisetTest, End) {
-  s21::multiset<int> multiset_int_1;
+  my_containers::multiset<int> multiset_int_1;
   std::multiset<int> multiset_int_2;
-  s21::multiset<double> multiset_double_1;
+  my_containers::multiset<double> multiset_double_1;
   std::multiset<double> multiset_double_2;
-  s21::multiset<std::string> multiset_str_1;
+  my_containers::multiset<std::string> multiset_str_1;
   std::multiset<std::string> multiset_str_2;
-  s21::multiset<char> multiset_char_1;
+  my_containers::multiset<char> multiset_char_1;
   std::multiset<char> multiset_char_2;
   multisetIntConstructor(multiset_int_1);
   multisetIntConstructorSTD(multiset_int_2);
@@ -677,13 +681,13 @@ TEST(MultisetTest, End) {
   EXPECT_EQ(*multiset_char_1.end(), 'y');
 }
 TEST(MultisetTest, Contains) {
-  s21::multiset<int> multiset_int_1;
+  my_containers::multiset<int> multiset_int_1;
   std::multiset<int> multiset_int_2;
-  s21::multiset<double> multiset_double_1;
+  my_containers::multiset<double> multiset_double_1;
   std::multiset<double> multiset_double_2;
-  s21::multiset<std::string> multiset_str_1;
+  my_containers::multiset<std::string> multiset_str_1;
   std::multiset<std::string> multiset_str_2;
-  s21::multiset<char> multiset_char_1;
+  my_containers::multiset<char> multiset_char_1;
   std::multiset<char> multiset_char_2;
   multisetIntConstructor(multiset_int_1);
   multisetIntConstructorSTD(multiset_int_2);
@@ -703,13 +707,13 @@ TEST(MultisetTest, Contains) {
   EXPECT_EQ(multiset_char_1.contains('-'), true);
 }
 TEST(MultisetTest, MoveAssignment) {
-  s21::multiset<int> multiset_int_1;
+  my_containers::multiset<int> multiset_int_1;
   std::multiset<int> multiset_int_2;
-  s21::multiset<double> multiset_double_1;
+  my_containers::multiset<double> multiset_double_1;
   std::multiset<double> multiset_double_2;
-  s21::multiset<std::string> multiset_str_1;
+  my_containers::multiset<std::string> multiset_str_1;
   std::multiset<std::string> multiset_str_2;
-  s21::multiset<char> multiset_char_1;
+  my_containers::multiset<char> multiset_char_1;
   std::multiset<char> multiset_char_2;
   multisetIntConstructor(multiset_int_1);
   multisetIntConstructorSTD(multiset_int_2);
@@ -737,13 +741,13 @@ TEST(MultisetTest, MoveAssignment) {
   EXPECT_EQ(multiset_char_1.empty(), false);
   EXPECT_EQ(multiset_char_2.empty(), false);
 
-  s21::multiset<int> multiset_int_3;
+  my_containers::multiset<int> multiset_int_3;
   std::multiset<int> multiset_int_4;
-  s21::multiset<double> multiset_double_3;
+  my_containers::multiset<double> multiset_double_3;
   std::multiset<double> multiset_double_4;
-  s21::multiset<std::string> multiset_str_3;
+  my_containers::multiset<std::string> multiset_str_3;
   std::multiset<std::string> multiset_str_4;
-  s21::multiset<char> multiset_char_3;
+  my_containers::multiset<char> multiset_char_3;
   std::multiset<char> multiset_char_4;
 
   EXPECT_EQ(multiset_int_3.size(), 0);
@@ -806,13 +810,13 @@ TEST(MultisetTest, MoveAssignment) {
   EXPECT_EQ(multiset_char_2.empty(), true);
 }
 TEST(MultisetTest, CopyAssignment) {
-  s21::multiset<int> multiset_int_1;
+  my_containers::multiset<int> multiset_int_1;
   std::multiset<int> multiset_int_2;
-  s21::multiset<double> multiset_double_1;
+  my_containers::multiset<double> multiset_double_1;
   std::multiset<double> multiset_double_2;
-  s21::multiset<std::string> multiset_str_1;
+  my_containers::multiset<std::string> multiset_str_1;
   std::multiset<std::string> multiset_str_2;
-  s21::multiset<char> multiset_char_1;
+  my_containers::multiset<char> multiset_char_1;
   std::multiset<char> multiset_char_2;
   multisetIntConstructor(multiset_int_1);
   multisetIntConstructorSTD(multiset_int_2);
@@ -840,13 +844,13 @@ TEST(MultisetTest, CopyAssignment) {
   EXPECT_EQ(multiset_char_1.empty(), false);
   EXPECT_EQ(multiset_char_2.empty(), false);
 
-  s21::multiset<int> multiset_int_3;
+  my_containers::multiset<int> multiset_int_3;
   std::multiset<int> multiset_int_4;
-  s21::multiset<double> multiset_double_3;
+  my_containers::multiset<double> multiset_double_3;
   std::multiset<double> multiset_double_4;
-  s21::multiset<std::string> multiset_str_3;
+  my_containers::multiset<std::string> multiset_str_3;
   std::multiset<std::string> multiset_str_4;
-  s21::multiset<char> multiset_char_3;
+  my_containers::multiset<char> multiset_char_3;
   std::multiset<char> multiset_char_4;
 
   EXPECT_EQ(multiset_int_3.size(), 0);
@@ -909,13 +913,13 @@ TEST(MultisetTest, CopyAssignment) {
   EXPECT_EQ(multiset_char_2.empty(), false);
 }
 TEST(MultisetTest, insert_Erase) {
-  s21::multiset<int> multiset_int_1;
+  my_containers::multiset<int> multiset_int_1;
   std::multiset<int> multiset_int_2;
-  s21::multiset<double> multiset_double_1;
+  my_containers::multiset<double> multiset_double_1;
   std::multiset<double> multiset_double_2;
-  s21::multiset<std::string> multiset_str_1;
+  my_containers::multiset<std::string> multiset_str_1;
   std::multiset<std::string> multiset_str_2;
-  s21::multiset<char> multiset_char_1;
+  my_containers::multiset<char> multiset_char_1;
   std::multiset<char> multiset_char_2;
   multisetIntConstructor(multiset_int_1);
   multisetIntConstructorSTD(multiset_int_2);
@@ -926,15 +930,18 @@ TEST(MultisetTest, insert_Erase) {
   multisetCharConstructor(multiset_char_1);
   multisetCharConstructorSTD(multiset_char_2);
 
-  s21::multiset<int>::iterator it_int_1 = multiset_int_1.insert(-55588);
+  my_containers::multiset<int>::iterator it_int_1 =
+      multiset_int_1.insert(-55588);
   std::multiset<int>::iterator it_int_2 = multiset_int_2.insert(-55588);
-  s21::multiset<double>::iterator it_double_1 =
+  my_containers::multiset<double>::iterator it_double_1 =
       multiset_double_1.insert(555.888);
   std::multiset<double>::iterator it_double_2 =
       multiset_double_2.insert(555.888);
-  s21::multiset<std::string>::iterator it_str_1 = multiset_str_1.insert("Soma");
+  my_containers::multiset<std::string>::iterator it_str_1 =
+      multiset_str_1.insert("Soma");
   std::multiset<std::string>::iterator it_str_2 = multiset_str_2.insert("Soma");
-  s21::multiset<char>::iterator it_char_1 = multiset_char_1.insert('$');
+  my_containers::multiset<char>::iterator it_char_1 =
+      multiset_char_1.insert('$');
   std::multiset<char>::iterator it_char_2 = multiset_char_2.insert('$');
   EXPECT_EQ(*it_int_1, -55588);
   EXPECT_EQ(*it_int_2, -55588);
@@ -944,15 +951,18 @@ TEST(MultisetTest, insert_Erase) {
   EXPECT_EQ(*it_str_2, "Soma");
   EXPECT_EQ(*it_char_1, '$');
   EXPECT_EQ(*it_char_2, '$');
-  s21::multiset<int>::iterator it_int_3 = multiset_int_1.insert(-55588);
+  my_containers::multiset<int>::iterator it_int_3 =
+      multiset_int_1.insert(-55588);
   std::multiset<int>::iterator it_int_4 = multiset_int_2.insert(-55588);
-  s21::multiset<double>::iterator it_double_3 =
+  my_containers::multiset<double>::iterator it_double_3 =
       multiset_double_1.insert(555.888);
   std::multiset<double>::iterator it_double_4 =
       multiset_double_2.insert(555.888);
-  s21::multiset<std::string>::iterator it_str_3 = multiset_str_1.insert("Soma");
+  my_containers::multiset<std::string>::iterator it_str_3 =
+      multiset_str_1.insert("Soma");
   std::multiset<std::string>::iterator it_str_4 = multiset_str_2.insert("Soma");
-  s21::multiset<char>::iterator it_char_3 = multiset_char_1.insert('$');
+  my_containers::multiset<char>::iterator it_char_3 =
+      multiset_char_1.insert('$');
   std::multiset<char>::iterator it_char_4 = multiset_char_2.insert('$');
   EXPECT_EQ(*it_int_3, -55588);
   EXPECT_EQ(*it_int_4, -55588);
@@ -1019,13 +1029,13 @@ TEST(MultisetTest, insert_Erase) {
   EXPECT_EQ(multiset_char_1.contains('$'), true);
 }
 TEST(MultisetTest, Find) {
-  s21::multiset<int> multiset_int_1;
+  my_containers::multiset<int> multiset_int_1;
   std::multiset<int> multiset_int_2;
-  s21::multiset<double> multiset_double_1;
+  my_containers::multiset<double> multiset_double_1;
   std::multiset<double> multiset_double_2;
-  s21::multiset<std::string> multiset_str_1;
+  my_containers::multiset<std::string> multiset_str_1;
   std::multiset<std::string> multiset_str_2;
-  s21::multiset<char> multiset_char_1;
+  my_containers::multiset<char> multiset_char_1;
   std::multiset<char> multiset_char_2;
   multisetIntConstructor(multiset_int_1);
   multisetIntConstructorSTD(multiset_int_2);
@@ -1036,15 +1046,18 @@ TEST(MultisetTest, Find) {
   multisetCharConstructor(multiset_char_1);
   multisetCharConstructorSTD(multiset_char_2);
 
-  s21::multiset<int>::iterator it_int_1 = multiset_int_1.insert(-55588);
+  my_containers::multiset<int>::iterator it_int_1 =
+      multiset_int_1.insert(-55588);
   std::multiset<int>::iterator it_int_2 = multiset_int_2.insert(-55588);
-  s21::multiset<double>::iterator it_double_1 =
+  my_containers::multiset<double>::iterator it_double_1 =
       multiset_double_1.insert(555.888);
   std::multiset<double>::iterator it_double_2 =
       multiset_double_2.insert(555.888);
-  s21::multiset<std::string>::iterator it_str_1 = multiset_str_1.insert("Soma");
+  my_containers::multiset<std::string>::iterator it_str_1 =
+      multiset_str_1.insert("Soma");
   std::multiset<std::string>::iterator it_str_2 = multiset_str_2.insert("Soma");
-  s21::multiset<char>::iterator it_char_1 = multiset_char_1.insert('$');
+  my_containers::multiset<char>::iterator it_char_1 =
+      multiset_char_1.insert('$');
   std::multiset<char>::iterator it_char_2 = multiset_char_2.insert('$');
   EXPECT_EQ(*it_int_1, -55588);
 
@@ -1053,13 +1066,15 @@ TEST(MultisetTest, Find) {
   EXPECT_EQ(multiset_str_1.contains("Soma"), true);
   EXPECT_EQ(multiset_char_1.contains('$'), true);
 
-  s21::multiset<int>::iterator it_int_3 = multiset_int_1.find(-55588);
+  my_containers::multiset<int>::iterator it_int_3 = multiset_int_1.find(-55588);
   std::multiset<int>::iterator it_int_4 = multiset_int_2.find(-55588);
-  s21::multiset<double>::iterator it_double_3 = multiset_double_1.find(555.888);
+  my_containers::multiset<double>::iterator it_double_3 =
+      multiset_double_1.find(555.888);
   std::multiset<double>::iterator it_double_4 = multiset_double_2.find(555.888);
-  s21::multiset<std::string>::iterator it_str_3 = multiset_str_1.find("Soma");
+  my_containers::multiset<std::string>::iterator it_str_3 =
+      multiset_str_1.find("Soma");
   std::multiset<std::string>::iterator it_str_4 = multiset_str_2.find("Soma");
-  s21::multiset<char>::iterator it_char_3 = multiset_char_1.find('$');
+  my_containers::multiset<char>::iterator it_char_3 = multiset_char_1.find('$');
   std::multiset<char>::iterator it_char_4 = multiset_char_2.find('$');
 
   EXPECT_EQ(it_int_1, it_int_3);
@@ -1102,13 +1117,13 @@ TEST(MultisetTest, Find) {
   EXPECT_EQ(multiset_char_1.contains('$'), false);
 }
 TEST(MultisetTest, Swap) {
-  s21::multiset<int> multiset_int_1;
+  my_containers::multiset<int> multiset_int_1;
   std::multiset<int> multiset_int_2;
-  s21::multiset<double> multiset_double_1;
+  my_containers::multiset<double> multiset_double_1;
   std::multiset<double> multiset_double_2;
-  s21::multiset<std::string> multiset_str_1;
+  my_containers::multiset<std::string> multiset_str_1;
   std::multiset<std::string> multiset_str_2;
-  s21::multiset<char> multiset_char_1;
+  my_containers::multiset<char> multiset_char_1;
   std::multiset<char> multiset_char_2;
   multisetIntConstructor(multiset_int_1);
   multisetIntConstructorSTD(multiset_int_2);
@@ -1118,20 +1133,20 @@ TEST(MultisetTest, Swap) {
   multisetStringConstructorSTD(multiset_str_2);
   multisetCharConstructor(multiset_char_1);
   multisetCharConstructorSTD(multiset_char_2);
-  s21::multiset<int> multiset_int_7{10, 2, 3, 44, 5, 5, 5, 5, 5, 5};
+  my_containers::multiset<int> multiset_int_7{10, 2, 3, 44, 5, 5, 5, 5, 5, 5};
   std::multiset<int> multiset_int_8{10, 2, 3, 44, 5, 5, 5, 5, 5, 5};
-  s21::multiset<double> multiset_double_7{
+  my_containers::multiset<double> multiset_double_7{
       555.55, 423.2, 2, 1000, -55.55, -55.55, -55.55, -55.55, -55.55, -55.55};
   std::multiset<double> multiset_double_8{
       555.55, 423.2, 2, 1000, -55.55, -55.55, -55.55, -55.55, -55.55, -55.55};
-  s21::multiset<std::string> multiset_str_7{"Jazz",  "Me",    "played", "with",
-                                            "Blues", "Blues", "Blues",  "Blues",
-                                            "Blues", "Blues"};
+  my_containers::multiset<std::string> multiset_str_7{
+      "Jazz",  "Me",    "played", "with",  "Blues",
+      "Blues", "Blues", "Blues",  "Blues", "Blues"};
   std::multiset<std::string> multiset_str_8{"Jazz",  "Me",    "played", "with",
                                             "Blues", "Blues", "Blues",  "Blues",
                                             "Blues", "Blues"};
-  s21::multiset<char> multiset_char_7{'a', 'b', 'c', 'd', '5',
-                                      '5', '5', '5', '5', '5'};
+  my_containers::multiset<char> multiset_char_7{'a', 'b', 'c', 'd', '5',
+                                                '5', '5', '5', '5', '5'};
   std::multiset<char> multiset_char_8{'a', 'b', 'c', 'd', '5',
                                       '5', '5', '5', '5', '5'};
   EXPECT_EQ(multiset_int_7.size(), 10);
@@ -1142,13 +1157,13 @@ TEST(MultisetTest, Swap) {
   EXPECT_EQ(multiset_str_8.size(), 10);
   EXPECT_EQ(multiset_char_7.size(), 10);
   EXPECT_EQ(multiset_char_8.size(), 10);
-  s21::multiset<int> multiset_int_3;
+  my_containers::multiset<int> multiset_int_3;
   std::multiset<int> multiset_int_4;
-  s21::multiset<double> multiset_double_3;
+  my_containers::multiset<double> multiset_double_3;
   std::multiset<double> multiset_double_4;
-  s21::multiset<std::string> multiset_str_3;
+  my_containers::multiset<std::string> multiset_str_3;
   std::multiset<std::string> multiset_str_4;
-  s21::multiset<char> multiset_char_3;
+  my_containers::multiset<char> multiset_char_3;
   std::multiset<char> multiset_char_4;
   EXPECT_EQ(multiset_int_3.empty(), true);
   EXPECT_EQ(multiset_int_4.empty(), true);
@@ -1210,13 +1225,13 @@ TEST(MultisetTest, Swap) {
   EXPECT_EQ(multiset_char_4.size(), 29);
 }
 TEST(MultisetTest, Merge) {
-  s21::multiset<int> multiset_int_1;
+  my_containers::multiset<int> multiset_int_1;
   std::multiset<int> multiset_int_2;
-  s21::multiset<double> multiset_double_1;
+  my_containers::multiset<double> multiset_double_1;
   std::multiset<double> multiset_double_2;
-  s21::multiset<std::string> multiset_str_1;
+  my_containers::multiset<std::string> multiset_str_1;
   std::multiset<std::string> multiset_str_2;
-  s21::multiset<char> multiset_char_1;
+  my_containers::multiset<char> multiset_char_1;
   std::multiset<char> multiset_char_2;
   multisetIntConstructor(multiset_int_1);
   multisetIntConstructorSTD(multiset_int_2);
@@ -1226,20 +1241,20 @@ TEST(MultisetTest, Merge) {
   multisetStringConstructorSTD(multiset_str_2);
   multisetCharConstructor(multiset_char_1);
   multisetCharConstructorSTD(multiset_char_2);
-  s21::multiset<int> multiset_int_7{10, 2, 3, 44, 5, 5, 5, 5, 5, 5};
+  my_containers::multiset<int> multiset_int_7{10, 2, 3, 44, 5, 5, 5, 5, 5, 5};
   std::multiset<int> multiset_int_8{10, 2, 3, 44, 5, 5, 5, 5, 5, 5};
-  s21::multiset<double> multiset_double_7{
+  my_containers::multiset<double> multiset_double_7{
       555.55, 423.2, 2, 1000, -55.55, -55.55, -55.55, -55.55, -55.55, -55.55};
   std::multiset<double> multiset_double_8{
       555.55, 423.2, 2, 1000, -55.55, -55.55, -55.55, -55.55, -55.55, -55.55};
-  s21::multiset<std::string> multiset_str_7{"Jazz",  "Me",    "played", "with",
-                                            "Blues", "Blues", "Blues",  "Blues",
-                                            "Blues", "Blues"};
+  my_containers::multiset<std::string> multiset_str_7{
+      "Jazz",  "Me",    "played", "with",  "Blues",
+      "Blues", "Blues", "Blues",  "Blues", "Blues"};
   std::multiset<std::string> multiset_str_8{"Jazz",  "Me",    "played", "with",
                                             "Blues", "Blues", "Blues",  "Blues",
                                             "Blues", "Blues"};
-  s21::multiset<char> multiset_char_7{'a', 'b', 'c', 'd', '5',
-                                      '5', '5', '5', '5', '5'};
+  my_containers::multiset<char> multiset_char_7{'a', 'b', 'c', 'd', '5',
+                                                '5', '5', '5', '5', '5'};
   std::multiset<char> multiset_char_8{'a', 'b', 'c', 'd', '5',
                                       '5', '5', '5', '5', '5'};
   EXPECT_EQ(multiset_int_7.size(), 10);
@@ -1250,13 +1265,13 @@ TEST(MultisetTest, Merge) {
   EXPECT_EQ(multiset_str_8.size(), 10);
   EXPECT_EQ(multiset_char_7.size(), 10);
   EXPECT_EQ(multiset_char_8.size(), 10);
-  s21::multiset<int> multiset_int_3;
+  my_containers::multiset<int> multiset_int_3;
   std::multiset<int> multiset_int_4;
-  s21::multiset<double> multiset_double_3;
+  my_containers::multiset<double> multiset_double_3;
   std::multiset<double> multiset_double_4;
-  s21::multiset<std::string> multiset_str_3;
+  my_containers::multiset<std::string> multiset_str_3;
   std::multiset<std::string> multiset_str_4;
-  s21::multiset<char> multiset_char_3;
+  my_containers::multiset<char> multiset_char_3;
   std::multiset<char> multiset_char_4;
   EXPECT_EQ(multiset_int_3.empty(), true);
   EXPECT_EQ(multiset_int_4.empty(), true);
@@ -1337,13 +1352,13 @@ TEST(MultisetTest, Merge) {
   EXPECT_EQ(multiset_str_8.size(), 0);
 }
 TEST(MultisetTest, LowerBound) {
-  s21::multiset<int> multiset_int_1;
+  my_containers::multiset<int> multiset_int_1;
   std::multiset<int> multiset_int_2;
-  s21::multiset<double> multiset_double_1;
+  my_containers::multiset<double> multiset_double_1;
   std::multiset<double> multiset_double_2;
-  s21::multiset<std::string> multiset_str_1;
+  my_containers::multiset<std::string> multiset_str_1;
   std::multiset<std::string> multiset_str_2;
-  s21::multiset<char> multiset_char_1;
+  my_containers::multiset<char> multiset_char_1;
   std::multiset<char> multiset_char_2;
   multisetIntConstructor(multiset_int_1);
   multisetIntConstructorSTD(multiset_int_2);
@@ -1390,13 +1405,13 @@ TEST(MultisetTest, LowerBound) {
   EXPECT_EQ(*(--multiset_char_1.lower_bound('b')), 'a');
 }
 TEST(MultisetTest, UpperBound) {
-  s21::multiset<int> multiset_int_1;
+  my_containers::multiset<int> multiset_int_1;
   std::multiset<int> multiset_int_2;
-  s21::multiset<double> multiset_double_1;
+  my_containers::multiset<double> multiset_double_1;
   std::multiset<double> multiset_double_2;
-  s21::multiset<std::string> multiset_str_1;
+  my_containers::multiset<std::string> multiset_str_1;
   std::multiset<std::string> multiset_str_2;
-  s21::multiset<char> multiset_char_1;
+  my_containers::multiset<char> multiset_char_1;
   std::multiset<char> multiset_char_2;
   multisetIntConstructor(multiset_int_1);
   multisetIntConstructorSTD(multiset_int_2);
@@ -1439,13 +1454,13 @@ TEST(MultisetTest, UpperBound) {
   EXPECT_EQ(*(--multiset_char_1.upper_bound('b')), 'b');
 }
 TEST(MultisetTest, EqualRange) {
-  s21::multiset<int> multiset_int_1;
+  my_containers::multiset<int> multiset_int_1;
   std::multiset<int> multiset_int_2;
-  s21::multiset<double> multiset_double_1;
+  my_containers::multiset<double> multiset_double_1;
   std::multiset<double> multiset_double_2;
-  s21::multiset<std::string> multiset_str_1;
+  my_containers::multiset<std::string> multiset_str_1;
   std::multiset<std::string> multiset_str_2;
-  s21::multiset<char> multiset_char_1;
+  my_containers::multiset<char> multiset_char_1;
   std::multiset<char> multiset_char_2;
   multisetIntConstructor(multiset_int_1);
   multisetIntConstructorSTD(multiset_int_2);
@@ -1553,9 +1568,9 @@ TEST(MultisetTest, EqualRange) {
             *(--multiset_char_2.equal_range('a').first));
 }
 TEST(MultisetTest, Count) {
-  s21::multiset<int> multiset_int_1;
+  my_containers::multiset<int> multiset_int_1;
   std::multiset<int> multiset_int_2;
-  s21::multiset<double> multiset_double_1;
+  my_containers::multiset<double> multiset_double_1;
   std::multiset<double> multiset_double_2;
   multisetIntConstructor(multiset_int_1);
   multisetIntConstructorSTD(multiset_int_2);
@@ -1574,7 +1589,7 @@ TEST(MultisetTest, Count) {
 }
 
 TEST(MultisetTest, Sum) {
-  s21::multiset<int> multiset;
+  my_containers::multiset<int> multiset;
   multiset.insert(10);
   multiset.insert(10);
   multiset.insert(10);

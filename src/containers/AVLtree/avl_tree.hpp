@@ -6,10 +6,10 @@
 #include <stdexcept>
 #include <typeinfo>
 
-#include "../stack/s21_stack.hpp"
-#include "../vector/s21_vector.h"
+#include "../stack/stack.hpp"
+#include "../vector/vector.h"
 
-namespace s21 {
+namespace my_containers {
 template <typename Key_T, typename T>
 class Tree {
  private:
@@ -148,7 +148,7 @@ class Tree {
 
   // bonus functions
   template <typename... Args>
-  s21::vector<std::pair<iterator, bool>> insert_many(Args&&... args);
+  my_containers::vector<std::pair<iterator, bool>> insert_many(Args&&... args);
   iterator insertMult(const_key_type& key) { return insertMult(key, key); }
   iterator insertMult(const_key_type& key, const_value_type& value);
   node_* insertMult(node_*& root, const_key_type& key, const_value_type& value);
@@ -215,4 +215,4 @@ class Tree {
 #include "avl_tree_multiset.tpp"
 
 //* end() - is not standart
-}  // namespace s21
+}  // namespace my_containers

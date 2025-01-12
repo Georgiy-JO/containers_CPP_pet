@@ -7,20 +7,22 @@
 #include <vector>
 
 TEST(SetTest, ConstructorList) {
-  s21::set<int> set_int{10, 2, 3,  44, 5,  66, -5, -100, 0,   0,
-                        0,  5, 33, 23, 64, 55, 0,  1,    1000};
+  my_containers::set<int> set_int{10, 2, 3,  44, 5,  66, -5, -100, 0,   0,
+                                  0,  5, 33, 23, 64, 55, 0,  1,    1000};
   std::set<int> set_int_2{10, 2, 3,  44, 5,  66, -5, -100, 0,   0,
                           0,  5, 33, 23, 64, 55, 0,  1,    1000};
-  s21::set<double> set_double{555.55, 423.2, 2,    1000, -55.55, -33.3,
-                              -1000,  100,   1000, 100,  -5.5};
+  my_containers::set<double> set_double{
+      555.55, 423.2, 2, 1000, -55.55, -33.3, -1000, 100, 1000, 100, -5.5};
   std::set<double> set_double_2{555.55, 423.2, 2,    1000, -55.55, -33.3,
                                 -1000,  100,   1000, 100,  -5.5};
-  s21::set<std::string> set_str{"Jazz",     "Me",   "played", "with", "Blues",
-                                "brothers", "like", "Yoda",   "Wow",  "!"};
+  my_containers::set<std::string> set_str{"Jazz",  "Me",       "played", "with",
+                                          "Blues", "brothers", "like",   "Yoda",
+                                          "Wow",   "!"};
   std::set<std::string> set_str_2{"Jazz",     "Me",   "played", "with", "Blues",
                                   "brothers", "like", "Yoda",   "Wow",  "!"};
-  s21::set<char> set_char{'a', 'b', 'c',  'd',  '5', '1', 'a', '-', '=',
-                          '+', 'q', '\n', '\t', 'y', ']', '[', '(', '`'};
+  my_containers::set<char> set_char{'a',  'b', 'c', 'd', '5', '1',
+                                    'a',  '-', '=', '+', 'q', '\n',
+                                    '\t', 'y', ']', '[', '(', '`'};
   std::set<char> set_char_2{'a', 'b', 'c',  'd',  '5', '1', 'a', '-', '=',
                             '+', 'q', '\n', '\t', 'y', ']', '[', '(', '`'};
   EXPECT_EQ(set_int.size(), 15);
@@ -45,13 +47,13 @@ TEST(SetTest, ConstructorList) {
   EXPECT_EQ(set_int.contains(666), false);
 }
 TEST(SetTest, ConstructorDefault) {
-  s21::set<int> set_int;
+  my_containers::set<int> set_int;
   std::set<int> set_int_2;
-  s21::set<double> set_double;
+  my_containers::set<double> set_double;
   std::set<double> set_double_2;
-  s21::set<std::string> set_str;
+  my_containers::set<std::string> set_str;
   std::set<std::string> set_str_2;
-  s21::set<char> set_char;
+  my_containers::set<char> set_char;
   std::set<char> set_char_2;
   EXPECT_EQ(set_int.size(), 0);
   EXPECT_EQ(set_int_2.size(), 0);
@@ -75,20 +77,22 @@ TEST(SetTest, ConstructorDefault) {
   EXPECT_EQ(set_int.contains(666), false);
 }
 TEST(SetTest, ConstructorMove) {
-  s21::set<int> set_int{10, 2, 3,  44, 5,  66, -5, -100, 0,   0,
-                        0,  5, 33, 23, 64, 55, 0,  1,    1000};
+  my_containers::set<int> set_int{10, 2, 3,  44, 5,  66, -5, -100, 0,   0,
+                                  0,  5, 33, 23, 64, 55, 0,  1,    1000};
   std::set<int> set_int_2{10, 2, 3,  44, 5,  66, -5, -100, 0,   0,
                           0,  5, 33, 23, 64, 55, 0,  1,    1000};
-  s21::set<double> set_double{555.55, 423.2, 2,    1000, -55.55, -33.3,
-                              -1000,  100,   1000, 100,  -5.5};
+  my_containers::set<double> set_double{
+      555.55, 423.2, 2, 1000, -55.55, -33.3, -1000, 100, 1000, 100, -5.5};
   std::set<double> set_double_2{555.55, 423.2, 2,    1000, -55.55, -33.3,
                                 -1000,  100,   1000, 100,  -5.5};
-  s21::set<std::string> set_str{"Jazz",     "Me",   "played", "with", "Blues",
-                                "brothers", "like", "Yoda",   "Wow",  "!"};
+  my_containers::set<std::string> set_str{"Jazz",  "Me",       "played", "with",
+                                          "Blues", "brothers", "like",   "Yoda",
+                                          "Wow",   "!"};
   std::set<std::string> set_str_2{"Jazz",     "Me",   "played", "with", "Blues",
                                   "brothers", "like", "Yoda",   "Wow",  "!"};
-  s21::set<char> set_char{'a', 'b', 'c',  'd',  '5', '1', 'a', '-', '=',
-                          '+', 'q', '\n', '\t', 'y', ']', '[', '(', '`'};
+  my_containers::set<char> set_char{'a',  'b', 'c', 'd', '5', '1',
+                                    'a',  '-', '=', '+', 'q', '\n',
+                                    '\t', 'y', ']', '[', '(', '`'};
   std::set<char> set_char_2{'a', 'b', 'c',  'd',  '5', '1', 'a', '-', '=',
                             '+', 'q', '\n', '\t', 'y', ']', '[', '(', '`'};
   EXPECT_EQ(set_int.size(), 15);
@@ -100,13 +104,13 @@ TEST(SetTest, ConstructorMove) {
   EXPECT_EQ(set_char.size(), 17);
   EXPECT_EQ(set_char_2.size(), 17);
 
-  s21::set<int> set_int_3(std::move(set_int));
+  my_containers::set<int> set_int_3(std::move(set_int));
   std::set<int> set_int_4(std::move(set_int_2));
-  s21::set<double> set_double_3(std::move(set_double));
+  my_containers::set<double> set_double_3(std::move(set_double));
   std::set<double> set_double_4(std::move(set_double_2));
-  s21::set<std::string> set_str_3(std::move(set_str));
+  my_containers::set<std::string> set_str_3(std::move(set_str));
   std::set<std::string> set_str_4(std::move(set_str_2));
-  s21::set<char> set_char_3(std::move(set_char));
+  my_containers::set<char> set_char_3(std::move(set_char));
   std::set<char> set_char_4(std::move(set_char_2));
   EXPECT_EQ(set_int.size(), 0);
   EXPECT_EQ(set_int_2.size(), 0);
@@ -146,20 +150,22 @@ TEST(SetTest, ConstructorMove) {
   EXPECT_EQ(set_int_3.contains(66), true);
 }
 TEST(SetTest, ConstructorCopy) {
-  s21::set<int> set_int{10, 2, 3,  44, 5,  66, -5, -100, 0,   0,
-                        0,  5, 33, 23, 64, 55, 0,  1,    1000};
+  my_containers::set<int> set_int{10, 2, 3,  44, 5,  66, -5, -100, 0,   0,
+                                  0,  5, 33, 23, 64, 55, 0,  1,    1000};
   std::set<int> set_int_2{10, 2, 3,  44, 5,  66, -5, -100, 0,   0,
                           0,  5, 33, 23, 64, 55, 0,  1,    1000};
-  s21::set<double> set_double{555.55, 423.2, 2,    1000, -55.55, -33.3,
-                              -1000,  100,   1000, 100,  -5.5};
+  my_containers::set<double> set_double{
+      555.55, 423.2, 2, 1000, -55.55, -33.3, -1000, 100, 1000, 100, -5.5};
   std::set<double> set_double_2{555.55, 423.2, 2,    1000, -55.55, -33.3,
                                 -1000,  100,   1000, 100,  -5.5};
-  s21::set<std::string> set_str{"Jazz",     "Me",   "played", "with", "Blues",
-                                "brothers", "like", "Yoda",   "Wow",  "!"};
+  my_containers::set<std::string> set_str{"Jazz",  "Me",       "played", "with",
+                                          "Blues", "brothers", "like",   "Yoda",
+                                          "Wow",   "!"};
   std::set<std::string> set_str_2{"Jazz",     "Me",   "played", "with", "Blues",
                                   "brothers", "like", "Yoda",   "Wow",  "!"};
-  s21::set<char> set_char{'a', 'b', 'c',  'd',  '5', '1', 'a', '-', '=',
-                          '+', 'q', '\n', '\t', 'y', ']', '[', '(', '`'};
+  my_containers::set<char> set_char{'a',  'b', 'c', 'd', '5', '1',
+                                    'a',  '-', '=', '+', 'q', '\n',
+                                    '\t', 'y', ']', '[', '(', '`'};
   std::set<char> set_char_2{'a', 'b', 'c',  'd',  '5', '1', 'a', '-', '=',
                             '+', 'q', '\n', '\t', 'y', ']', '[', '(', '`'};
   EXPECT_EQ(set_int.size(), 15);
@@ -171,13 +177,13 @@ TEST(SetTest, ConstructorCopy) {
   EXPECT_EQ(set_char.size(), 17);
   EXPECT_EQ(set_char_2.size(), 17);
 
-  s21::set<int> set_int_3(set_int);
+  my_containers::set<int> set_int_3(set_int);
   std::set<int> set_int_4(set_int_2);
-  s21::set<double> set_double_3(set_double);
+  my_containers::set<double> set_double_3(set_double);
   std::set<double> set_double_4(set_double_2);
-  s21::set<std::string> set_str_3(set_str);
+  my_containers::set<std::string> set_str_3(set_str);
   std::set<std::string> set_str_4(set_str_2);
-  s21::set<char> set_char_3(set_char);
+  my_containers::set<char> set_char_3(set_char);
   std::set<char> set_char_4(set_char_2);
   EXPECT_EQ(set_int.size(), 15);
   EXPECT_EQ(set_int_2.size(), 15);
@@ -218,20 +224,22 @@ TEST(SetTest, ConstructorCopy) {
   EXPECT_EQ(set_str_3.contains("Jazz"), true);
 }
 TEST(SetTest, MoveAssignment) {
-  s21::set<int> set_int_1{10, 2, 3,  44, 5,  66, -5, -100, 0,   0,
-                          0,  5, 33, 23, 64, 55, 0,  1,    1000};
+  my_containers::set<int> set_int_1{10, 2, 3,  44, 5,  66, -5, -100, 0,   0,
+                                    0,  5, 33, 23, 64, 55, 0,  1,    1000};
   std::set<int> set_int_2{10, 2, 3,  44, 5,  66, -5, -100, 0,   0,
                           0,  5, 33, 23, 64, 55, 0,  1,    1000};
-  s21::set<double> set_double_1{555.55, 423.2, 2,    1000, -55.55, -33.3,
-                                -1000,  100,   1000, 100,  -5.5};
+  my_containers::set<double> set_double_1{
+      555.55, 423.2, 2, 1000, -55.55, -33.3, -1000, 100, 1000, 100, -5.5};
   std::set<double> set_double_2{555.55, 423.2, 2,    1000, -55.55, -33.3,
                                 -1000,  100,   1000, 100,  -5.5};
-  s21::set<std::string> set_str_1{"Jazz",     "Me",   "played", "with", "Blues",
-                                  "brothers", "like", "Yoda",   "Wow",  "!"};
+  my_containers::set<std::string> set_str_1{
+      "Jazz",     "Me",   "played", "with", "Blues",
+      "brothers", "like", "Yoda",   "Wow",  "!"};
   std::set<std::string> set_str_2{"Jazz",     "Me",   "played", "with", "Blues",
                                   "brothers", "like", "Yoda",   "Wow",  "!"};
-  s21::set<char> set_char_1{'a', 'b', 'c',  'd',  '5', '1', 'a', '-', '=',
-                            '+', 'q', '\n', '\t', 'y', ']', '[', '(', '`'};
+  my_containers::set<char> set_char_1{'a',  'b', 'c', 'd', '5', '1',
+                                      'a',  '-', '=', '+', 'q', '\n',
+                                      '\t', 'y', ']', '[', '(', '`'};
   std::set<char> set_char_2{'a', 'b', 'c',  'd',  '5', '1', 'a', '-', '=',
                             '+', 'q', '\n', '\t', 'y', ']', '[', '(', '`'};
   EXPECT_EQ(set_int_1.size(), 15);
@@ -243,13 +251,13 @@ TEST(SetTest, MoveAssignment) {
   EXPECT_EQ(set_char_1.size(), 17);
   EXPECT_EQ(set_char_2.size(), 17);
 
-  s21::set<int> set_int_3;
+  my_containers::set<int> set_int_3;
   std::set<int> set_int_4;
-  s21::set<double> set_double_3;
+  my_containers::set<double> set_double_3;
   std::set<double> set_double_4;
-  s21::set<std::string> set_str_3;
+  my_containers::set<std::string> set_str_3;
   std::set<std::string> set_str_4;
-  s21::set<char> set_char_3;
+  my_containers::set<char> set_char_3;
   std::set<char> set_char_4;
   EXPECT_EQ(set_int_3.empty(), true);
   EXPECT_EQ(set_int_4.empty(), true);
@@ -293,20 +301,22 @@ TEST(SetTest, MoveAssignment) {
   EXPECT_EQ(set_char_2.empty(), true);
 }
 TEST(SetTest, CopyAssignment) {
-  s21::set<int> set_int_1{10, 2, 3,  44, 5,  66, -5, -100, 0,   0,
-                          0,  5, 33, 23, 64, 55, 0,  1,    1000};
+  my_containers::set<int> set_int_1{10, 2, 3,  44, 5,  66, -5, -100, 0,   0,
+                                    0,  5, 33, 23, 64, 55, 0,  1,    1000};
   std::set<int> set_int_2{10, 2, 3,  44, 5,  66, -5, -100, 0,   0,
                           0,  5, 33, 23, 64, 55, 0,  1,    1000};
-  s21::set<double> set_double_1{555.55, 423.2, 2,    1000, -55.55, -33.3,
-                                -1000,  100,   1000, 100,  -5.5};
+  my_containers::set<double> set_double_1{
+      555.55, 423.2, 2, 1000, -55.55, -33.3, -1000, 100, 1000, 100, -5.5};
   std::set<double> set_double_2{555.55, 423.2, 2,    1000, -55.55, -33.3,
                                 -1000,  100,   1000, 100,  -5.5};
-  s21::set<std::string> set_str_1{"Jazz",     "Me",   "played", "with", "Blues",
-                                  "brothers", "like", "Yoda",   "Wow",  "!"};
+  my_containers::set<std::string> set_str_1{
+      "Jazz",     "Me",   "played", "with", "Blues",
+      "brothers", "like", "Yoda",   "Wow",  "!"};
   std::set<std::string> set_str_2{"Jazz",     "Me",   "played", "with", "Blues",
                                   "brothers", "like", "Yoda",   "Wow",  "!"};
-  s21::set<char> set_char_1{'a', 'b', 'c',  'd',  '5', '1', 'a', '-', '=',
-                            '+', 'q', '\n', '\t', 'y', ']', '[', '(', '`'};
+  my_containers::set<char> set_char_1{'a',  'b', 'c', 'd', '5', '1',
+                                      'a',  '-', '=', '+', 'q', '\n',
+                                      '\t', 'y', ']', '[', '(', '`'};
   std::set<char> set_char_2{'a', 'b', 'c',  'd',  '5', '1', 'a', '-', '=',
                             '+', 'q', '\n', '\t', 'y', ']', '[', '(', '`'};
   EXPECT_EQ(set_int_1.size(), 15);
@@ -318,13 +328,13 @@ TEST(SetTest, CopyAssignment) {
   EXPECT_EQ(set_char_1.size(), 17);
   EXPECT_EQ(set_char_2.size(), 17);
 
-  s21::set<int> set_int_3;
+  my_containers::set<int> set_int_3;
   std::set<int> set_int_4;
-  s21::set<double> set_double_3;
+  my_containers::set<double> set_double_3;
   std::set<double> set_double_4;
-  s21::set<std::string> set_str_3;
+  my_containers::set<std::string> set_str_3;
   std::set<std::string> set_str_4;
-  s21::set<char> set_char_3;
+  my_containers::set<char> set_char_3;
   std::set<char> set_char_4;
   EXPECT_EQ(set_int_3.empty(), true);
   EXPECT_EQ(set_int_4.empty(), true);
@@ -374,13 +384,13 @@ TEST(SetTest, CopyAssignment) {
   EXPECT_EQ(set_char_1.contains('z'), false);
   EXPECT_EQ(set_char_3.contains('z'), false);
 
-  s21::set<int> set_int_5;
+  my_containers::set<int> set_int_5;
   std::set<int> set_int_6;
-  s21::set<double> set_double_5;
+  my_containers::set<double> set_double_5;
   std::set<double> set_double_6;
-  s21::set<std::string> set_str_5;
+  my_containers::set<std::string> set_str_5;
   std::set<std::string> set_str_6;
-  s21::set<char> set_char_5;
+  my_containers::set<char> set_char_5;
   std::set<char> set_char_6;
   EXPECT_EQ(set_int_5.empty(), true);
   EXPECT_EQ(set_int_6.empty(), true);
@@ -408,17 +418,18 @@ TEST(SetTest, CopyAssignment) {
   EXPECT_EQ(set_char_3.empty(), true);
   EXPECT_EQ(set_char_4.empty(), true);
 
-  s21::set<int> set_int_7{10, 2, 3, 44, 5};
+  my_containers::set<int> set_int_7{10, 2, 3, 44, 5};
   std::set<int> set_int_8{10, 2, 3, 44, 5};
-  s21::set<double> set_double_7{
+  my_containers::set<double> set_double_7{
       555.55, 423.2, 2, 1000, -55.55,
   };
   std::set<double> set_double_8{
       555.55, 423.2, 2, 1000, -55.55,
   };
-  s21::set<std::string> set_str_7{"Jazz", "Me", "played", "with", "Blues"};
+  my_containers::set<std::string> set_str_7{"Jazz", "Me", "played", "with",
+                                            "Blues"};
   std::set<std::string> set_str_8{"Jazz", "Me", "played", "with", "Blues"};
-  s21::set<char> set_char_7{'a', 'b', 'c', 'd', '5'};
+  my_containers::set<char> set_char_7{'a', 'b', 'c', 'd', '5'};
   std::set<char> set_char_8{'a', 'b', 'c', 'd', '5'};
   EXPECT_EQ(set_int_7.size(), 5);
   EXPECT_EQ(set_int_8.size(), 5);
@@ -482,17 +493,18 @@ TEST(SetTest, CopyAssignment) {
 /*
 // This thest is systrm dependent -- may cause errors
 TEST(SetTest, MaxSize) {
-    s21::set<int>
+    my_containers::set<int>
 set_int_1{10,2,3,44,5,66,-5,-100,0,0,0,5,33,23,64,55,0,1,1000}; std::set<int>
-set_int_2{10,2,3,44,5,66,-5,-100,0,0,0,5,33,23,64,55,0,1,1000}; s21::set<double>
-set_double_1{555.55, 423.2,2,1000,-55.55,-33.3,-1000,100,1000,100,-5.5};
-    std::set<double> set_double_2{555.55,
-423.2,2,1000,-55.55,-33.3,-1000,100,1000,100,-5.5}; s21::set<std::string>
-set_str_1{"Jazz", "Me", "played", "with", "Blues", "brothers", "like", "Yoda",
-"Wow", "!"}; std::set<std::string> set_str_2{"Jazz", "Me", "played", "with",
-"Blues", "brothers", "like", "Yoda", "Wow", "!"}; s21::set<char> set_char_1{'a',
-'b', 'c', 'd','5','1','a','-','=','+','q','\n','\t','y',']','[','(','`'};
-    std::set<char> set_char_2{'a', 'b', 'c',
+set_int_2{10,2,3,44,5,66,-5,-100,0,0,0,5,33,23,64,55,0,1,1000};
+my_containers::set<double> set_double_1{555.55,
+423.2,2,1000,-55.55,-33.3,-1000,100,1000,100,-5.5}; std::set<double>
+set_double_2{555.55, 423.2,2,1000,-55.55,-33.3,-1000,100,1000,100,-5.5};
+my_containers::set<std::string> set_str_1{"Jazz", "Me", "played", "with",
+"Blues", "brothers", "like", "Yoda", "Wow", "!"}; std::set<std::string>
+set_str_2{"Jazz", "Me", "played", "with", "Blues", "brothers", "like", "Yoda",
+"Wow", "!"}; my_containers::set<char> set_char_1{'a', 'b', 'c',
+'d','5','1','a','-','=','+','q','\n','\t','y',']','[','(','`'}; std::set<char>
+set_char_2{'a', 'b', 'c',
 'd','5','1','a','-','=','+','q','\n','\t','y',']','[','(','`'};
     EXPECT_EQ(set_int_1.max_size(), 576460752303423487);
     EXPECT_EQ(set_double_1.max_size(), 461168601842738790);
@@ -501,20 +513,22 @@ set_str_1{"Jazz", "Me", "played", "with", "Blues", "brothers", "like", "Yoda",
 }
 */
 TEST(SetTest, Swap) {
-  s21::set<int> set_int_1{10, 2, 3,  44, 5,  66, -5, -100, 0,   0,
-                          0,  5, 33, 23, 64, 55, 0,  1,    1000};
+  my_containers::set<int> set_int_1{10, 2, 3,  44, 5,  66, -5, -100, 0,   0,
+                                    0,  5, 33, 23, 64, 55, 0,  1,    1000};
   std::set<int> set_int_2{10, 2, 3,  44, 5,  66, -5, -100, 0,   0,
                           0,  5, 33, 23, 64, 55, 0,  1,    1000};
-  s21::set<double> set_double_1{555.55, 423.2, 2,    1000, -55.55, -33.3,
-                                -1000,  100,   1000, 100,  -5.5};
+  my_containers::set<double> set_double_1{
+      555.55, 423.2, 2, 1000, -55.55, -33.3, -1000, 100, 1000, 100, -5.5};
   std::set<double> set_double_2{555.55, 423.2, 2,    1000, -55.55, -33.3,
                                 -1000,  100,   1000, 100,  -5.5};
-  s21::set<std::string> set_str_1{"Jazz",     "Me",   "played", "with", "Blues",
-                                  "brothers", "like", "Yoda",   "Wow",  "!"};
+  my_containers::set<std::string> set_str_1{
+      "Jazz",     "Me",   "played", "with", "Blues",
+      "brothers", "like", "Yoda",   "Wow",  "!"};
   std::set<std::string> set_str_2{"Jazz",     "Me",   "played", "with", "Blues",
                                   "brothers", "like", "Yoda",   "Wow",  "!"};
-  s21::set<char> set_char_1{'a', 'b', 'c',  'd',  '5', '1', 'a', '-', '=',
-                            '+', 'q', '\n', '\t', 'y', ']', '[', '(', '`'};
+  my_containers::set<char> set_char_1{'a',  'b', 'c', 'd', '5', '1',
+                                      'a',  '-', '=', '+', 'q', '\n',
+                                      '\t', 'y', ']', '[', '(', '`'};
   std::set<char> set_char_2{'a', 'b', 'c',  'd',  '5', '1', 'a', '-', '=',
                             '+', 'q', '\n', '\t', 'y', ']', '[', '(', '`'};
   EXPECT_EQ(set_int_1.size(), 15);
@@ -525,13 +539,14 @@ TEST(SetTest, Swap) {
   EXPECT_EQ(set_str_2.size(), 10);
   EXPECT_EQ(set_char_1.size(), 17);
   EXPECT_EQ(set_char_2.size(), 17);
-  s21::set<int> set_int_7{10, 2, 3, 44, 5};
+  my_containers::set<int> set_int_7{10, 2, 3, 44, 5};
   std::set<int> set_int_8{10, 2, 3, 44, 5};
-  s21::set<double> set_double_7{555.55, 423.2, 2, 1000, -55.55};
+  my_containers::set<double> set_double_7{555.55, 423.2, 2, 1000, -55.55};
   std::set<double> set_double_8{555.55, 423.2, 2, 1000, -55.55};
-  s21::set<std::string> set_str_7{"Jazz", "Me", "played", "with", "Blues"};
+  my_containers::set<std::string> set_str_7{"Jazz", "Me", "played", "with",
+                                            "Blues"};
   std::set<std::string> set_str_8{"Jazz", "Me", "played", "with", "Blues"};
-  s21::set<char> set_char_7{'a', 'b', 'c', 'd', '5'};
+  my_containers::set<char> set_char_7{'a', 'b', 'c', 'd', '5'};
   std::set<char> set_char_8{'a', 'b', 'c', 'd', '5'};
   EXPECT_EQ(set_int_7.size(), 5);
   EXPECT_EQ(set_int_8.size(), 5);
@@ -541,13 +556,13 @@ TEST(SetTest, Swap) {
   EXPECT_EQ(set_str_8.size(), 5);
   EXPECT_EQ(set_char_7.size(), 5);
   EXPECT_EQ(set_char_8.size(), 5);
-  s21::set<int> set_int_3;
+  my_containers::set<int> set_int_3;
   std::set<int> set_int_4;
-  s21::set<double> set_double_3;
+  my_containers::set<double> set_double_3;
   std::set<double> set_double_4;
-  s21::set<std::string> set_str_3;
+  my_containers::set<std::string> set_str_3;
   std::set<std::string> set_str_4;
-  s21::set<char> set_char_3;
+  my_containers::set<char> set_char_3;
   std::set<char> set_char_4;
   EXPECT_EQ(set_int_3.empty(), true);
   EXPECT_EQ(set_int_4.empty(), true);
@@ -609,20 +624,22 @@ TEST(SetTest, Swap) {
   EXPECT_EQ(set_char_4.size(), 17);
 }
 TEST(SetTest, Merge) {
-  s21::set<int> set_int_1{10, 2, 3,  44, 5,  66, -5, -100, 0,   0,
-                          0,  5, 33, 23, 64, 55, 0,  1,    1000};
+  my_containers::set<int> set_int_1{10, 2, 3,  44, 5,  66, -5, -100, 0,   0,
+                                    0,  5, 33, 23, 64, 55, 0,  1,    1000};
   std::set<int> set_int_2{10, 2, 3,  44, 5,  66, -5, -100, 0,   0,
                           0,  5, 33, 23, 64, 55, 0,  1,    1000};
-  s21::set<double> set_double_1{555.55, 423.2, 2,    1000, -55.55, -33.3,
-                                -1000,  100,   1000, 100,  -5.5};
+  my_containers::set<double> set_double_1{
+      555.55, 423.2, 2, 1000, -55.55, -33.3, -1000, 100, 1000, 100, -5.5};
   std::set<double> set_double_2{555.55, 423.2, 2,    1000, -55.55, -33.3,
                                 -1000,  100,   1000, 100,  -5.5};
-  s21::set<std::string> set_str_1{"Jazz",     "Me",   "played", "with", "Blues",
-                                  "brothers", "like", "Yoda",   "Wow",  "!"};
+  my_containers::set<std::string> set_str_1{
+      "Jazz",     "Me",   "played", "with", "Blues",
+      "brothers", "like", "Yoda",   "Wow",  "!"};
   std::set<std::string> set_str_2{"Jazz",     "Me",   "played", "with", "Blues",
                                   "brothers", "like", "Yoda",   "Wow",  "!"};
-  s21::set<char> set_char_1{'a', 'b', 'c',  'd',  '5', '1', 'a', '-', '=',
-                            '+', 'q', '\n', '\t', 'y', ']', '[', '(', '`'};
+  my_containers::set<char> set_char_1{'a',  'b', 'c', 'd', '5', '1',
+                                      'a',  '-', '=', '+', 'q', '\n',
+                                      '\t', 'y', ']', '[', '(', '`'};
   std::set<char> set_char_2{'a', 'b', 'c',  'd',  '5', '1', 'a', '-', '=',
                             '+', 'q', '\n', '\t', 'y', ']', '[', '(', '`'};
   EXPECT_EQ(set_int_1.size(), 15);
@@ -633,13 +650,14 @@ TEST(SetTest, Merge) {
   EXPECT_EQ(set_str_2.size(), 10);
   EXPECT_EQ(set_char_1.size(), 17);
   EXPECT_EQ(set_char_2.size(), 17);
-  s21::set<int> set_int_7{10, 2, 3, 44, 5};
+  my_containers::set<int> set_int_7{10, 2, 3, 44, 5};
   std::set<int> set_int_8{10, 2, 3, 44, 5};
-  s21::set<double> set_double_7{555.55, 423.2, 2, 1000, -55.55};
+  my_containers::set<double> set_double_7{555.55, 423.2, 2, 1000, -55.55};
   std::set<double> set_double_8{555.55, 423.2, 2, 1000, -55.55};
-  s21::set<std::string> set_str_7{"Jazz", "Me", "played", "with", "Blues"};
+  my_containers::set<std::string> set_str_7{"Jazz", "Me", "played", "with",
+                                            "Blues"};
   std::set<std::string> set_str_8{"Jazz", "Me", "played", "with", "Blues"};
-  s21::set<char> set_char_7{'a', 'b', 'c', 'd', '5'};
+  my_containers::set<char> set_char_7{'a', 'b', 'c', 'd', '5'};
   std::set<char> set_char_8{'a', 'b', 'c', 'd', '5'};
   EXPECT_EQ(set_int_7.size(), 5);
   EXPECT_EQ(set_int_8.size(), 5);
@@ -649,13 +667,13 @@ TEST(SetTest, Merge) {
   EXPECT_EQ(set_str_8.size(), 5);
   EXPECT_EQ(set_char_7.size(), 5);
   EXPECT_EQ(set_char_8.size(), 5);
-  s21::set<int> set_int_3;
+  my_containers::set<int> set_int_3;
   std::set<int> set_int_4;
-  s21::set<double> set_double_3;
+  my_containers::set<double> set_double_3;
   std::set<double> set_double_4;
-  s21::set<std::string> set_str_3;
+  my_containers::set<std::string> set_str_3;
   std::set<std::string> set_str_4;
-  s21::set<char> set_char_3;
+  my_containers::set<char> set_char_3;
   std::set<char> set_char_4;
   EXPECT_EQ(set_int_3.empty(), true);
   EXPECT_EQ(set_int_4.empty(), true);
@@ -808,20 +826,22 @@ TEST(SetTest, Merge) {
   EXPECT_EQ(set_char_4.size(), 5);
 }
 TEST(SetTest, Erase_Begin_End) {
-  s21::set<int> set_int_1{10, 2, 3,  44, 5,  66, -5, -100, 0,   0,
-                          0,  5, 33, 23, 64, 55, 0,  1,    1000};
+  my_containers::set<int> set_int_1{10, 2, 3,  44, 5,  66, -5, -100, 0,   0,
+                                    0,  5, 33, 23, 64, 55, 0,  1,    1000};
   std::set<int> set_int_2{10, 2, 3,  44, 5,  66, -5, -100, 0,   0,
                           0,  5, 33, 23, 64, 55, 0,  1,    1000};
-  s21::set<double> set_double_1{555.55, 423.2, 2,    1000, -55.55, -33.3,
-                                -1000,  100,   1000, 100,  -5.5};
+  my_containers::set<double> set_double_1{
+      555.55, 423.2, 2, 1000, -55.55, -33.3, -1000, 100, 1000, 100, -5.5};
   std::set<double> set_double_2{555.55, 423.2, 2,    1000, -55.55, -33.3,
                                 -1000,  100,   1000, 100,  -5.5};
-  s21::set<std::string> set_str_1{"Jazz",     "Me",   "played", "with", "Blues",
-                                  "brothers", "like", "Yoda",   "Wow",  "!"};
+  my_containers::set<std::string> set_str_1{
+      "Jazz",     "Me",   "played", "with", "Blues",
+      "brothers", "like", "Yoda",   "Wow",  "!"};
   std::set<std::string> set_str_2{"Jazz",     "Me",   "played", "with", "Blues",
                                   "brothers", "like", "Yoda",   "Wow",  "!"};
-  s21::set<char> set_char_1{'a', 'b', 'c',  'd',  '5', '1', 'a', '-', '=',
-                            '+', 'q', '\n', '\t', 'y', ']', '[', '(', '`'};
+  my_containers::set<char> set_char_1{'a',  'b', 'c', 'd', '5', '1',
+                                      'a',  '-', '=', '+', 'q', '\n',
+                                      '\t', 'y', ']', '[', '(', '`'};
   std::set<char> set_char_2{'a', 'b', 'c',  'd',  '5', '1', 'a', '-', '=',
                             '+', 'q', '\n', '\t', 'y', ']', '[', '(', '`'};
   EXPECT_EQ(set_int_1.size(), 15);
@@ -832,13 +852,14 @@ TEST(SetTest, Erase_Begin_End) {
   EXPECT_EQ(set_str_2.size(), 10);
   EXPECT_EQ(set_char_1.size(), 17);
   EXPECT_EQ(set_char_2.size(), 17);
-  s21::set<int> set_int_5{10, 2, 3, 44, 5};
+  my_containers::set<int> set_int_5{10, 2, 3, 44, 5};
   std::set<int> set_int_6{10, 2, 3, 44, 5};
-  s21::set<double> set_double_5{555.55, 423.2, 2, 1000, -55.55};
+  my_containers::set<double> set_double_5{555.55, 423.2, 2, 1000, -55.55};
   std::set<double> set_double_6{555.55, 423.2, 2, 1000, -55.55};
-  s21::set<std::string> set_str_5{"Jazz", "Me", "played", "with", "Blues"};
+  my_containers::set<std::string> set_str_5{"Jazz", "Me", "played", "with",
+                                            "Blues"};
   std::set<std::string> set_str_6{"Jazz", "Me", "played", "with", "Blues"};
-  s21::set<char> set_char_5{'a', 'b', 'c', 'd', '5'};
+  my_containers::set<char> set_char_5{'a', 'b', 'c', 'd', '5'};
   std::set<char> set_char_6{'a', 'b', 'c', 'd', '5'};
   EXPECT_EQ(set_int_5.size(), 5);
   EXPECT_EQ(set_int_6.size(), 5);
@@ -848,13 +869,13 @@ TEST(SetTest, Erase_Begin_End) {
   EXPECT_EQ(set_str_6.size(), 5);
   EXPECT_EQ(set_char_5.size(), 5);
   EXPECT_EQ(set_char_6.size(), 5);
-  s21::set<int> set_int_3;
+  my_containers::set<int> set_int_3;
   std::set<int> set_int_4;
-  s21::set<double> set_double_3;
+  my_containers::set<double> set_double_3;
   std::set<double> set_double_4;
-  s21::set<std::string> set_str_3;
+  my_containers::set<std::string> set_str_3;
   std::set<std::string> set_str_4;
-  s21::set<char> set_char_3;
+  my_containers::set<char> set_char_3;
   std::set<char> set_char_4;
   EXPECT_EQ(set_int_3.empty(), true);
   EXPECT_EQ(set_int_4.empty(), true);
@@ -865,29 +886,29 @@ TEST(SetTest, Erase_Begin_End) {
   EXPECT_EQ(set_char_3.empty(), true);
   EXPECT_EQ(set_char_4.empty(), true);
 
-  s21::set<int>::iterator int_it_1;
+  my_containers::set<int>::iterator int_it_1;
   std::set<int>::iterator int_it_2;
-  s21::set<int>::iterator int_it_3;
+  my_containers::set<int>::iterator int_it_3;
   std::set<int>::iterator int_it_4;
-  s21::set<int>::iterator int_it_5;
+  my_containers::set<int>::iterator int_it_5;
   std::set<int>::iterator int_it_6;
-  s21::set<double>::iterator double_it_1;
+  my_containers::set<double>::iterator double_it_1;
   std::set<double>::iterator double_it_2;
-  s21::set<double>::iterator double_it_3;
+  my_containers::set<double>::iterator double_it_3;
   std::set<double>::iterator double_it_4;
-  s21::set<double>::iterator double_it_5;
+  my_containers::set<double>::iterator double_it_5;
   std::set<double>::iterator double_it_6;
-  s21::set<std::string>::iterator str_it_1;
+  my_containers::set<std::string>::iterator str_it_1;
   std::set<std::string>::iterator str_it_2;
-  s21::set<std::string>::iterator str_it_3;
+  my_containers::set<std::string>::iterator str_it_3;
   std::set<std::string>::iterator str_it_4;
-  s21::set<std::string>::iterator str_it_5;
+  my_containers::set<std::string>::iterator str_it_5;
   std::set<std::string>::iterator str_it_6;
-  s21::set<char>::iterator char_it_1;
+  my_containers::set<char>::iterator char_it_1;
   std::set<char>::iterator char_it_2;
-  s21::set<char>::iterator char_it_3;
+  my_containers::set<char>::iterator char_it_3;
   std::set<char>::iterator char_it_4;
-  s21::set<char>::iterator char_it_5;
+  my_containers::set<char>::iterator char_it_5;
   std::set<char>::iterator char_it_6;
 
   int_it_1 = set_int_1.begin();
@@ -1000,20 +1021,22 @@ TEST(SetTest, Erase_Begin_End) {
   EXPECT_EQ(set_char_5.contains(char_5), false);
 }
 TEST(SetTest, Insert_Find) {
-  s21::set<int> set_int_1{10, 2, 3,  44, 5,  66, -5, -100, 0,   0,
-                          0,  5, 33, 23, 64, 55, 0,  1,    1000};
+  my_containers::set<int> set_int_1{10, 2, 3,  44, 5,  66, -5, -100, 0,   0,
+                                    0,  5, 33, 23, 64, 55, 0,  1,    1000};
   std::set<int> set_int_2{10, 2, 3,  44, 5,  66, -5, -100, 0,   0,
                           0,  5, 33, 23, 64, 55, 0,  1,    1000};
-  s21::set<double> set_double_1{555.55, 423.2, 2,    1000, -55.55, -33.3,
-                                -1000,  100,   1000, 100,  -5.5};
+  my_containers::set<double> set_double_1{
+      555.55, 423.2, 2, 1000, -55.55, -33.3, -1000, 100, 1000, 100, -5.5};
   std::set<double> set_double_2{555.55, 423.2, 2,    1000, -55.55, -33.3,
                                 -1000,  100,   1000, 100,  -5.5};
-  s21::set<std::string> set_str_1{"Jazz",     "Me",   "played", "with", "Blues",
-                                  "brothers", "like", "Yoda",   "Wow",  "!"};
+  my_containers::set<std::string> set_str_1{
+      "Jazz",     "Me",   "played", "with", "Blues",
+      "brothers", "like", "Yoda",   "Wow",  "!"};
   std::set<std::string> set_str_2{"Jazz",     "Me",   "played", "with", "Blues",
                                   "brothers", "like", "Yoda",   "Wow",  "!"};
-  s21::set<char> set_char_1{'a', 'b', 'c',  'd', '5', '1', 'a', '-', '=',
-                            '+', 'q', '\n', 'h', 'y', ']', '[', '(', '`'};
+  my_containers::set<char> set_char_1{'a', 'b', 'c', 'd', '5', '1',
+                                      'a', '-', '=', '+', 'q', '\n',
+                                      'h', 'y', ']', '[', '(', '`'};
   std::set<char> set_char_2{'a', 'b', 'c',  'd', '5', '1', 'a', '-', '=',
                             '+', 'q', '\n', 'h', 'y', ']', '[', '(', '`'};
   EXPECT_EQ(set_int_1.size(), 15);
@@ -1024,13 +1047,14 @@ TEST(SetTest, Insert_Find) {
   EXPECT_EQ(set_str_2.size(), 10);
   EXPECT_EQ(set_char_1.size(), 17);
   EXPECT_EQ(set_char_2.size(), 17);
-  s21::set<int> set_int_5{10, 2, 3, 44, 5};
+  my_containers::set<int> set_int_5{10, 2, 3, 44, 5};
   std::set<int> set_int_6{10, 2, 3, 44, 5};
-  s21::set<double> set_double_5{555.55, 423.2, 2, 1000, -55.55};
+  my_containers::set<double> set_double_5{555.55, 423.2, 2, 1000, -55.55};
   std::set<double> set_double_6{555.55, 423.2, 2, 1000, -55.55};
-  s21::set<std::string> set_str_5{"Jazz", "Me", "played", "with", "Blues"};
+  my_containers::set<std::string> set_str_5{"Jazz", "Me", "played", "with",
+                                            "Blues"};
   std::set<std::string> set_str_6{"Jazz", "Me", "played", "with", "Blues"};
-  s21::set<char> set_char_5{'a', 'b', 'c', 'd', '5'};
+  my_containers::set<char> set_char_5{'a', 'b', 'c', 'd', '5'};
   std::set<char> set_char_6{'a', 'b', 'c', 'd', '5'};
   EXPECT_EQ(set_int_5.size(), 5);
   EXPECT_EQ(set_int_6.size(), 5);
@@ -1040,13 +1064,13 @@ TEST(SetTest, Insert_Find) {
   EXPECT_EQ(set_str_6.size(), 5);
   EXPECT_EQ(set_char_5.size(), 5);
   EXPECT_EQ(set_char_6.size(), 5);
-  s21::set<int> set_int_3;
+  my_containers::set<int> set_int_3;
   std::set<int> set_int_4;
-  s21::set<double> set_double_3;
+  my_containers::set<double> set_double_3;
   std::set<double> set_double_4;
-  s21::set<std::string> set_str_3;
+  my_containers::set<std::string> set_str_3;
   std::set<std::string> set_str_4;
-  s21::set<char> set_char_3;
+  my_containers::set<char> set_char_3;
   std::set<char> set_char_4;
   EXPECT_EQ(set_int_3.empty(), true);
   EXPECT_EQ(set_int_4.empty(), true);
@@ -1057,29 +1081,29 @@ TEST(SetTest, Insert_Find) {
   EXPECT_EQ(set_char_3.empty(), true);
   EXPECT_EQ(set_char_4.empty(), true);
 
-  s21::set<int>::iterator int_it_1;
+  my_containers::set<int>::iterator int_it_1;
   std::set<int>::iterator int_it_2;
-  s21::set<int>::iterator int_it_3;
+  my_containers::set<int>::iterator int_it_3;
   std::set<int>::iterator int_it_4;
-  s21::set<int>::iterator int_it_5;
+  my_containers::set<int>::iterator int_it_5;
   std::set<int>::iterator int_it_6;
-  s21::set<double>::iterator double_it_1;
+  my_containers::set<double>::iterator double_it_1;
   std::set<double>::iterator double_it_2;
-  s21::set<double>::iterator double_it_3;
+  my_containers::set<double>::iterator double_it_3;
   std::set<double>::iterator double_it_4;
-  s21::set<double>::iterator double_it_5;
+  my_containers::set<double>::iterator double_it_5;
   std::set<double>::iterator double_it_6;
-  s21::set<std::string>::iterator str_it_1;
+  my_containers::set<std::string>::iterator str_it_1;
   std::set<std::string>::iterator str_it_2;
-  s21::set<std::string>::iterator str_it_3;
+  my_containers::set<std::string>::iterator str_it_3;
   std::set<std::string>::iterator str_it_4;
-  s21::set<std::string>::iterator str_it_5;
+  my_containers::set<std::string>::iterator str_it_5;
   std::set<std::string>::iterator str_it_6;
-  s21::set<char>::iterator char_it_1;
+  my_containers::set<char>::iterator char_it_1;
   std::set<char>::iterator char_it_2;
-  s21::set<char>::iterator char_it_3;
+  my_containers::set<char>::iterator char_it_3;
   std::set<char>::iterator char_it_4;
-  s21::set<char>::iterator char_it_5;
+  my_containers::set<char>::iterator char_it_5;
   std::set<char>::iterator char_it_6;
 
   int_it_1 = set_int_1.find(-5);
@@ -1123,29 +1147,29 @@ TEST(SetTest, Insert_Find) {
   EXPECT_EQ(char_it_3.assigned(), false);
   EXPECT_EQ(char_it_5.assigned(), false);
 
-  std::pair<s21::set<int>::iterator, bool> pair_int_1;
+  std::pair<my_containers::set<int>::iterator, bool> pair_int_1;
   std::pair<std::set<int>::iterator, bool> pair_int_2;
-  std::pair<s21::set<int>::iterator, bool> pair_int_3;
+  std::pair<my_containers::set<int>::iterator, bool> pair_int_3;
   std::pair<std::set<int>::iterator, bool> pair_int_4;
-  std::pair<s21::set<int>::iterator, bool> pair_int_5;
+  std::pair<my_containers::set<int>::iterator, bool> pair_int_5;
   std::pair<std::set<int>::iterator, bool> pair_int_6;
-  std::pair<s21::set<double>::iterator, bool> pair_double_1;
+  std::pair<my_containers::set<double>::iterator, bool> pair_double_1;
   std::pair<std::set<double>::iterator, bool> pair_double_2;
-  std::pair<s21::set<double>::iterator, bool> pair_double_3;
+  std::pair<my_containers::set<double>::iterator, bool> pair_double_3;
   std::pair<std::set<double>::iterator, bool> pair_double_4;
-  std::pair<s21::set<double>::iterator, bool> pair_double_5;
+  std::pair<my_containers::set<double>::iterator, bool> pair_double_5;
   std::pair<std::set<double>::iterator, bool> pair_double_6;
-  std::pair<s21::set<std::string>::iterator, bool> pair_str_1;
+  std::pair<my_containers::set<std::string>::iterator, bool> pair_str_1;
   std::pair<std::set<std::string>::iterator, bool> pair_str_2;
-  std::pair<s21::set<std::string>::iterator, bool> pair_str_3;
+  std::pair<my_containers::set<std::string>::iterator, bool> pair_str_3;
   std::pair<std::set<std::string>::iterator, bool> pair_str_4;
-  std::pair<s21::set<std::string>::iterator, bool> pair_str_5;
+  std::pair<my_containers::set<std::string>::iterator, bool> pair_str_5;
   std::pair<std::set<std::string>::iterator, bool> pair_str_6;
-  std::pair<s21::set<char>::iterator, bool> pair_char_1;
+  std::pair<my_containers::set<char>::iterator, bool> pair_char_1;
   std::pair<std::set<char>::iterator, bool> pair_char_2;
-  std::pair<s21::set<char>::iterator, bool> pair_char_3;
+  std::pair<my_containers::set<char>::iterator, bool> pair_char_3;
   std::pair<std::set<char>::iterator, bool> pair_char_4;
-  std::pair<s21::set<char>::iterator, bool> pair_char_5;
+  std::pair<my_containers::set<char>::iterator, bool> pair_char_5;
   std::pair<std::set<char>::iterator, bool> pair_char_6;
 
   pair_int_1 = set_int_1.insert(-55555);
@@ -1319,10 +1343,10 @@ TEST(SetTest, Insert_Find) {
   EXPECT_EQ(set_char_5.contains('\t'), true);
 }
 TEST(SetTest, Bonus) {
-  s21::set<int> set_int_1;
-  s21::set<double> set_double_1;
-  s21::set<std::string> set_str_1;
-  s21::set<char> set_char_1;
+  my_containers::set<int> set_int_1;
+  my_containers::set<double> set_double_1;
+  my_containers::set<std::string> set_str_1;
+  my_containers::set<char> set_char_1;
   EXPECT_EQ(set_int_1.size(), 0);
   EXPECT_EQ(set_double_1.size(), 0);
   EXPECT_EQ(set_str_1.size(), 0);
@@ -1359,7 +1383,9 @@ TEST(SetTest, Bonus) {
   EXPECT_EQ(set_str_1.size(), 12);
   EXPECT_EQ(set_char_1.size(), 18);
 
-  s21::vector<std::pair<s21::set<std::string>::iterator, bool>> vec;
+  my_containers::vector<
+      std::pair<my_containers::set<std::string>::iterator, bool>>
+      vec;
   vec = set_str_1.insert_many("agents", "J", "and", "K", "were not", "brothers",
                               "but", "played", "together", "like", "one", "!");
   EXPECT_EQ(vec.size(), 12);

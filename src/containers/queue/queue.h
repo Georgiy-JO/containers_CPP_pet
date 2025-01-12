@@ -1,12 +1,12 @@
-#ifndef S21_CONTAINERS_QUEUE_H
-#define S21_CONTAINERS_QUEUE_H
+#ifndef CONTAINERS_QUEUE_H
+#define CONTAINERS_QUEUE_H
 
 #include <initializer_list>
 #include <iostream>
 
-#include "../vector/s21_vector.h"
+#include "../vector/vector.h"
 
-namespace s21 {
+namespace my_containers {
 template <typename T>
 
 class queue {
@@ -56,7 +56,7 @@ class queue {
   template <typename... Args>
   void insert_many_back(Args&&... args);
 };
-}  // namespace s21
+}  // namespace my_containers
 
-#include "s21_queue.tpp"
+#include "queue.tpp"
 #endif

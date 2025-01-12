@@ -1,5 +1,5 @@
-#ifndef S21_ARRAY_H
-#define S21_ARRAY_H
+#ifndef ARRAY_H
+#define ARRAY_H
 
 #include <math.h>
 
@@ -7,7 +7,7 @@
 #include <iostream>
 #include <utility>
 
-namespace s21 {
+namespace my_containers {
 
 template <class T, std::size_t Size>
 class ArrayIterator;
@@ -193,8 +193,8 @@ class ArrayConstIterator {
   pointer ptr_;
 };
 
-}  // namespace s21
+}  // namespace my_containers
 
-#include "s21_array.tpp"
+#include "array.tpp"
 
-#endif  // S21_Array_H
+#endif  // Array_H

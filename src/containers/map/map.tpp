@@ -63,9 +63,9 @@ T& map<Key, T>::operator[](const Key& map_key) {
 
 template <typename Key, typename T>
 template <typename... Args>
-s21::vector<std::pair<typename map<Key, T>::iterator, bool>>
+my_containers::vector<std::pair<typename map<Key, T>::iterator, bool>>
 map<Key, T>::insert_many(Args&&... args) {
-  s21::vector<std::pair<typename map<Key, T>::iterator, bool>> res;
+  my_containers::vector<std::pair<typename map<Key, T>::iterator, bool>> res;
   (res.push_back(insert(std::forward<Args>(args))), ...);
   return res;
 }

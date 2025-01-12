@@ -3,22 +3,22 @@
 #include "global_tests.h"
 
 TEST(MapTest, defaultConstructor) {
-  s21::map<const int, int> s21_m;
+  my_containers::map<const int, int> m;
   std::map<const int, int> std_m;
 
-  EXPECT_EQ(s21_m.size(), 0);
-  EXPECT_EQ(s21_m.empty(), true);
+  EXPECT_EQ(m.size(), 0);
+  EXPECT_EQ(m.empty(), true);
   EXPECT_EQ(std_m.size(), 0);
   EXPECT_EQ(std_m.empty(), true);
 }
 TEST(MapTest, SimpleTests) {
-  s21::map<double, int> map_db_it_1{{555.55, 5},    {423.2, 2},  {1000, 0},
-                                    {-55.55, 6000}, {-33.3, -5}, {-1000, 100},
-                                    {100100, 100},  {-5.5, 15}};
+  my_containers::map<double, int> map_db_it_1{
+      {555.55, 5}, {423.2, 2},   {1000, 0},     {-55.55, 6000},
+      {-33.3, -5}, {-1000, 100}, {100100, 100}, {-5.5, 15}};
   std::map<double, int> map_db_it_2{{555.55, 5},    {423.2, 2},  {1000, 0},
                                     {-55.55, 6000}, {-33.3, -5}, {-1000, 100},
                                     {100100, 100},  {-5.5, 15}};
-  s21::map<char, std::string> map_ch_st_1{
+  my_containers::map<char, std::string> map_ch_st_1{
       std::pair<char, std::string>{'4', "Jazz"},
       {'\n', "I"},
       {'y', "played"},
@@ -53,9 +53,9 @@ TEST(MapTest, SimpleTests) {
   EXPECT_EQ(*(map_db_it_1.begin()), 100);
   EXPECT_EQ(*(map_db_it_1.end()), 100);
 
-  s21::map<double, int> map_db_it_3(std::move(map_db_it_1));
+  my_containers::map<double, int> map_db_it_3(std::move(map_db_it_1));
   std::map<double, int> map_db_it_4(std::move(map_db_it_2));
-  s21::map<char, std::string> map_ch_st_3(std::move(map_ch_st_1));
+  my_containers::map<char, std::string> map_ch_st_3(std::move(map_ch_st_1));
   std::map<char, std::string> map_ch_st_4(std::move(map_ch_st_2));
   EXPECT_EQ(map_db_it_3.size(), 8);
   EXPECT_EQ(map_db_it_4.size(), 8);
@@ -74,9 +74,9 @@ TEST(MapTest, SimpleTests) {
   EXPECT_EQ(map_ch_st_1.empty(), true);
   EXPECT_EQ(map_ch_st_2.empty(), true);
 
-  s21::map<double, int> map_db_it_5(map_db_it_3);
+  my_containers::map<double, int> map_db_it_5(map_db_it_3);
   std::map<double, int> map_db_it_6(map_db_it_4);
-  s21::map<char, std::string> map_ch_st_5(map_ch_st_3);
+  my_containers::map<char, std::string> map_ch_st_5(map_ch_st_3);
   std::map<char, std::string> map_ch_st_6(map_ch_st_4);
   EXPECT_EQ(map_db_it_3.size(), 8);
   EXPECT_EQ(map_db_it_4.size(), 8);
@@ -95,9 +95,9 @@ TEST(MapTest, SimpleTests) {
   EXPECT_EQ(map_ch_st_5.empty(), false);
   EXPECT_EQ(map_ch_st_6.empty(), false);
 
-  s21::map<double, int> map_db_it_7;
+  my_containers::map<double, int> map_db_it_7;
   std::map<double, int> map_db_it_8;
-  s21::map<char, std::string> map_ch_st_7;
+  my_containers::map<char, std::string> map_ch_st_7;
   std::map<char, std::string> map_ch_st_8;
 
   map_db_it_7 = std::move(map_db_it_1);
@@ -257,7 +257,7 @@ TEST(MapTest, SimpleTests) {
   EXPECT_EQ(map_ch_st_7.size(), 1);
   EXPECT_EQ(map_ch_st_8.size(), 1);
 
-  s21::map<double, int>::iterator it_1 =
+  my_containers::map<double, int>::iterator it_1 =
       map_db_it_7.insert_or_assign(55.55, 1000).first;
   std::map<double, int>::iterator it_2 =
       map_db_it_8.insert_or_assign(55.55, 1000).first;
@@ -275,7 +275,7 @@ TEST(MapTest, SimpleTests) {
 }
 
 TEST(Map, test_create_int) {
-  s21::map<int, int> my_map1;
+  my_containers::map<int, int> my_map1;
 
   my_map1.insert(5, 22);
   my_map1.insert(9, 33);
@@ -288,7 +288,7 @@ TEST(Map, test_create_int) {
   EXPECT_EQ(my_map1[456], 555);
 }
 TEST(Map, test_insert1) {
-  s21::map<int, int> my_map1;
+  my_containers::map<int, int> my_map1;
 
   std::pair<int, int> w1 = {5, 22};
   std::pair<int, int> w2 = {9, 33};
@@ -307,7 +307,7 @@ TEST(Map, test_insert1) {
 }
 
 TEST(Map, test_insert_or_assign) {
-  s21::map<int, int> my_map1{{1, 11}, {2, 22}, {3, 33}};
+  my_containers::map<int, int> my_map1{{1, 11}, {2, 22}, {3, 33}};
 
   my_map1.insert_or_assign(1, 66);
   my_map1.insert_or_assign(4, 44);
@@ -319,7 +319,7 @@ TEST(Map, test_insert_or_assign) {
 }
 
 TEST(Map, test_create_double) {
-  s21::map<double, double> my_map1;
+  my_containers::map<double, double> my_map1;
 
   my_map1.insert(5.5, 2e12);
   my_map1.insert(9.7, 3e-4);
@@ -333,7 +333,7 @@ TEST(Map, test_create_double) {
 }
 
 TEST(Map, test_create_char) {
-  s21::map<int, char> my_map1;
+  my_containers::map<int, char> my_map1;
 
   my_map1.insert(5, '2');
   my_map1.insert(9, '\0');
@@ -347,20 +347,20 @@ TEST(Map, test_create_char) {
 }
 
 TEST(Map, test_empty) {
-  s21::map<int, int> my_map1;
+  my_containers::map<int, int> my_map1;
   std::map<int, int> std_map1;
 
   EXPECT_EQ(my_map1.empty(), std_map1.empty());
 }
 
 TEST(Map, test_copy_constructor) {
-  s21::map<int, int> my_map1;
+  my_containers::map<int, int> my_map1;
 
   my_map1.insert(5, 50);
   my_map1.insert(9, 12);
   my_map1.insert(12, 44);
 
-  s21::map<int, int> my_map2(my_map1);
+  my_containers::map<int, int> my_map2(my_map1);
 
   EXPECT_EQ(my_map1[5], my_map2[5]);
   EXPECT_EQ(my_map1[9], my_map2[9]);
@@ -368,13 +368,13 @@ TEST(Map, test_copy_constructor) {
 }
 
 TEST(Map, test_move_constructor) {
-  s21::map<int, int> my_map1;
+  my_containers::map<int, int> my_map1;
 
   my_map1.insert(5, 50);
   my_map1.insert(9, 12);
   my_map1.insert(12, 44);
 
-  s21::map<int, int> my_map2(std::move(my_map1));
+  my_containers::map<int, int> my_map2(std::move(my_map1));
 
   EXPECT_EQ(50, my_map2[5]);
   EXPECT_EQ(12, my_map2[9]);
@@ -383,7 +383,8 @@ TEST(Map, test_move_constructor) {
 }
 
 TEST(Map, test_init_list_constructor) {
-  s21::map<int, int> my_map1{{-4, 222}, {6, 333}, {1, 5676554}, {2, 4}};
+  my_containers::map<int, int> my_map1{
+      {-4, 222}, {6, 333}, {1, 5676554}, {2, 4}};
   std::map<int, int> std_map1{{-4, 222}, {6, 333}, {1, 5676554}, {2, 4}};
 
   EXPECT_EQ(my_map1[-4], std_map1[-4]);
@@ -393,8 +394,8 @@ TEST(Map, test_init_list_constructor) {
 }
 
 TEST(Map, test_copy_assign) {
-  s21::map<int, int> my_map1;
-  s21::map<int, int> my_map2;
+  my_containers::map<int, int> my_map1;
+  my_containers::map<int, int> my_map2;
 
   my_map1.insert(5, 50);
   my_map1.insert(9, 12);
@@ -408,8 +409,8 @@ TEST(Map, test_copy_assign) {
 }
 
 TEST(Map, test_move_assign) {
-  s21::map<int, int> my_map1;
-  s21::map<int, int> my_map2;
+  my_containers::map<int, int> my_map1;
+  my_containers::map<int, int> my_map2;
 
   my_map1.insert(5, 50);
   my_map1.insert(9, 12);
@@ -424,8 +425,8 @@ TEST(Map, test_move_assign) {
 }
 
 TEST(Map, test_swap) {
-  s21::map<int, int> my_map1{{1, 11}, {2, 22}, {3, 33}};
-  s21::map<int, int> my_map2{{-1, -11}, {-2, -22}, {-3, -33}};
+  my_containers::map<int, int> my_map1{{1, 11}, {2, 22}, {3, 33}};
+  my_containers::map<int, int> my_map2{{-1, -11}, {-2, -22}, {-3, -33}};
 
   my_map1.swap(my_map2);
 
@@ -438,10 +439,10 @@ TEST(Map, test_swap) {
 }
 
 TEST(Map, iterator_operator) {
-  s21::map<int, int> my_map1{{1, 1}, {2, 2}, {3, 3}};
+  my_containers::map<int, int> my_map1{{1, 1}, {2, 2}, {3, 3}};
 
-  s21::map<int, int>::iterator my_iter;
-  s21::map<int, int>::const_iterator my_c_iter = my_map1.cend();
+  my_containers::map<int, int>::iterator my_iter;
+  my_containers::map<int, int>::const_iterator my_c_iter = my_map1.cend();
   int i = 1;
   my_c_iter = my_map1.cbegin();
 
@@ -449,14 +450,14 @@ TEST(Map, iterator_operator) {
     EXPECT_EQ(*my_iter, i);
   }
   my_iter = my_map1.begin();
-  s21::map<int, int>::iterator my_iter2 = my_map1.begin();
+  my_containers::map<int, int>::iterator my_iter2 = my_map1.begin();
 
   EXPECT_EQ(my_iter == my_iter2, 1);
   EXPECT_EQ(my_iter != my_iter2, 0);
 }
 
 TEST(Map, test_size) {
-  s21::map<int, int> my_map1;
+  my_containers::map<int, int> my_map1;
 
   my_map1.insert(5, 44);
   my_map1.insert(9, 55);
@@ -468,14 +469,14 @@ TEST(Map, test_size) {
 /*
 PC related value
 TEST(Map, test_max_size) {
-  s21::map<int, int> my_map1;
+  my_containers::map<int, int> my_map1;
   std::map<int, int> std_map1;
 
   EXPECT_EQ(my_map1.max_size(), std_map1.max_size());
 }
 */
 TEST(Map, test_clear) {
-  s21::map<int, int> my_map1;
+  my_containers::map<int, int> my_map1;
 
   my_map1.insert(5, 44);
   my_map1.insert(9, 55);
@@ -488,10 +489,10 @@ TEST(Map, test_clear) {
 }
 
 TEST(Map, test_erase1) {
-  s21::map<int, int> my_map1;
+  my_containers::map<int, int> my_map1;
   my_map1.insert(5, 44);
 
-  s21::map<int, int>::iterator my_iter = my_map1.begin();
+  my_containers::map<int, int>::iterator my_iter = my_map1.begin();
   my_map1.erase(my_iter);
 
   EXPECT_EQ(my_map1.empty(), 1);
@@ -508,11 +509,11 @@ TEST(Map, test_erase1) {
 }
 
 TEST(Map, test_erase2) {
-  s21::map<int, int> my_map1;
+  my_containers::map<int, int> my_map1;
   my_map1.insert(5, 5);
   my_map1.insert(-4, -4);
 
-  s21::map<int, int>::iterator my_iter;
+  my_containers::map<int, int>::iterator my_iter;
 
   my_iter = my_map1.begin();
   ++my_iter;
@@ -522,8 +523,8 @@ TEST(Map, test_erase2) {
 }
 
 TEST(Map, test_merge) {
-  s21::map<int, int> my_map1{{1, 11}, {2, 22}, {3, 33}};
-  s21::map<int, int> my_map2{{-1, -11}, {-2, -22}, {-3, -33}};
+  my_containers::map<int, int> my_map1{{1, 11}, {2, 22}, {3, 33}};
+  my_containers::map<int, int> my_map2{{-1, -11}, {-2, -22}, {-3, -33}};
 
   my_map1.merge(my_map2);
 
@@ -533,30 +534,30 @@ TEST(Map, test_merge) {
 }
 
 TEST(Map, test_contains) {
-  s21::map<int, int> my_map1{{1, 11}, {2, 22}, {3, 33}};
+  my_containers::map<int, int> my_map1{{1, 11}, {2, 22}, {3, 33}};
 
   EXPECT_EQ(my_map1.contains(1), 1);
   EXPECT_EQ(my_map1.contains(44), 0);
 }
 
 TEST(Map, test_bracket) {
-  s21::map<int, int> my_map1{{1, 11}, {2, 22}, {3, 33}};
+  my_containers::map<int, int> my_map1{{1, 11}, {2, 22}, {3, 33}};
 
   EXPECT_EQ(my_map1[1], 11);
   EXPECT_EQ(my_map1[0], 0);
 }
 
 TEST(Map, test_at) {
-  s21::map<int, int> my_map1{{1, 11}, {2, 22}, {3, 33}};
+  my_containers::map<int, int> my_map1{{1, 11}, {2, 22}, {3, 33}};
 
   EXPECT_EQ(my_map1.at(1), 11);
   EXPECT_ANY_THROW(my_map1.at(55));
 }
 
 TEST(Map, test_insert_many) {
-  s21::map<int, int> ms{{1, 11}, {2, 22}, {3, 33}};
+  my_containers::map<int, int> ms{{1, 11}, {2, 22}, {3, 33}};
 
-  s21::map<int, int>::iterator iter;
+  my_containers::map<int, int>::iterator iter;
 
   std::pair<int, int> p1 = {4, 44};
   std::pair<int, int> p2 = {5, 55};
