@@ -1,71 +1,64 @@
 #include "global_tests.h"
-#include <set>
 #include "../src/AVLtree/avl_tree.hpp"
 #include "../src/stack/stack.hpp"
-#include <iostream>
 
-TEST(TreeTest, DefaultConstructor) {
-    s21::Tree<int> tree_int;
-    s21::Tree<double> tree_double;
-    s21::Tree<std::string> tree_str;
-    s21::Tree<char> tree_char;
-    tree_int.insert(5);
-    tree_int.insert(2);
-    tree_int.insert(8);
-    tree_int.insert(4);
-    tree_int.insert(15);
-    tree_int.insert(7);
-    tree_int.insert(44);
-    tree_int.insert(0);
-    tree_int.insert(-5);
-    tree_int.insert(-1);
-    tree_int.insert(-15);
-    tree_int.insert(-22);
-    tree_int.insert(-22);
-    tree_int.insert(-55);
-    // std::cout<<tree_int.find(-55)->data_<<std::endl;
-    tree_int.showTreeVertical();
+TEST(TreeTest, DefaultConstructor_SS) {
+    s21::Tree<int,int> tree_int;
+    s21::Tree<double,double> tree_double;
+    s21::Tree<std::string,std::string> tree_str;
+    s21::Tree<char,char> tree_char;
+    tree_int.insert_(5);
+    tree_int.insert_(2);
+    tree_int.insert_(8);
+    tree_int.insert_(4);
+    tree_int.insert_(15);
+    tree_int.insert_(7);
+    tree_int.insert_(44);
+    tree_int.insert_(0);
+    tree_int.insert_(-5);
+    tree_int.insert_(-1);
+    tree_int.insert_(-15);
+    tree_int.insert_(-22);
+    tree_int.insert_(-22);
+    tree_int.insert_(-55);
     EXPECT_EQ(tree_int.size(), 13);
     EXPECT_EQ(tree_int.empty(),false);
-    tree_double.insert(3.55);
-    tree_double.insert(2.22);
-    tree_double.insert(8.88);
-    tree_double.insert(4.44);
-    tree_double.insert(15.15);
-    tree_double.insert(7.77);
-    tree_double.insert(44.44);
-    tree_double.insert(0.00);
-    tree_double.insert(-5.55);
-    tree_double.insert(-1.11);
-    tree_double.insert(-15.15);
-    tree_double.insert(-22.22);
-    tree_double.insert(-22.22);
-    tree_double.insert(-55.55);
-    // tree_double.showTreeVertical();
+    tree_double.insert_(3.55);
+    tree_double.insert_(2.22);
+    tree_double.insert_(8.88);
+    tree_double.insert_(4.44);
+    tree_double.insert_(15.15);
+    tree_double.insert_(7.77);
+    tree_double.insert_(44.44);
+    tree_double.insert_(0.00);
+    tree_double.insert_(-5.55);
+    tree_double.insert_(-1.11);
+    tree_double.insert_(-15.15);
+    tree_double.insert_(-22.22);
+    tree_double.insert_(-22.22);
+    tree_double.insert_(-55.55);
     EXPECT_EQ(tree_double.size(), 13);
     EXPECT_EQ(tree_double.empty(), false);
-    tree_str.insert("hello");
-    tree_str.insert("world");
-    tree_str.insert("s21");
-    tree_str.insert("tree");
-    tree_str.insert("test");
-    tree_str.insert("tree");
-    tree_str.insert("tree");
-    tree_str.insert("tree");
-    tree_str.insert("Rock");
-    tree_str.insert("Roll");
-    // tree_str.showTreeVertical();
+    tree_str.insert_("hello");
+    tree_str.insert_("world");
+    tree_str.insert_("s21");
+    tree_str.insert_("tree");
+    tree_str.insert_("test");
+    tree_str.insert_("tree");
+    tree_str.insert_("tree");
+    tree_str.insert_("tree");
+    tree_str.insert_("Rock");
+    tree_str.insert_("Roll");
     EXPECT_EQ(tree_str.size(), 7);
     EXPECT_EQ(tree_str.empty(), false);
-    tree_char.insert('a');
-    tree_char.insert('b');
-    tree_char.insert('c');
-    tree_char.insert('h');
-    tree_char.insert('e');
-    tree_char.insert('l');
-    tree_char.insert('l');
-    tree_char.insert('o');
-    // tree_char.showTreeVertical();
+    tree_char.insert_('a');
+    tree_char.insert_('b');
+    tree_char.insert_('c');
+    tree_char.insert_('h');
+    tree_char.insert_('e');
+    tree_char.insert_('l');
+    tree_char.insert_('l');
+    tree_char.insert_('o');
     EXPECT_EQ(tree_char.size(), 7);
     EXPECT_EQ(tree_char.empty(), false);
 
@@ -85,63 +78,111 @@ TEST(TreeTest, DefaultConstructor) {
     EXPECT_EQ(tree_char.size(), 0);
     EXPECT_EQ(tree_char.empty(), true);
 }
-TEST(TreeTest, RootConstructor) {
-    s21::Tree<int> tree_int{10};
-    s21::Tree<double> tree_double{555.55};
-    s21::Tree<std::string> tree_str{"Jazz"};
-    s21::Tree<char> tree_char{'5'};
-    tree_int.insert(5);
-    tree_int.insert(2);
-    tree_int.insert(8);
-    tree_int.insert(4);
-    tree_int.insert(15);
-    tree_int.insert(7);
-    tree_int.insert(44);
-    tree_int.insert(0);
-    tree_int.insert(-5);
-    tree_int.insert(-1);
-    tree_int.insert(-15);
-    tree_int.insert(-22);
-    tree_int.insert(-22);
-    tree_int.insert(-55);
+TEST(TreeTest, DefaultConstructor_MS) {
+    s21::Tree<int,double> tree_double;
+    s21::Tree<char,std::string> tree_str;
+    tree_double.insert_(5,5.55);
+    tree_double.insert_(2,3453.43);
+    tree_double.insert_(8,333.4);
+    tree_double.insert_(4,-66.6);
+    tree_double.insert_(15,-1000);
+    tree_double.insert_(7,-457);
+    tree_double.insert_(44,0);
+    tree_double.insert_(0,0);
+    tree_double.insert_(-5,0.553535);
+    tree_double.insert_(-1,0.353453);
+    tree_double.insert_(-15,1234567890.4);
+    tree_double.insert_(-22,9876543.33333);
+    tree_double.insert_(-22,23232.2323232);
+    tree_double.insert_(-55,-3333.3);
+    tree_double.showTreeVertical();
+    tree_double.showTreeVerticalVal();
+    tree_double.crazyPrinter();
+    EXPECT_EQ(tree_double.size(), 13);
+    EXPECT_EQ(tree_double.empty(),false);
+    tree_str.insert_('\t',"hello");
+    tree_str.insert_('\0',"world");
+    tree_str.insert_('4',"s21");
+    tree_str.insert_('\0',"tree");
+    tree_str.insert_('5',"test");
+    tree_str.insert_('f',"tree");
+    tree_str.insert_('i',"tree");
+    tree_str.insert_('-',"tree");
+    tree_str.insert_('.',"Rock");
+    tree_str.insert_('/',"Roll");
+    EXPECT_EQ(tree_str.size(), 9);
+    EXPECT_EQ(tree_str.empty(), false);
+
+    tree_double.clear();
+    EXPECT_EQ(tree_double.size(), 0);
+    EXPECT_EQ(tree_double.empty(),true);
+
+    tree_str.clear();
+    EXPECT_EQ(tree_str.size(), 0);
+    EXPECT_EQ(tree_str.empty(), true);
+
+    s21::Tree<int,int> tree_int;
+    tree_int.clear();
+    EXPECT_EQ(tree_int.size(), 0);
+    EXPECT_EQ(tree_int.empty(),true);
+}
+TEST(TreeTest, RootConstructor_SS) {
+    s21::Tree<int,int> tree_int{10};
+    s21::Tree<double,double> tree_double{555.55};
+    s21::Tree<std::string,std::string> tree_str{"Jazz"};
+    s21::Tree<char,char> tree_char{'5'};
+    tree_int.insert_(5);
+    tree_int.insert_(2);
+    tree_int.insert_(8);
+    tree_int.insert_(4);
+    tree_int.insert_(15);
+    tree_int.insert_(7);
+    tree_int.insert_(44);
+    tree_int.insert_(0);
+    tree_int.insert_(-5);
+    tree_int.insert_(-1);
+    tree_int.insert_(-15);
+    tree_int.insert_(-22);
+    tree_int.insert_(-22);
+    tree_int.insert_(-55);
     EXPECT_EQ(tree_int.size(), 14);
     EXPECT_EQ(tree_int.empty(),false);
-    tree_double.insert(3.55);
-    tree_double.insert(2.22);
-    tree_double.insert(8.88);
-    tree_double.insert(4.44);
-    tree_double.insert(15.15);
-    tree_double.insert(7.77);
-    tree_double.insert(44.44);
-    tree_double.insert(0.00);
-    tree_double.insert(-5.55);
-    tree_double.insert(-1.11);
-    tree_double.insert(-15.15);
-    tree_double.insert(-22.22);
-    tree_double.insert(-22.22);
-    tree_double.insert(-55.55);
+    tree_double.insert_(3.55);
+    tree_double.insert_(2.22);
+    tree_double.insert_(8.88);
+    tree_double.insert_(4.44);
+    tree_double.insert_(15.15);
+    tree_double.insert_(7.77);
+    tree_double.insert_(44.44);
+    tree_double.insert_(0.00);
+    tree_double.insert_(-5.55);
+    tree_double.insert_(-1.11);
+    tree_double.insert_(-15.15);
+    tree_double.insert_(-22.22);
+    tree_double.insert_(-22.22);
+    tree_double.insert_(-55.55);
     EXPECT_EQ(tree_double.size(), 14);
     EXPECT_EQ(tree_double.empty(), false);
-    tree_str.insert("hello");
-    tree_str.insert("world");
-    tree_str.insert("s21");
-    tree_str.insert("tree");
-    tree_str.insert("test");
-    tree_str.insert("tree");
-    tree_str.insert("tree");
-    tree_str.insert("tree");
-    tree_str.insert("Rock");
-    tree_str.insert("Roll");
+    tree_str.insert_("hello");
+    tree_str.insert_("world");
+    tree_str.insert_("s21");
+    tree_str.insert_("tree");
+    tree_str.insert_("test");
+    tree_str.insert_("tree");
+    tree_str.insert_("tree");
+    tree_str.insert_("tree");
+    tree_str.insert_("Rock");
+    tree_str.insert_("Roll");
     EXPECT_EQ(tree_str.size(), 8);
     EXPECT_EQ(tree_str.empty(), false);
-    tree_char.insert('a');
-    tree_char.insert('b');
-    tree_char.insert('c');
-    tree_char.insert('h');
-    tree_char.insert('e');
-    tree_char.insert('l');
-    tree_char.insert('l');
-    tree_char.insert('o');
+    tree_char.insert_('a');
+    tree_char.insert_('b');
+    tree_char.insert_('c');
+    tree_char.insert_('h');
+    tree_char.insert_('e');
+    tree_char.insert_('l');
+    tree_char.insert_('l');
+    tree_char.insert_('o');
     EXPECT_EQ(tree_char.size(), 8);
     EXPECT_EQ(tree_char.empty(), false);
 
@@ -158,51 +199,149 @@ TEST(TreeTest, RootConstructor) {
     EXPECT_EQ(tree_char.size(), 0);
     EXPECT_EQ(tree_char.empty(), true);
 }
-TEST(TreeTest, ArrayConstructor) {
-    s21::Tree<int> tree_int{10,2,3,44,5,66,-5,-100,0,0,0,5,33,23,64,55,0,1,1000};
-    s21::Tree<double> tree_double{555.55, 423.2,2,1000,-55.55,-33.3,-1000,100,1000,100,-5.5};
-    s21::Tree<std::string> tree_str{"Jazz", "I", "played", "with", "Blues", "brothers", "like", "Yoda", "Wow", "!"};
-    s21::Tree<char> tree_char{'a', 'b', 'c', 'd','5','1','a','-','=','+','q','\n','\t','y',']','[','(','`'};
-    tree_int.insert(5);
-    tree_int.insert(2);
-    tree_int.insert(8);
-    tree_int.insert(4);
-    tree_int.insert(4.55);
+TEST(TreeTest, RootConstructor_MS) {
+    s21::Tree<int,double> tree_double(144,6.6);
+    std::string tmp="Hello world!";
+    s21::Tree<char,std::string> tree_str('Z',tmp);
+    tree_double.insert_(5,5.55);
+    tree_double.insert_(2,3453.43);
+    tree_double.insert_(8,333.4);
+    tree_double.insert_(4,-66.6);
+    tree_double.insert_(15,-1000);
+    tree_double.insert_(7,-457);
+    tree_double.insert_(44,0);
+    tree_double.insert_(0,0);
+    tree_double.insert_(-5,0.553535);
+    tree_double.insert_(-1,0.353453);
+    tree_double.insert_(-15,1234567890.4);
+    tree_double.insert_(-22,9876543.33333);
+    tree_double.insert_(-22,23232.2323232);
+    tree_double.insert_(-55,-3333.3);
+    EXPECT_EQ(tree_double.size(), 14);
+    EXPECT_EQ(tree_double.empty(),false);
+    tree_str.insert_('\t',"hello");
+    tree_str.insert_('\0',"world");
+    tree_str.insert_('4',"s21");
+    tree_str.insert_('\0',"tree");
+    tree_str.insert_('5',"test");
+    tree_str.insert_('f',"tree");
+    tree_str.insert_('i',"tree");
+    tree_str.insert_('-',"tree");
+    tree_str.insert_('.',"Rock");
+    tree_str.insert_('/',"Roll");
+    EXPECT_EQ(tree_str.size(), 10);
+    EXPECT_EQ(tree_str.empty(), false);
+
+    tree_double.clear();
+    EXPECT_EQ(tree_double.size(), 0);
+    EXPECT_EQ(tree_double.empty(),true);
+
+    tree_str.clear();
+    EXPECT_EQ(tree_str.size(), 0);
+    EXPECT_EQ(tree_str.empty(), true);
+
+    s21::Tree<int,int> tree_int;
+    tree_int.clear();
+    EXPECT_EQ(tree_int.size(), 0);
+    EXPECT_EQ(tree_int.empty(),true);
+}
+TEST(TreeTest, ArrayConstructor_SS) {
+    s21::Tree<int,int> tree_int{10,2,3,44,5,66,-5,-100,0,0,0,5,33,23,64,55,0,1,1000};
+    s21::Tree<double,double> tree_double{555.55, 423.2,2,1000,-55.55,-33.3,-1000,100,1000,100,-5.5};
+    s21::Tree<std::string,std::string> tree_str{"Jazz", "I", "played", "with", "Blues", "brothers", "like", "Yoda", "Wow", "!"};
+    s21::Tree<char,char> tree_char{'a', 'b', 'c', 'd','5','1','a','-','=','+','q','\n','\t','y',']','[','(','`'};
+    tree_int.insert_(5);
+    tree_int.insert_(2);
+    tree_int.insert_(8);
+    tree_int.insert_(4);
+    tree_int.insert_(4.55);
     EXPECT_EQ(tree_int.size(), 17);
     EXPECT_EQ(tree_int.empty(),false);
-    tree_double.insert(3.55);
-    tree_double.insert(2.22);
-    tree_double.insert(8.88);
-    tree_double.insert(4.44);
-    tree_double.insert(15.15);
+    tree_double.insert_(3.55);
+    tree_double.insert_(2.22);
+    tree_double.insert_(8.88);
+    tree_double.insert_(4.44);
+    tree_double.insert_(15.15);
     EXPECT_EQ(tree_double.size(), 14);
     EXPECT_EQ(tree_double.empty(), false);
     EXPECT_EQ(tree_str.size(), 10);
     EXPECT_EQ(tree_str.empty(), false);
-    tree_char.insert('a');
-    tree_char.insert('l');
-    tree_char.insert('l');
-    tree_char.insert('o');
+    tree_char.insert_('a');
+    tree_char.insert_('l');
+    tree_char.insert_('l');
+    tree_char.insert_('o');
     EXPECT_EQ(tree_char.size(), 19);
     EXPECT_EQ(tree_char.empty(), false);
 }
-TEST(TreeTest, CopyTree) {
-    s21::Tree<int> tree_int{10,2,3,44,5,66,-5,-100,0,0,0,5,33,23,64,55,0,1,1000};
-    s21::Tree<double> tree_double{555.55, 423.2,2,1000,-55.55,-33.3,-1000,100,1000,100,-5.5};
-    s21::Tree<std::string> tree_str{"Jazz", "I", "played", "with", "Blues", "brothers", "like", "Yoda", "Wow", "!"};
-    s21::Tree<char> tree_char{'a', 'b', 'c', 'd','5','1','a','-','=','+','q','\n','\t','y',']','[','(','`'};
+TEST(TreeTest, ArrayConstructor_MS) {
+    s21::Tree<int,double> tree_double{{10,555.55}, {-600,423.2},{10000,2},{1,1000},{11,-55.55},{-55,-33.3},{0,-1000},{6,100},{6,1000},{1234,100},{-4211,5.5}};
+    s21::Tree<std::string, char> tree_str{
+    std::pair<std::string,char>{"Jazz", '5'}, 
+        {"I", '5'}, 
+        {"played", '5'}, 
+        {"with", '5'}, 
+        {"Blues", '5'}, 
+        {"brothers", '5'}, 
+        {"like", '5'}, 
+        {"Yoda", '5'}, 
+        {"Wow", '5'}, 
+        {"!", '5'}
+    };
+
+    EXPECT_EQ(tree_double.size(), 10);
+    EXPECT_EQ(tree_double.empty(),false);
+    tree_double.insert_(5,5.55);
+    tree_double.insert_(2,3453.43);
+    tree_double.insert_(8,333.4);
+    tree_double.insert_(4,-66.6);
+    tree_double.insert_(15,-1000);
+    tree_double.insert_(7,-457);
+    tree_double.insert_(44,0);
+    tree_double.insert_(0,0);
+    tree_double.insert_(-5,0.553535);
+    tree_double.insert_(-1,0.353453);
+    tree_double.insert_(-15,1234567890.4);
+    tree_double.insert_(-22,9876543.33333);
+    tree_double.insert_(-22,23232.2323232);
+    tree_double.insert_(-55,-3333.3);
+    EXPECT_EQ(tree_double.size(), 21);
+
+    EXPECT_EQ(tree_str.empty(), false);
+    EXPECT_EQ(tree_str.size(), 10);
+    tree_str.insert_("hello",'\t');
+    tree_str.insert_("world",'\0');
+    tree_str.insert_("s21",'4');
+    tree_str.insert_("tree",'\0');
+    tree_str.insert_("test",'5');
+    tree_str.insert_("tree",'f');
+    tree_str.insert_("tree",'i');
+    tree_str.insert_("tree",'-');
+    tree_str.insert_("Rock",'.');
+    tree_str.insert_("Roll",'/');
+    tree_str.insert_("!",',');
+    EXPECT_EQ(tree_str.size(), 17);
+
+    tree_double.clear();
+    EXPECT_EQ(tree_double.size(), 0);
+    EXPECT_EQ(tree_double.empty(),true);
+}
+TEST(TreeTest, CopyTree_SS) {
+    s21::Tree<int,int> tree_int{10,2,3,44,5,66,-5,-100,0,0,0,5,33,23,64,55,0,1,1000};
+    s21::Tree<double,double> tree_double{555.55, 423.2,2,1000,-55.55,-33.3,-1000,100,1000,100,-5.5};
+    s21::Tree<std::string,std::string> tree_str{"Jazz", "I", "played", "with", "Blues", "brothers", "like", "Yoda", "Wow", "!"};
+    s21::Tree<char,char> tree_char{'a', 'b', 'c', 'd','5','1','a','-','=','+','q','\n','\t','y',']','[','(','`'};
     EXPECT_EQ(tree_int.size(), 15);
     EXPECT_EQ(tree_double.size(), 9);
     EXPECT_EQ(tree_str.size(), 10);
     EXPECT_EQ(tree_char.size(), 17);
 
-    s21::Tree<int> tree_int_2; 
+    s21::Tree<int,int> tree_int_2; 
     tree_int.copyTree(tree_int_2);
-    s21::Tree<double> tree_double_2;
+    s21::Tree<double,double> tree_double_2;
     tree_double.copyTree(tree_double_2);
-    s21::Tree<std::string> tree_str_2;
+    s21::Tree<std::string,std::string> tree_str_2;
     tree_str.copyTree(tree_str_2);
-    s21::Tree<char> tree_char_2;
+    s21::Tree<char,char> tree_char_2;
     tree_char.copyTree(tree_char_2);
 
     EXPECT_EQ(tree_int_2.size(), 15);
@@ -214,10 +353,10 @@ TEST(TreeTest, CopyTree) {
     EXPECT_EQ(tree_char_2.size(), 17);
     EXPECT_NE(&tree_char_2,&tree_char);
 
-    tree_int.insert(5000);
-    tree_double.insert(5000.5);
-    tree_str.insert("5000");
-    tree_char.insert('0');
+    tree_int.insert_(5000);
+    tree_double.insert_(5000.5);
+    tree_str.insert_("5000");
+    tree_char.insert_('0');
     EXPECT_EQ(tree_int.size(), 16);
     EXPECT_EQ(tree_int_2.size(), 15);
     EXPECT_EQ(tree_double.size(), 10);
@@ -227,17 +366,56 @@ TEST(TreeTest, CopyTree) {
     EXPECT_EQ(tree_char.size(), 18);
     EXPECT_EQ(tree_char_2.size(), 17);
 
-    s21::Tree<int> tree_int_3;
-    s21::Tree<int> tree_int_4;
+    s21::Tree<int,int> tree_int_3;
+    s21::Tree<int,int> tree_int_4;
     tree_int_3.copyTree(tree_int_4);
     EXPECT_EQ(tree_int_3.empty(), true);
     EXPECT_EQ(tree_int_4.empty(), true);
+
+    EXPECT_EQ(tree_int_2.contains(-100),true);
+    EXPECT_EQ(tree_int_2.containsVal(-100),true);
+
 }
-TEST(TreeTest, GetTree) {
-    s21::Tree<int> tree_int{10,2,3,44,5,66,-5,-100,0,0,0,5,33,23,64,55,0,1,1000};
-    s21::Tree<double> tree_double{555.55, 423.2,2,1000,-55.55,-33.3,-1000,100,1000,100,-5.5};
-    s21::Tree<std::string> tree_str{"Jazz", "I", "played", "with", "Blues", "brothers", "like", "Yoda", "Wow", "!"};
-    s21::Tree<char> tree_char{'a', 'b', 'c', 'd','5','1','a','-','=','+','q','\n','\t','y',']','[','(','`'};
+TEST(TreeTest, CopyTree_MS) {
+    s21::Tree<double,int> tree_db_it {{555.55,5}, {423.2,2},{1000,0},{-55.55,6000},{-33.3,-5},{-1000,100},{100100,100},{-5.5,15}};
+    s21::Tree<char,std::string> tree_ch_st{std::pair<char,std::string>{ '5',"Jazz"}, {'\n',"I"}, {'y',"played"}, {'(',"with"}, {'`',"Blues"}, {'-',"brothers"}, {'=',"like"}, {'b',"Yoda"}, {'d',"Wow"}, {'c',"!"}};
+    EXPECT_EQ(tree_db_it.size(), 8);
+    EXPECT_EQ(tree_ch_st.size(), 10);
+
+    s21::Tree<double,int> tree_db_it_2; 
+    tree_db_it.copyTree(tree_db_it_2);
+    
+    s21::Tree<char,std::string> tree_ch_st_2;
+    tree_ch_st.copyTree(tree_ch_st_2);
+
+    EXPECT_EQ(tree_db_it_2.size(), 8);
+    EXPECT_NE(&tree_db_it_2,&tree_db_it);
+    EXPECT_EQ(tree_ch_st_2.size(), 10);
+    EXPECT_NE(&tree_ch_st_2,&tree_ch_st);
+
+    tree_db_it.insert_(5000,5);
+    tree_ch_st.insert_('0',"5000");
+    EXPECT_EQ(tree_db_it.size(), 9);
+    EXPECT_EQ(tree_db_it_2.size(), 8);
+    EXPECT_EQ(tree_ch_st.size(), 11);
+    EXPECT_EQ(tree_ch_st_2.size(), 10);
+
+    s21::Tree<double,int> tree__3;
+    s21::Tree<double,int> tree__4;
+    tree__3.copyTree(tree__4);
+    EXPECT_EQ(tree__3.empty(), true);
+    EXPECT_EQ(tree__4.empty(), true);
+
+    EXPECT_EQ(tree_db_it.contains(1000),true);
+    EXPECT_EQ(tree_db_it.contains(55.555),false);
+    EXPECT_EQ(tree_db_it.containsVal(15),true);
+    EXPECT_EQ(tree_db_it.containsVal(-22222),false);
+}
+TEST(TreeTest, GetTree_SS) {
+    s21::Tree<int,int> tree_int{10,2,3,44,5,66,-5,-100,0,0,0,5,33,23,64,55,0,1,1000};
+    s21::Tree<double,double> tree_double{555.55, 423.2,2,1000,-55.55,-33.3,-1000,100,1000,100,-5.5};
+    s21::Tree<std::string,std::string> tree_str{"Jazz", "I", "played", "with", "Blues", "brothers", "like", "Yoda", "Wow", "!"};
+    s21::Tree<char,char> tree_char{'a', 'b', 'c', 'd','5','1','a','-','=','+','q','\n','\t','y',']','[','(','`'};
     EXPECT_EQ(tree_int.size(), 15);
     EXPECT_EQ(tree_double.size(), 9);
     EXPECT_EQ(tree_str.size(), 10);
@@ -292,20 +470,62 @@ TEST(TreeTest, GetTree) {
     EXPECT_EQ(stack_str_4.size(), 10);
     EXPECT_EQ(stack_char_4.size(), 17);
 }
-TEST(TreeTest, MoveAssignment) {
-    s21::Tree<int> tree_int{10,2,3,44,5,66,-5,-100,0,0,0,5,33,23,64,55,0,1,1000};
-    s21::Tree<double> tree_double{555.55, 423.2,2,1000,-55.55,-33.3,-1000,100,1000,100,-5.5};
-    s21::Tree<std::string> tree_str{"Jazz", "I", "played", "with", "Blues", "brothers", "like", "Yoda", "Wow", "!"};
-    s21::Tree<char> tree_char{'a', 'b', 'c', 'd','5','1','a','-','=','+','q','\n','\t','y',']','[','(','`'};
+TEST(TreeTest, GetTree_MS) {
+    s21::Tree<double,int> tree_db_it {{555.55,5}, {423.2,2},{1000,0},{-55.55,6000},{-33.3,-5},{-1000,100},{100100,100},{-5.5,15}};
+    s21::Tree<char,std::string> tree_ch_st{std::pair<char,std::string>{ '5',"Jazz"}, {'\n',"I"}, {'y',"played"}, {'(',"with"}, {'`',"Blues"}, {'-',"brothers"}, {'=',"like"}, {'b',"Yoda"}, {'d',"Wow"}, {'c',"!"}};
+    EXPECT_EQ(tree_db_it.size(), 8);
+    EXPECT_EQ(tree_ch_st.size(), 10);
+    std::pair<s21::Stack<double>,s21::Stack<int>> stack_db_it;
+    std::pair<s21::Stack<char>,s21::Stack<std::string>> stack_ch_st;
+
+    tree_db_it.getTree(stack_db_it);
+    tree_ch_st.getTree(stack_ch_st);
+    EXPECT_EQ(stack_db_it.first.size(), 8);
+    EXPECT_EQ(stack_db_it.second.size(), 8);
+    EXPECT_EQ(stack_ch_st.first.size(), 10);
+    EXPECT_EQ(stack_ch_st.second.size(), 10);
+
+    std::pair<s21::Stack<double>,s21::Stack<int>> stack_db_it_2;
+    std::pair<s21::Stack<char>,s21::Stack<std::string>> stack_ch_st_2;
+
+    stack_db_it_2=tree_db_it.getTree(stack_db_it_2);
+    stack_ch_st_2=tree_ch_st.getTree(stack_ch_st_2);
+    EXPECT_EQ(stack_db_it_2.first.size(), 8);
+    EXPECT_EQ(stack_db_it_2.second.size(), 8);
+    EXPECT_EQ(stack_ch_st_2.first.size(), 10);
+    EXPECT_EQ(stack_ch_st_2.second.size(), 10);
+    
+
+    std::pair<s21::Stack<double>,s21::Stack<int>> stack_db_it_3;
+    std::pair<s21::Stack<char>,s21::Stack<std::string>> stack_ch_st_3;
+    std::pair<s21::Stack<double>,s21::Stack<int>> stack_db_it_4;
+    std::pair<s21::Stack<char>,s21::Stack<std::string>> stack_ch_st_4;
+
+    stack_db_it_3=tree_db_it.getTree(stack_db_it_4);
+    stack_ch_st_3=tree_ch_st.getTree(stack_ch_st_4);
+    EXPECT_EQ(stack_db_it_3.first.size(), 8);
+    EXPECT_EQ(stack_db_it_3.second.size(), 8);
+    EXPECT_EQ(stack_ch_st_3.first.size(), 10);
+    EXPECT_EQ(stack_ch_st_3.second.size(), 10);
+    EXPECT_EQ(stack_db_it_4.first.size(), 8);
+    EXPECT_EQ(stack_db_it_4.second.size(), 8);
+    EXPECT_EQ(stack_ch_st_4.first.size(), 10);
+    EXPECT_EQ(stack_ch_st_4.second.size(), 10);
+}
+TEST(TreeTest, MoveAssignment_SS) {
+    s21::Tree<int,int> tree_int{10,2,3,44,5,66,-5,-100,0,0,0,5,33,23,64,55,0,1,1000};
+    s21::Tree<double,double> tree_double{555.55, 423.2,2,1000,-55.55,-33.3,-1000,100,1000,100,-5.5};
+    s21::Tree<std::string,std::string> tree_str{"Jazz", "I", "played", "with", "Blues", "brothers", "like", "Yoda", "Wow", "!"};
+    s21::Tree<char,char> tree_char{'a', 'b', 'c', 'd','5','1','a','-','=','+','q','\n','\t','y',']','[','(','`'};
     EXPECT_EQ(tree_int.size(), 15);
     EXPECT_EQ(tree_double.size(), 9);
     EXPECT_EQ(tree_str.size(), 10);
     EXPECT_EQ(tree_char.size(), 17);
 
-    s21::Tree<int> tree_int_2=std::move(tree_int);
-    s21::Tree<double> tree_double_2=std::move(tree_double);
-    s21::Tree<std::string> tree_str_2=std::move(tree_str);
-    s21::Tree<char> tree_char_2=std::move(tree_char);
+    s21::Tree<int,int> tree_int_2=std::move(tree_int);
+    s21::Tree<double,double> tree_double_2=std::move(tree_double);
+    s21::Tree<std::string,std::string> tree_str_2=std::move(tree_str);
+    s21::Tree<char,char> tree_char_2=std::move(tree_char);
     EXPECT_EQ(tree_int_2.size(), 15);
     EXPECT_EQ(tree_double_2.size(), 9);
     EXPECT_EQ(tree_str_2.size(), 10);
@@ -315,28 +535,50 @@ TEST(TreeTest, MoveAssignment) {
     EXPECT_EQ(tree_str.size(), 0);
     EXPECT_EQ(tree_char.size(), 0);
 
-     s21::Tree<int> tree_int_3;
-     s21::Tree<double> tree_double_3;
-     s21::Tree<std::string> tree_str_3;
-     s21::Tree<char> tree_char_3;
-     s21::Tree<int> tree_int_4=std::move(tree_int_3);
-     s21::Tree<double> tree_double_4=std::move(tree_double_3);
-     s21::Tree<std::string> tree_str_4=std::move(tree_str_3);
-     s21::Tree<char> tree_char_4=std::move(tree_char_3);
-     EXPECT_EQ(tree_int_4.empty(), true);
-     EXPECT_EQ(tree_double_4.empty(), true);
-     EXPECT_EQ(tree_str_4.empty(), true);
-     EXPECT_EQ(tree_char_4.empty(), true);
-     EXPECT_EQ(tree_int_3.empty(), true);
-     EXPECT_EQ(tree_double_3.empty(), true);
-     EXPECT_EQ(tree_str_3.empty(), true);
-     EXPECT_EQ(tree_char_3.empty(), true);
+    s21::Tree<int,int> tree_int_3;
+    s21::Tree<double,double> tree_double_3;
+    s21::Tree<std::string,std::string> tree_str_3;
+    s21::Tree<char,char> tree_char_3;
+    s21::Tree<int,int> tree_int_4=std::move(tree_int_3);
+    s21::Tree<double,double> tree_double_4=std::move(tree_double_3);
+    s21::Tree<std::string,std::string> tree_str_4=std::move(tree_str_3);
+    s21::Tree<char,char> tree_char_4=std::move(tree_char_3);
+    EXPECT_EQ(tree_int_4.empty(), true);
+    EXPECT_EQ(tree_double_4.empty(), true);
+    EXPECT_EQ(tree_str_4.empty(), true);
+    EXPECT_EQ(tree_char_4.empty(), true);
+    EXPECT_EQ(tree_int_3.empty(), true);
+    EXPECT_EQ(tree_double_3.empty(), true);
+    EXPECT_EQ(tree_str_3.empty(), true);
+    EXPECT_EQ(tree_char_3.empty(), true);
 }
-TEST(TreeTest, Contains) {
-    s21::Tree<int> tree_int{10,2,3,44,5,66,-5,-100,0,0,0,5,33,23,64,55,0,1,1000};
-    s21::Tree<double> tree_double{555.55, 423.2,2,1000,-55.55,-33.3,-1000,100,1000,100,-5.5};
-    s21::Tree<std::string> tree_str{"Jazz", "I", "played", "with", "Blues", "brothers", "like", "Yoda", "Wow", "!"};
-    s21::Tree<char> tree_char{'a', 'b', 'c', 'd','5','1','a','-','=','+','q','\n','\t','y',']','[','(','`'};
+TEST(TreeTest, MoveAssignment_MS) {
+    s21::Tree<double,int> tree_db_it {{555.55,5}, {423.2,2},{1000,0},{-55.55,6000},{-33.3,-5},{-1000,100},{100100,100},{-5.5,15}};
+    s21::Tree<char,std::string> tree_ch_st{std::pair<char,std::string>{ '5',"Jazz"}, {'\n',"I"}, {'y',"played"}, {'(',"with"}, {'`',"Blues"}, {'-',"brothers"}, {'=',"like"}, {'b',"Yoda"}, {'d',"Wow"}, {'c',"!"}};
+    EXPECT_EQ(tree_db_it.size(), 8);
+    EXPECT_EQ(tree_ch_st.size(), 10);
+
+    s21::Tree<double,int> tree_db_it_2=std::move(tree_db_it);
+    s21::Tree<char,std::string> tree_ch_st_2=std::move(tree_ch_st);
+    EXPECT_EQ(tree_db_it_2.size(), 8);
+    EXPECT_EQ(tree_ch_st_2.size(), 10);
+    EXPECT_EQ(tree_db_it.size(), 0);
+    EXPECT_EQ(tree_ch_st.size(), 0);
+
+    s21::Tree<double,int> tree_db_it_3;
+    s21::Tree<char,std::string> tree_ch_st_3;
+    s21::Tree<double,int> tree_db_it_4=std::move(tree_db_it_3);
+    s21::Tree<char,std::string> tree_ch_st_4=std::move(tree_ch_st_3);
+    EXPECT_EQ(tree_db_it_3.empty(), true);
+    EXPECT_EQ(tree_ch_st_3.empty(), true);
+    EXPECT_EQ(tree_db_it_4.empty(), true);
+    EXPECT_EQ(tree_ch_st_4.empty(), true);
+}
+TEST(TreeTest, Contains_SS) {
+    s21::Tree<int,int> tree_int{10,2,3,44,5,66,-5,-100,0,0,0,5,33,23,64,55,0,1,1000};
+    s21::Tree<double,double> tree_double{555.55, 423.2,2,1000,-55.55,-33.3,-1000,100,1000,100,-5.5};
+    s21::Tree<std::string,std::string> tree_str{"Jazz", "I", "played", "with", "Blues", "brothers", "like", "Yoda", "Wow", "!"};
+    s21::Tree<char,char> tree_char{'a', 'b', 'c', 'd','5','1','a','-','=','+','q','\n','\t','y',']','[','(','`'};
     EXPECT_EQ(tree_int.size(), 15);
     EXPECT_EQ(tree_double.size(), 9);
     EXPECT_EQ(tree_str.size(), 10);
@@ -356,20 +598,37 @@ TEST(TreeTest, Contains) {
     EXPECT_EQ(tree_char.contains('5'), true);
     EXPECT_EQ(tree_char.contains('z'), false);
 }
-TEST(TreeTest, Swap) {
-    s21::Tree<int> tree_int{10,2,3,44,5,66,-5,-100,0,0,0,5,33,23,64,55,0,1,1000};
-    s21::Tree<double> tree_double{555.55, 423.2,2,1000,-55.55,-33.3,-1000,100,1000,100,-5.5};
-    s21::Tree<std::string> tree_str{"Jazz", "I", "played", "with", "Blues", "brothers", "like", "Yoda", "Wow", "!"};
-    s21::Tree<char> tree_char{'a', 'b', 'c', 'd','5','1','a','-','=','+','q','\n','\t','y',']','[','(','`'};
+TEST(TreeTest, Contains_MS) {
+    s21::Tree<double,int> tree_db_it {{555.55,5}, {423.2,2},{1000,0},{-55.55,6000},{-33.3,-5},{-1000,100},{100100,100},{-5.5,15}};
+    s21::Tree<char,std::string> tree_ch_st{std::pair<char,std::string>{ '5',"Jazz"}, {'\n',"I"}, {'y',"played"}, {'(',"with"}, {'`',"Blues"}, {'-',"brothers"}, {'=',"like"}, {'b',"Yoda"}, {'d',"Wow"}, {'c',"!"}};
+    EXPECT_EQ(tree_db_it.size(), 8);
+    EXPECT_EQ(tree_ch_st.size(), 10);
+
+    EXPECT_EQ(tree_db_it.containsVal(-5), true);
+    EXPECT_EQ(tree_db_it.containsVal(100), true);
+    EXPECT_EQ(tree_db_it.containsVal(0), true);
+    EXPECT_EQ(tree_db_it.containsVal(-555), false);
+    EXPECT_EQ(tree_db_it.containsVal(6000), true);
+    EXPECT_EQ(tree_db_it.containsVal(5), true);
+    EXPECT_EQ(tree_db_it.containsVal(-5000.5), false);
+    EXPECT_EQ(tree_ch_st.containsVal("Wow"), true);
+    EXPECT_EQ(tree_ch_st.containsVal("Blues"), true);
+    EXPECT_EQ(tree_ch_st.containsVal("wow"), false);
+}
+TEST(TreeTest, Swap_SS) {
+    s21::Tree<int,int> tree_int{10,2,3,44,5,66,-5,-100,0,0,0,5,33,23,64,55,0,1,1000};
+    s21::Tree<double,double> tree_double{555.55, 423.2,2,1000,-55.55,-33.3,-1000,100,1000,100,-5.5};
+    s21::Tree<std::string,std::string> tree_str{"Jazz", "I", "played", "with", "Blues", "brothers", "like", "Yoda", "Wow", "!"};
+    s21::Tree<char,char> tree_char{'a', 'b', 'c', 'd','5','1','a','-','=','+','q','\n','\t','y',']','[','(','`'};
     EXPECT_EQ(tree_int.size(), 15);
     EXPECT_EQ(tree_double.size(), 9);
     EXPECT_EQ(tree_str.size(), 10);
     EXPECT_EQ(tree_char.size(), 17);
 
-    s21::Tree<int> tree_int_2{10,2,3,44,5,66,-5};
-    s21::Tree<double> tree_double_2{555.55, 42,100,1000,100,-5.5};
-    s21::Tree<std::string> tree_str_2{"Jazz", "I", "played", "with", "Yoda"};
-    s21::Tree<char> tree_char_2{'a', 'b',']','[','(','`'};
+    s21::Tree<int,int> tree_int_2{10,2,3,44,5,66,-5};
+    s21::Tree<double,double> tree_double_2{555.55, 42,100,1000,100,-5.5};
+    s21::Tree<std::string,std::string> tree_str_2{"Jazz", "I", "played", "with", "Yoda"};
+    s21::Tree<char,char> tree_char_2{'a', 'b',']','[','(','`'};
     EXPECT_EQ(tree_int_2.size(), 7);
     EXPECT_EQ(tree_double_2.size(), 5);
     EXPECT_EQ(tree_str_2.size(), 5);
@@ -388,23 +647,40 @@ TEST(TreeTest, Swap) {
     EXPECT_EQ(tree_double_2.size(), 9);
     EXPECT_EQ(tree_str_2.size(), 10);
     EXPECT_EQ(tree_char_2.size(), 17);
-
-
 }
-TEST(TreeTest, CopyAssignment) {
-    s21::Tree<int> tree_int{10,2,3,44,5,66,-5,-100,0,0,0,5,33,23,64,55,0,1,1000};
-    s21::Tree<double> tree_double{555.55, 423.2,2,1000,-55.55,-33.3,-1000,100,1000,100,-5.5};
-    s21::Tree<std::string> tree_str{"Jazz", "I", "played", "with", "Blues", "brothers", "like", "Yoda", "Wow", "!"};
-    s21::Tree<char> tree_char{'a', 'b', 'c', 'd','5','1','a','-','=','+','q','\n','\t','y',']','[','(','`'};
+TEST(TreeTest, Swap_MS) {
+    s21::Tree<double,int> tree_db_it {{555.55,5}, {423.2,2},{1000,0},{-55.55,6000},{-33.3,-5},{-1000,100},{100100,100},{-5.5,15}};
+    s21::Tree<char,std::string> tree_ch_st{std::pair<char,std::string>{ '5',"Jazz"}, {'\n',"I"}, {'y',"played"}, {'(',"with"}, {'`',"Blues"}, {'-',"brothers"}, {'=',"like"}, {'b',"Yoda"}, {'d',"Wow"}, {'c',"!"}};
+    EXPECT_EQ(tree_db_it.size(), 8);
+    EXPECT_EQ(tree_ch_st.size(), 10);
+
+    s21::Tree<double,int> tree_db_it_2{{555.55,10},{42,3},{100,44},{1000,5},{100,66},{-5.5,-5}};
+    s21::Tree<char,std::string> tree_ch_st_2{{'a',"Jazz"}, {']',"I"}, {'(',"played"}, {'[',"with"}, {'b',"Yoda"}};
+    EXPECT_EQ(tree_db_it_2.size(), 5);
+    EXPECT_EQ(tree_ch_st_2.size(), 5);
+
+    tree_db_it.swap(tree_db_it_2);
+    tree_ch_st.swap(tree_ch_st_2);
+
+    EXPECT_EQ(tree_db_it_2.size(), 8);
+    EXPECT_EQ(tree_ch_st_2.size(), 10);
+    EXPECT_EQ(tree_db_it.size(), 5);
+    EXPECT_EQ(tree_ch_st.size(), 5);
+}
+TEST(TreeTest, CopyAssignment_SS) {
+    s21::Tree<int,int> tree_int{10,2,3,44,5,66,-5,-100,0,0,0,5,33,23,64,55,0,1,1000};
+    s21::Tree<double,double> tree_double{555.55, 423.2,2,1000,-55.55,-33.3,-1000,100,1000,100,-5.5};
+    s21::Tree<std::string,std::string> tree_str{"Jazz", "I", "played", "with", "Blues", "brothers", "like", "Yoda", "Wow", "!"};
+    s21::Tree<char,char> tree_char{'a', 'b', 'c', 'd','5','1','a','-','=','+','q','\n','\t','y',']','[','(','`'};
     EXPECT_EQ(tree_int.size(), 15);
     EXPECT_EQ(tree_double.size(), 9);
     EXPECT_EQ(tree_str.size(), 10);
     EXPECT_EQ(tree_char.size(), 17);
 
-    s21::Tree<int> tree_int_2=tree_int;
-    s21::Tree<double> tree_double_2=tree_double;
-    s21::Tree<std::string> tree_str_2=tree_str;
-    s21::Tree<char> tree_char_2=tree_char;
+    s21::Tree<int,int> tree_int_2=tree_int;
+    s21::Tree<double,double> tree_double_2=tree_double;
+    s21::Tree<std::string,std::string> tree_str_2=tree_str;
+    s21::Tree<char,char> tree_char_2=tree_char;
     EXPECT_EQ(tree_int.size(), 15);
     EXPECT_EQ(tree_double.size(), 9);
     EXPECT_EQ(tree_str.size(), 10);
@@ -414,27 +690,27 @@ TEST(TreeTest, CopyAssignment) {
     EXPECT_EQ(tree_str_2.size(), 10);
     EXPECT_EQ(tree_char_2.size(), 17);
 
-     s21::Tree<int> tree_int_3;
-     s21::Tree<double> tree_double_3;
-     s21::Tree<std::string> tree_str_3;
-     s21::Tree<char> tree_char_3;
-     s21::Tree<int> tree_int_4=tree_int_3;
-     s21::Tree<double> tree_double_4=tree_double_3;
-     s21::Tree<std::string> tree_str_4=tree_str_3;
-     s21::Tree<char> tree_char_4=tree_char_3;
-     EXPECT_EQ(tree_int_4.empty(), true);
-     EXPECT_EQ(tree_double_4.empty(), true);
-     EXPECT_EQ(tree_str_4.empty(), true);
-     EXPECT_EQ(tree_char_4.empty(), true);
-     EXPECT_EQ(tree_int_3.empty(), true);
-     EXPECT_EQ(tree_double_3.empty(), true);
-     EXPECT_EQ(tree_str_3.empty(), true);
-     EXPECT_EQ(tree_char_3.empty(), true);
+    s21::Tree<int,int> tree_int_3;
+    s21::Tree<double,double> tree_double_3;
+    s21::Tree<std::string,std::string> tree_str_3;
+    s21::Tree<char,char> tree_char_3;
+    s21::Tree<int,int> tree_int_4=tree_int_3;
+    s21::Tree<double,double> tree_double_4=tree_double_3;
+    s21::Tree<std::string,std::string> tree_str_4=tree_str_3;
+    s21::Tree<char,char> tree_char_4=tree_char_3;
+    EXPECT_EQ(tree_int_4.empty(), true);
+    EXPECT_EQ(tree_double_4.empty(), true);
+    EXPECT_EQ(tree_str_4.empty(), true);
+    EXPECT_EQ(tree_char_4.empty(), true);
+    EXPECT_EQ(tree_int_3.empty(), true);
+    EXPECT_EQ(tree_double_3.empty(), true);
+    EXPECT_EQ(tree_str_3.empty(), true);
+    EXPECT_EQ(tree_char_3.empty(), true);
 
-    tree_int.insert(123456789);
-    tree_double.insert(123456789.123456789);
-    tree_str.insert("Anything");
-    tree_char.insert('z');
+    tree_int.insert_(123456789);
+    tree_double.insert_(123456789.123456789);
+    tree_str.insert_("Anything");
+    tree_char.insert_('z');
     EXPECT_EQ(tree_int.size(), 16);
     EXPECT_EQ(tree_double.size(), 10);
     EXPECT_EQ(tree_str.size(), 11);
@@ -456,27 +732,38 @@ TEST(TreeTest, CopyAssignment) {
     EXPECT_EQ(tree_double_4.size(), 9);
     EXPECT_EQ(tree_str_4.size(), 10);
     EXPECT_EQ(tree_char_4.size(), 17);
-     EXPECT_EQ(tree_int.empty(), true);
-     EXPECT_EQ(tree_double.empty(), true);
-     EXPECT_EQ(tree_str.empty(), true);
-     EXPECT_EQ(tree_char.empty(), true);
-
-
+    EXPECT_EQ(tree_int.empty(), true);
+    EXPECT_EQ(tree_double.empty(), true);
+    EXPECT_EQ(tree_str.empty(), true);
+    EXPECT_EQ(tree_char.empty(), true);
 }
-TEST(TreeTest, MoveConstructor) {
-    s21::Tree<int> tree_int{10,2,3,44,5,66,-5,-100,0,0,0,5,33,23,64,55,0,1,1000};
-    s21::Tree<double> tree_double{555.55, 423.2,2,1000,-55.55,-33.3,-1000,100,1000,100,-5.5};
-    s21::Tree<std::string> tree_str{"Jazz", "I", "played", "with", "Blues", "brothers", "like", "Yoda", "Wow", "!"};
-    s21::Tree<char> tree_char{'a', 'b', 'c', 'd','5','1','a','-','=','+','q','\n','\t','y',']','[','(','`'};
+TEST(TreeTest, CopyAssignment_MS) {
+    s21::Tree<double,int> tree_db_it {{555.55,5}, {423.2,2},{1000,0},{-55.55,6000},{-33.3,-5},{-1000,100},{100100,100},{-5.5,15}};
+    s21::Tree<char,std::string> tree_ch_st{std::pair<char,std::string>{ '5',"Jazz"}, {'\n',"I"}, {'y',"played"}, {'(',"with"}, {'`',"Blues"}, {'-',"brothers"}, {'=',"like"}, {'b',"Yoda"}, {'d',"Wow"}, {'c',"!"}};
+    EXPECT_EQ(tree_db_it.size(), 8);
+    EXPECT_EQ(tree_ch_st.size(), 10);
+
+    s21::Tree<double,int> tree_db_it_2=tree_db_it;
+    s21::Tree<char,std::string> tree_ch_st_2=tree_ch_st;
+    EXPECT_EQ(tree_db_it.size(), 8);
+    EXPECT_EQ(tree_ch_st.size(), 10);
+    EXPECT_EQ(tree_db_it_2.size(), 8);
+    EXPECT_EQ(tree_ch_st_2.size(), 10);
+}
+TEST(TreeTest, MoveConstructor_SS) {
+    s21::Tree<int,int> tree_int{10,2,3,44,5,66,-5,-100,0,0,0,5,33,23,64,55,0,1,1000};
+    s21::Tree<double,double> tree_double{555.55, 423.2,2,1000,-55.55,-33.3,-1000,100,1000,100,-5.5};
+    s21::Tree<std::string,std::string> tree_str{"Jazz", "I", "played", "with", "Blues", "brothers", "like", "Yoda", "Wow", "!"};
+    s21::Tree<char,char> tree_char{'a', 'b', 'c', 'd','5','1','a','-','=','+','q','\n','\t','y',']','[','(','`'};
     EXPECT_EQ(tree_int.size(), 15);
     EXPECT_EQ(tree_double.size(), 9);
     EXPECT_EQ(tree_str.size(), 10);
     EXPECT_EQ(tree_char.size(), 17);
 
-    s21::Tree<int> tree_int_2(std::move(tree_int));
-    s21::Tree<double> tree_double_2(std::move(tree_double));
-    s21::Tree<std::string> tree_str_2(std::move(tree_str));
-    s21::Tree<char> tree_char_2(std::move(tree_char));
+    s21::Tree<int,int> tree_int_2(std::move(tree_int));
+    s21::Tree<double,double> tree_double_2(std::move(tree_double));
+    s21::Tree<std::string,std::string> tree_str_2(std::move(tree_str));
+    s21::Tree<char,char> tree_char_2(std::move(tree_char));
     EXPECT_EQ(tree_int_2.size(), 15);
     EXPECT_EQ(tree_double_2.size(), 9);
     EXPECT_EQ(tree_str_2.size(), 10);
@@ -486,20 +773,33 @@ TEST(TreeTest, MoveConstructor) {
     EXPECT_EQ(tree_str.size(), 0);
     EXPECT_EQ(tree_char.size(), 0);
 }
-TEST(TreeTest, CopyConstructor) {
-    s21::Tree<int> tree_int{10,2,3,44,5,66,-5,-100,0,0,0,5,33,23,64,55,0,1,1000};
-    s21::Tree<double> tree_double{555.55, 423.2,2,1000,-55.55,-33.3,-1000,100,1000,100,-5.5};
-    s21::Tree<std::string> tree_str{"Jazz", "I", "played", "with", "Blues", "brothers", "like", "Yoda", "Wow", "!"};
-    s21::Tree<char> tree_char{'a', 'b', 'c', 'd','5','1','a','-','=','+','q','\n','\t','y',']','[','(','`'};
+TEST(TreeTest, MoveConstructor_MS) {
+    s21::Tree<double,int> tree_db_it {{555.55,5}, {423.2,2},{1000,0},{-55.55,6000},{-33.3,-5},{-1000,100},{100100,100},{-5.5,15}};
+    s21::Tree<char,std::string> tree_ch_st{std::pair<char,std::string>{ '5',"Jazz"}, {'\n',"I"}, {'y',"played"}, {'(',"with"}, {'`',"Blues"}, {'-',"brothers"}, {'=',"like"}, {'b',"Yoda"}, {'d',"Wow"}, {'c',"!"}};
+    EXPECT_EQ(tree_db_it.size(), 8);
+    EXPECT_EQ(tree_ch_st.size(), 10);
+
+    s21::Tree<double,int> tree_db_it_2(std::move(tree_db_it));
+    s21::Tree<char,std::string> tree_ch_st_2(std::move(tree_ch_st));
+    EXPECT_EQ(tree_db_it_2.size(), 8);
+    EXPECT_EQ(tree_ch_st_2.size(), 10);
+    EXPECT_EQ(tree_db_it.size(), 0);
+    EXPECT_EQ(tree_ch_st.size(), 0);
+}
+TEST(TreeTest, CopyConstructor_SS) {
+    s21::Tree<int,int> tree_int{10,2,3,44,5,66,-5,-100,0,0,0,5,33,23,64,55,0,1,1000};
+    s21::Tree<double,double> tree_double{555.55, 423.2,2,1000,-55.55,-33.3,-1000,100,1000,100,-5.5};
+    s21::Tree<std::string,std::string> tree_str{"Jazz", "I", "played", "with", "Blues", "brothers", "like", "Yoda", "Wow", "!"};
+    s21::Tree<char,char> tree_char{'a', 'b', 'c', 'd','5','1','a','-','=','+','q','\n','\t','y',']','[','(','`'};
     EXPECT_EQ(tree_int.size(), 15);
     EXPECT_EQ(tree_double.size(), 9);
     EXPECT_EQ(tree_str.size(), 10);
     EXPECT_EQ(tree_char.size(), 17);
 
-    s21::Tree<int> tree_int_2(tree_int);
-    s21::Tree<double> tree_double_2(tree_double);
-    s21::Tree<std::string> tree_str_2(tree_str);
-    s21::Tree<char> tree_char_2(tree_char);
+    s21::Tree<int,int> tree_int_2(tree_int);
+    s21::Tree<double,double> tree_double_2(tree_double);
+    s21::Tree<std::string,std::string> tree_str_2(tree_str);
+    s21::Tree<char,char> tree_char_2(tree_char);
     EXPECT_EQ(tree_int_2.size(), 15);
     EXPECT_EQ(tree_double_2.size(), 9);
     EXPECT_EQ(tree_str_2.size(), 10);
@@ -509,27 +809,50 @@ TEST(TreeTest, CopyConstructor) {
     EXPECT_EQ(tree_str.size(), 10);
     EXPECT_EQ(tree_char.size(), 17);
 }
+TEST(TreeTest, CopyConstructor_MS) {
+    s21::Tree<double,int> tree_db_it {{555.55,5}, {423.2,2},{1000,0},{-55.55,6000},{-33.3,-5},{-1000,100},{100100,100},{-5.5,15}};
+    s21::Tree<char,std::string> tree_ch_st{std::pair<char,std::string>{ '5',"Jazz"}, {'\n',"I"}, {'y',"played"}, {'(',"with"}, {'`',"Blues"}, {'-',"brothers"}, {'=',"like"}, {'b',"Yoda"}, {'d',"Wow"}, {'c',"!"}};
+    EXPECT_EQ(tree_db_it.size(), 8);
+    EXPECT_EQ(tree_ch_st.size(), 10);
+
+    s21::Tree<double,int> tree_db_it_2(tree_db_it);
+    s21::Tree<char,std::string> tree_ch_st_2(tree_ch_st);
+    EXPECT_EQ(tree_db_it_2.size(), 8);
+    EXPECT_EQ(tree_ch_st_2.size(), 10);
+    EXPECT_EQ(tree_db_it.size(), 8);
+    EXPECT_EQ(tree_ch_st.size(), 10);
+}
 // This thest is systrm dependent -- may cause errors 
-TEST(TreeTest, Max_size) {
-    s21::Tree<int> tree_int{10,2,3,44,5,66,-5,-100,0,0,0,5,33,23,64,55,0,1,1000};
-    s21::Tree<double> tree_double{555.55, 423.2,2,1000,-55.55,-33.3,-1000,100,1000,100,-5.5};
-    s21::Tree<std::string> tree_str{"Jazz", "I", "played", "with", "Blues", "brothers", "like", "Yoda", "Wow", "!"};
-    s21::Tree<char> tree_char{'a', 'b', 'c', 'd','5','1','a','-','=','+','q','\n','\t','y',']','[','(','`'};
-    s21::Tree<int> tree_int_2;
-    s21::Tree<double> tree_double_2;
-    s21::Tree<std::string> tree_str_2;
-    s21::Tree<char> tree_char_2;
+TEST(TreeTest, Max_size_SS_MS) {
+    s21::Tree<int,int> tree_int{10,2,3,44,5,66,-5,-100,0,0,0,5,33,23,64,55,0,1,1000};
+    s21::Tree<double,double> tree_double{555.55, 423.2,2,1000,-55.55,-33.3,-1000,100,1000,100,-5.5};
+    s21::Tree<std::string,std::string> tree_str{"Jazz", "I", "played", "with", "Blues", "brothers", "like", "Yoda", "Wow", "!"};
+    s21::Tree<char,char> tree_char{'a', 'b', 'c', 'd','5','1','a','-','=','+','q','\n','\t','y',']','[','(','`'};
+    s21::Tree<double,int> tree_db_it {{555.55,5}, {423.2,2},{1000,0},{-55.55,6000},{-33.3,-5},{-1000,100},{100100,100},{-5.5,15}};
+    s21::Tree<char,std::string> tree_ch_st{std::pair<char,std::string>{ '5',"Jazz"}, {'\n',"I"}, {'y',"played"}, {'(',"with"}, {'`',"Blues"}, {'-',"brothers"}, {'=',"like"}, {'b',"Yoda"}, {'d',"Wow"}, {'c',"!"}};
+    
+    s21::Tree<int,int> tree_int_2;
+    s21::Tree<double,double> tree_double_2;
+    s21::Tree<std::string,std::string> tree_str_2;
+    s21::Tree<char,char> tree_char_2;    
+    s21::Tree<double,int> tree_db_it_2;
+    s21::Tree<char,std::string> tree_ch_st_2;
+
     EXPECT_EQ(tree_int.max_size(),576460752303423487);
-    EXPECT_EQ(tree_double.max_size(),576460752303423487);
-    EXPECT_EQ(tree_str.max_size(),329406144173384850);
+    EXPECT_EQ(tree_double.max_size(),461168601842738790);
+    EXPECT_EQ(tree_str.max_size(),209622091746699450);
     EXPECT_EQ(tree_char.max_size(),576460752303423487);
     EXPECT_EQ(tree_int_2.max_size(),576460752303423487);
-    EXPECT_EQ(tree_double_2.max_size(),576460752303423487);
-    EXPECT_EQ(tree_str_2.max_size(),329406144173384850);
+    EXPECT_EQ(tree_double_2.max_size(),461168601842738790);
+    EXPECT_EQ(tree_str_2.max_size(),209622091746699450);
     EXPECT_EQ(tree_char_2.max_size(),576460752303423487);
+    EXPECT_EQ(tree_db_it.max_size(),461168601842738790);
+    EXPECT_EQ(tree_db_it_2.max_size(),461168601842738790);
+    EXPECT_EQ(tree_ch_st.max_size(),288230376151711743);
+    EXPECT_EQ(tree_ch_st_2.max_size(),288230376151711743);
 }
-TEST(TreeTest, Remove_int) {
-    s21::Tree<int> tree_int{15,4,26,5,20,0,34,10,16,22,3,32,-5,50,8,18,12,21,1,28,33,-2,43,-10,100};
+TEST(TreeTest, Remove_int_SS) {
+    s21::Tree<int,int> tree_int{15,4,26,5,20,0,34,10,16,22,3,32,-5,50,8,18,12,21,1,28,33,-2,43,-10,100};
     EXPECT_EQ(tree_int.size(), 25);
     // tree_int.showTreeVertical();
     EXPECT_EQ(tree_int.contains(-10),true);
@@ -589,8 +912,41 @@ TEST(TreeTest, Remove_int) {
     EXPECT_EQ(tree_int.contains(0),false);
     // tree_int.showTreeVertical();
 }
-TEST(TreeTest, Remove_double) {
-    s21::Tree<double> tree{15.15,4.4,26.26,5.5,20.20,0,34.34,10.1,16.16,22.22,3.3,32.32,-5.5,50.50,8.8,18.18,12.12,21.21,1.1,28.28,33.33,-2.2,43.43,-10.1,100.1};
+TEST(TreeTest, Remove_double_int_MS) {
+    s21::Tree<double,int> tree_db_it {{555.55,5}, {423.2,2},{1000,0},{-55.55,6000},{-33.3,-5},{-1000,100},{100100,100},{-5.5,15}};
+    EXPECT_EQ(tree_db_it.size(), 8);
+    EXPECT_EQ(tree_db_it.contains(423.2),true);
+    tree_db_it.remove(423.2);
+    EXPECT_EQ(tree_db_it.size(), 7);
+    EXPECT_EQ(tree_db_it.contains(423.2),false);
+    EXPECT_EQ(tree_db_it.contains(1000),true);
+    tree_db_it.remove(1000);
+    EXPECT_EQ(tree_db_it.size(), 6);
+    EXPECT_EQ(tree_db_it.contains(1000),false);
+    EXPECT_EQ(tree_db_it.contains(-1000),true);
+    tree_db_it.remove(-1000);
+    EXPECT_EQ(tree_db_it.size(), 5);
+    EXPECT_EQ(tree_db_it.contains(-1000),false);
+    tree_db_it.remove(555.55);
+    tree_db_it.remove(100100);
+    tree_db_it.remove(-5.5);
+    tree_db_it.remove(-33.3);
+    EXPECT_EQ(tree_db_it.size(), 1);
+    EXPECT_EQ(tree_db_it.contains(555.55),false);
+    EXPECT_EQ(tree_db_it.contains(100100),false);
+    EXPECT_EQ(tree_db_it.contains(-5.5),false);
+    EXPECT_EQ(tree_db_it.contains(-33.3),false);
+    EXPECT_EQ(tree_db_it.contains(-55.55),true);
+    tree_db_it.remove(-55.55);
+    EXPECT_EQ(tree_db_it.size(), 0);
+    EXPECT_EQ(tree_db_it.empty(), true);
+    tree_db_it.remove(0);
+    EXPECT_EQ(tree_db_it.size(), 0);
+    EXPECT_EQ(tree_db_it.empty(), true);
+    // tree_db_it.showTreeVertical();
+}
+TEST(TreeTest, Remove_double_SS) {
+    s21::Tree<double,double> tree{15.15,4.4,26.26,5.5,20.20,0,34.34,10.1,16.16,22.22,3.3,32.32,-5.5,50.50,8.8,18.18,12.12,21.21,1.1,28.28,33.33,-2.2,43.43,-10.1,100.1};
     EXPECT_EQ(tree.size(), 25);
     // tree.showTreeVertical();
     EXPECT_EQ(tree.contains(-10.1),true);
@@ -636,14 +992,12 @@ TEST(TreeTest, Remove_double) {
     // tree.showTreeVertical();
 }
 TEST(TreeTest, Remove_string) {
-    s21::Tree<std::string> tree{"What's", "up", "Vsauce", "Michael", "Here", "!"};
+    s21::Tree<std::string,std::string> tree{"What's", "up", "Vsauce", "Michael", "Here", "!"};
     EXPECT_EQ(tree.size(), 6);
-    // tree.showTreeVertical();
     EXPECT_EQ(tree.contains("up"),true);
     tree.remove("up");
     EXPECT_EQ(tree.size(), 5);
     EXPECT_EQ(tree.contains("up"),false);
-    // tree.showTreeVertical();
     EXPECT_EQ(tree.contains("Vsauce"),true);
     tree.remove("Vsauce");
     EXPECT_EQ(tree.size(), 4);
@@ -656,20 +1010,16 @@ TEST(TreeTest, Remove_string) {
     tree.remove("!");
     EXPECT_EQ(tree.size(), 2);
     EXPECT_EQ(tree.contains("!"),false);
-    tree.insert("?");
+    tree.insert_("?");
     EXPECT_EQ(tree.size(), 3);
-    // tree.showTreeVertical();
-
 }
-TEST(TreeTest, Remove_char) {
-    s21::Tree<char> tree{'g','\0','4','a','\t','0','f','v','b','n','j','h','t','e'};
+TEST(TreeTest, Remove_char_SS) {
+    s21::Tree<char,char> tree{'g','\0','4','a','\t','0','f','v','b','n','j','h','t','e'};
     EXPECT_EQ(tree.size(), 14);
-    // tree.showTreeVertical();
     EXPECT_EQ(tree.contains('4'),true);
     tree.remove('4');
     EXPECT_EQ(tree.size(), 13);
     EXPECT_EQ(tree.contains('4'),false);
-    // tree.showTreeVertical();
     EXPECT_EQ(tree.contains('1'),false);
     tree.remove('1');
     EXPECT_EQ(tree.size(), 13);
@@ -689,11 +1039,40 @@ TEST(TreeTest, Remove_char) {
     EXPECT_EQ(tree.contains('v'),false);
     EXPECT_EQ(tree.contains('b'),false);
     EXPECT_EQ(tree.contains('n'),false);
-    
-    // tree.showTreeVertical();
 }
-TEST(TreeTest, Parent) {
-s21::Tree<int> tree_int{15,4,26,5,20,0,34,10,16,22,3,32,-5,50,8,18,12,21,1,28,33,-2,43,-10,100};
+TEST(TreeTest, Remove_string_char_MS) {
+    s21::Tree<std::string, char> tree{std::pair<std::string,char>{ "Jazz",'5'}, {"I",'\n'}, {"played",'y'}, {"with",'('},{"brothers",'-'}};
+    EXPECT_EQ(tree.size(), 5);
+    std::string str="up";
+    EXPECT_EQ(tree.contains(str),false);
+    tree.remove(str);
+    EXPECT_EQ(tree.size(), 5);
+    str="Jazz";
+    EXPECT_EQ(tree.contains(str),true);
+    tree.remove(str);
+    EXPECT_EQ(tree.size(), 4);
+    EXPECT_EQ(tree.contains(str),false);
+    EXPECT_EQ(tree.contains("played"),true);
+    tree.remove("played");
+    EXPECT_EQ(tree.size(), 3);
+    EXPECT_EQ(tree.contains("played"),false);
+    EXPECT_EQ(tree.contains("I"),true);
+    tree.remove("I");
+    EXPECT_EQ(tree.size(), 2);
+    EXPECT_EQ(tree.contains("I"),false);
+    EXPECT_EQ(tree.contains("with"),true);
+    tree.remove("with");
+    tree.remove("with");
+    EXPECT_EQ(tree.size(), 1);
+    EXPECT_EQ(tree.contains("with"),false);
+    EXPECT_EQ(tree.contains("brothers"),true);
+    tree.remove("brothers");
+    EXPECT_EQ(tree.size(), 0);
+    EXPECT_EQ(tree.empty(), true);
+    EXPECT_EQ(tree.contains("brothers"),false);
+}
+TEST(TreeTest, Parent_SS) {
+s21::Tree<int,int> tree_int{15,4,26,5,20,0,34,10,16,22,3,32,-5,50,8,18,12,21,1,28,33,-2,43,-10,100};
     EXPECT_EQ(tree_int.size(), 25);
     EXPECT_THROW(tree_int.getParentData(15),std::out_of_range);
     EXPECT_EQ(tree_int.getParentData(26),15);
@@ -734,14 +1113,23 @@ s21::Tree<int> tree_int{15,4,26,5,20,0,34,10,16,22,3,32,-5,50,8,18,12,21,1,28,33
     EXPECT_EQ(tree_int.getParentData(22),21);
     EXPECT_EQ(tree_int.getParentData(50),43);
 }
-TEST(TreeTest, begin_end) {
-    s21::Tree<int> tree_int{15,4,26,5,20,0,34,10,16,22,3,32,-5,50,8,18,12,21,1,28,33,-2,43,-10,100};
+TEST(TreeTest, Parent_MS) {
+    s21::Tree<char,std::string> tree_ch_st{std::pair<char,std::string>{ '5',"Jazz"}, {'\n',"I"}, {'y',"played"}, {'(',"with"}, {'`',"Blues"}, {'-',"brothers"}, {'=',"like"}, {'b',"Yoda"}, {'d',"Wow"}, {'c',"!"}};
+    EXPECT_EQ(tree_ch_st.size(), 10);
+    EXPECT_THROW(tree_ch_st.getParentData('5'),std::out_of_range);
+    EXPECT_EQ(tree_ch_st.getParentData('y'),'d');
+    EXPECT_EQ(tree_ch_st.getParentData('`'),'b');
+    EXPECT_EQ(tree_ch_st.getParentData('\n'),'(');
+    // tree_ch_st.crazyPrinter();
+}
+TEST(TreeTest, Begin_End_SS) {
+    s21::Tree<int,int> tree_int{15,4,26,5,20,0,34,10,16,22,3,32,-5,50,8,18,12,21,1,28,33,-2,43,-10,100};
     EXPECT_EQ(tree_int.size(), 25);
-    s21::Tree<double> tree_double{15.15,4.4,26.26,5.5,20.20,0,34.34,10.1,16.16,22.22,3.3,32.32,-5.5,50.50,8.8,18.18,12.12,21.21,1.1,28.28,33.33,-2.2,43.43,-10.1,100.1};
+    s21::Tree<double,double> tree_double{15.15,4.4,26.26,5.5,20.20,0,34.34,10.1,16.16,22.22,3.3,32.32,-5.5,50.50,8.8,18.18,12.12,21.21,1.1,28.28,33.33,-2.2,43.43,-10.1,100.1};
     EXPECT_EQ(tree_double.size(), 25);
-    s21::Tree<std::string> tree_string{"What's", "up", "Vsauce", "Michael", "here", "!"};
+    s21::Tree<std::string,std::string> tree_string{"What's", "up", "Vsauce", "Michael", "here", "!"};
     EXPECT_EQ(tree_string.size(), 6);
-     s21::Tree<char> tree_char{'g','\0','4','a','\t','0','f','v','b','n','j','h','t','e'};
+     s21::Tree<char,char> tree_char{'g','\0','4','a','\t','0','f','v','b','n','j','h','t','e'};
     EXPECT_EQ(tree_char.size(), 14);
 
     EXPECT_EQ(*(tree_int.begin()),-10);
@@ -797,28 +1185,38 @@ TEST(TreeTest, begin_end) {
     tree_string.remove("Vsauce");
    EXPECT_THROW(*(tree_string.begin()),std::out_of_range);
 }
-TEST(TreeTest, iterator) {
-    s21::Tree<int> tree_int{15,4,26,5,20,0,34,10,16,22,3,32,-5,50,8,18,12,21,1,28,33,-2,43,-10,100};
+TEST(TreeTest, Begin_End_MS) {
+    s21::Tree<double,int> tree_db_it {{555.55,5}, {423.2,2},{1000,0},{-55.55,6000},{-33.3,-5},{-1000,100},{100100,100},{-5.5,15}};
+    s21::Tree<char,std::string> tree_ch_st{std::pair<char,std::string>{ '5',"Jazz"}, {'\n',"I"}, {'y',"played"}, {'(',"with"}, {'`',"Blues"}, {'-',"brothers"}, {'=',"like"}, {'b',"Yoda"}, {'d',"Wow"}, {'c',"!"}};
+    EXPECT_EQ(tree_db_it.size(), 8);
+    EXPECT_EQ(tree_ch_st.size(), 10);
+    EXPECT_EQ(*(tree_db_it.begin()),100);
+    EXPECT_EQ(*(tree_db_it.end()),100);
+    EXPECT_EQ(*(tree_ch_st.begin()),"I");
+    EXPECT_EQ(*(tree_ch_st.end()),"played");
+}
+TEST(TreeTest, Iterator) {
+    s21::Tree<int,int> tree_int{15,4,26,5,20,0,34,10,16,22,3,32,-5,50,8,18,12,21,1,28,33,-2,43,-10,100};
     EXPECT_EQ(tree_int.size(), 25);
-    s21::Tree<double> tree_double{15.15,4.4,26.26,5.5,20.20,0,34.34,10.1,16.16,22.22,3.3,32.32,-5.5,50.50,8.8,18.18,12.12,21.21,1.1,28.28,33.33,-2.2,43.43,-10.1,100.1};
+    s21::Tree<double,double> tree_double{15.15,4.4,26.26,5.5,20.20,0,34.34,10.1,16.16,22.22,3.3,32.32,-5.5,50.50,8.8,18.18,12.12,21.21,1.1,28.28,33.33,-2.2,43.43,-10.1,100.1};
     EXPECT_EQ(tree_double.size(), 25);
-    s21::Tree<std::string> tree_string{"What's", "up", "Vsauce", "Michael", "here", "!"};
+    s21::Tree<std::string,std::string> tree_string{"What's", "up", "Vsauce", "Michael", "here", "!"};
     EXPECT_EQ(tree_string.size(), 6);
-     s21::Tree<char> tree_char{'g','\0','4','a','\t','0','f','v','b','n','j','h','t','e'};
+     s21::Tree<char,char> tree_char{'g','\0','4','a','\t','0','f','v','b','n','j','h','t','e'};
     EXPECT_EQ(tree_char.size(), 14);
 
-    s21::Tree<int>::iterator it_int=tree_int.begin();
-    s21::Tree<int>::constIterator cit_int(tree_int.end());
+    s21::Tree<int,int>::iterator it_int=tree_int.begin();
+    s21::Tree<int,int>::constIterator cit_int(tree_int.end());
     EXPECT_EQ(*(it_int),-10);
     EXPECT_EQ(*cit_int,100);
 
-    s21::Tree<double>::iterator it_double =tree_double.begin();
-    s21::Tree<double>::iterator it_double_2 =it_double;
-    s21::Tree<double>::iterator it_double_3(it_double);
-    s21::Tree<double>::iterator it_double_4(tree_double.end());
-    s21::Tree<double>::constIterator cit_double(it_double);
-    s21::Tree<double>::constIterator cit_double_2(cit_double);
-    s21::Tree<double>::constIterator cit_double_3(it_double_4);
+    s21::Tree<double,double>::iterator it_double =tree_double.begin();
+    s21::Tree<double,double>::iterator it_double_2 =it_double;
+    s21::Tree<double,double>::iterator it_double_3(it_double);
+    s21::Tree<double,double>::iterator it_double_4(tree_double.end());
+    s21::Tree<double,double>::constIterator cit_double(it_double);
+    s21::Tree<double,double>::constIterator cit_double_2(cit_double);
+    s21::Tree<double,double>::constIterator cit_double_3(it_double_4);
 
     EXPECT_EQ(*(it_double),-10.1);
     EXPECT_EQ(*(it_double_2),-10.1);
@@ -841,7 +1239,7 @@ TEST(TreeTest, iterator) {
     it_int+=1000;
     EXPECT_EQ(*(it_int),100);
 
-    s21::Tree<std::string>::iterator it_string;
+    s21::Tree<std::string,std::string>::iterator it_string;
     it_string=tree_string;
     EXPECT_EQ(*(it_string),"What's");
     EXPECT_EQ(it_double==it_double_2, true);
@@ -852,7 +1250,7 @@ TEST(TreeTest, iterator) {
     EXPECT_EQ(cit_double==cit_double_2,true);
     EXPECT_EQ(cit_double==cit_double_3,false);
 
-    s21::Tree<int>::iterator it_int_2;
+    s21::Tree<int,int>::iterator it_int_2;
     it_int_2=--it_int;
     EXPECT_EQ(*(it_int_2),50);
     EXPECT_EQ(*(it_int),50);
@@ -861,4 +1259,124 @@ TEST(TreeTest, iterator) {
      EXPECT_EQ(*(it_int_2),50);
      EXPECT_EQ(*(it_int),43);
      EXPECT_EQ(it_int_2==it_int, false);
+}
+TEST(TreeTest, Mixed_SS_MS){
+    s21::Tree<int,int> tree_int{10,2,3,44,5,66,-5,-100,0,0,0,5,33,23,64,55,0,1,1000};
+    s21::Tree<double,double> tree_double{555.55, 423.2,2,1000,-55.55,-33.3,-1000,100,1000,100,-5.5};
+    s21::Tree<std::string,std::string> tree_str{"Jazz", "I", "played", "with", "Blues", "brothers", "like", "Yoda", "Wow", "!"};
+    s21::Tree<char,char> tree_char{'a', 'b', 'c', 'd','5','1','a','-','=','+','q','\n','\t','y',']','[','(','`'};
+    EXPECT_EQ(tree_int.size(), 15);
+    EXPECT_EQ(tree_double.size(), 9);
+    EXPECT_EQ(tree_str.size(), 10);
+    EXPECT_EQ(tree_char.size(), 17);
+    s21::Tree<double,int> tree_db_it {{555.55,5}, {423.2,2},{1000,0},{-55.55,6000},{-33.3,-5},{-1000,100},{100100,100},{-5.5,15}};
+    s21::Tree<char,std::string> tree_ch_st{std::pair<char,std::string>{ '5',"Jazz"}, {'\n',"I"}, {'y',"played"}, {'(',"with"}, {'`',"Blues"}, {'-',"brothers"}, {'=',"like"}, {'b',"Yoda"}, {'d',"Wow"}, {'c',"!"}};
+    EXPECT_EQ(tree_db_it.size(), 8);
+    EXPECT_EQ(tree_ch_st.size(), 10);
+
+    s21::Tree<double,int>::iterator it_tree_db_it=tree_db_it.begin();
+    EXPECT_EQ(it_tree_db_it.getValue(),100);
+    EXPECT_EQ(it_tree_db_it.getKey(),-1000);
+    EXPECT_EQ(it_tree_db_it.getPair().first,-1000);
+    EXPECT_EQ(it_tree_db_it.getPair().second,100);
+
+    s21::Tree<double,int>::iterator it;
+    EXPECT_THROW(*it,std::out_of_range);
+
+    it=tree_db_it.find(-55.55);
+    EXPECT_EQ(*it,6000);
+    std::pair<s21::Tree<std::string,std::string>::iterator_,bool> output;
+    output=tree_str.insert("Han");
+    EXPECT_EQ(output.second,true);
+    EXPECT_EQ(*output.first,"Han");
+    EXPECT_EQ(tree_str.contains("Han"),true);
+    output=tree_str.insert("Han");
+    EXPECT_EQ(output.second,false);
+    EXPECT_THROW(*output.first,std::out_of_range);
+    EXPECT_EQ(tree_str.contains("Han"),true);
+
+    
+    std::pair<s21::Tree<char,std::string>::iterator_,bool> output_2;
+    output_2=tree_ch_st.insert('5',"Jazz");
+    EXPECT_EQ(output_2.second,false);
+    EXPECT_EQ(tree_ch_st.contains('5'),true);
+    output_2=tree_ch_st.insert('+',"Rock");
+    EXPECT_EQ(output_2.second,true);
+    EXPECT_EQ(tree_ch_st.contains('+'),true);
+    EXPECT_EQ(*output_2.first,"Rock");
+    EXPECT_EQ(output_2.first.getKey(),'+');
+
+    tree_ch_st.erase(output_2.first);
+    EXPECT_EQ(tree_ch_st.contains('+'),false);
+    tree_db_it.erase(it);
+    EXPECT_EQ(tree_db_it.size(),7);
+    EXPECT_EQ(tree_db_it.contains(-55.55),false);
+}
+TEST(TreeTest, Merge_SS_MS){
+    s21::Tree<int,int> tree_int{10,2,3,44,5,66,-5,-100,0,0,0,5,33,23,64,55,0,1,1000};
+    s21::Tree<int,int> tree_int_2{11,12,13,14,15,16,17,18,19,20,23,33,64,55,0,-1000};
+    s21::Tree<double,double> tree_double{555.55, 423.2,2,1000,-55.55,-33.3,-1000,100,1000,100,-5.5};
+    s21::Tree<double,double> tree_double_2{1000, 1000, 12345.12334, 234.345, 678.678};
+    s21::Tree<std::string,std::string> tree_str{"Jazz", "Me", "played", "with", "Blues", "brothers", "like", "Yoda", "Wow", "!"};
+    s21::Tree<std::string,std::string> tree_str_2{"I", "Love", "Trains","!"};
+    s21::Tree<char,char> tree_char{'a', 'b', 'c', 'd','5','1','a','-','=','+','q','\n','\t','y',']','[','(','`'};
+    s21::Tree<char,char> tree_char_2{'a', 'b', 'c', 'd','5','1','a','-','=','+','q','\n','\t','y',']','[','(','`'};
+    EXPECT_EQ(tree_int.size(), 15);
+    EXPECT_EQ(tree_int_2.size(), 16);
+    EXPECT_EQ(tree_double.size(), 9);
+    EXPECT_EQ(tree_double_2.size(), 4);
+    EXPECT_EQ(tree_str.size(), 10);
+    EXPECT_EQ(tree_str_2.size(), 4);
+    EXPECT_EQ(tree_char.size(), 17);
+    EXPECT_EQ(tree_char_2.size(), 17);
+    s21::Tree<double,int> tree_db_it {{555.55,5}, {423.2,2},{1000,0},{-55.55,6000},{-33.3,-5},{-1000,100},{100100,100},{-5.5,15}};
+    s21::Tree<double,int> tree_db_it_2 {{1000.1,1000},{4.2,2},{10,0},{-55.5,6000},{-33.3,-5},{-1000,100},{100,100},{-5,15}};
+    s21::Tree<char,std::string> tree_ch_st{std::pair<char,std::string>{ '5',"Jazz"}, {'\n',"I"}, {'y',"played"}, {'(',"with"}, {'`',"Blues"}, {'-',"brothers"}, {'=',"like"}, {'b',"Yoda"}, {'d',"Wow"}, {'c',"!"}};
+    s21::Tree<std::string, char> tree_ch_st_2{std::pair<std::string,char>{ "Jazz",'5'}, {"I",'\n'}, {"played",'y'}, {"with",'('},{"brothers",'-'}};
+    EXPECT_EQ(tree_db_it.size(), 8);
+    EXPECT_EQ(tree_db_it_2.size(), 8);
+    EXPECT_EQ(tree_ch_st.size(), 10);
+    EXPECT_EQ(tree_ch_st_2.size(), 5);
+    s21::Tree<int,int> tree_int_3;
+    s21::Tree<int,int> tree_int_4;
+
+    tree_int.merge(tree_int_2);
+    EXPECT_EQ(tree_int.size(), 26);
+    EXPECT_EQ(tree_int_2.size(), 5);
+    EXPECT_EQ(tree_int.contains(10),true);
+    EXPECT_EQ(tree_int.contains(11),true);
+    EXPECT_EQ(tree_int.contains(12),true);
+    EXPECT_EQ(tree_int_2.contains(13),false);
+    EXPECT_EQ(tree_int_2.contains(14),false);
+    EXPECT_EQ(tree_int_2.contains(55),true);
+    EXPECT_EQ(tree_int.contains(55),true);
+
+    tree_int.merge(tree_int_3);
+    EXPECT_EQ(tree_int.size(), 26);
+    EXPECT_EQ(tree_int_3.size(), 0);
+
+    tree_int_4.merge(tree_int);
+    EXPECT_EQ(tree_int.size(), 0);
+    EXPECT_EQ(tree_int_4.size(), 26);
+    EXPECT_EQ(tree_int_4.contains(10),true);
+    EXPECT_EQ(tree_int_4.contains(11),true);
+    EXPECT_EQ(tree_int_4.contains(12),true);
+
+    tree_double.merge(tree_double_2);
+    EXPECT_EQ(tree_double.size(), 12);
+    EXPECT_EQ(tree_double_2.size(), 1);
+    EXPECT_EQ(tree_double.contains(12345.12334),true);
+
+    tree_str.merge(tree_str_2);
+    EXPECT_EQ(tree_str.size(), 13);
+    EXPECT_EQ(tree_str_2.size(), 1);
+    EXPECT_EQ(tree_str.contains("Trains"),true);
+
+    tree_char.merge(tree_char_2);
+    EXPECT_EQ(tree_char.size(), 17);
+    EXPECT_EQ(tree_char_2.size(), 17);
+
+    tree_db_it.merge(tree_db_it_2);
+    EXPECT_EQ(tree_db_it.size(), 14);
+    EXPECT_EQ(tree_db_it_2.size(), 2);
 }

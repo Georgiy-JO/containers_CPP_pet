@@ -139,6 +139,7 @@ Note: the arguments are the already created elements of the appropriate containe
 
 | Task                                           | Nickname | Done | Check |
 | ---------------------------------------------- | -------- | ---- | ----- |
+| `Tree`                                         | riderkri |  ✔   |       |
 | implement `list`                               | tanishag |      |       |
 | implement `map`                                | troyiggo |      |       |
 | implement `queue`                              | orenbran |      |       |

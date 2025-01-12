@@ -1,7 +1,8 @@
 #pragma once
 
-template <typename T>
-typename Tree<T>::node_* Tree<T>::iterator_::getNext(node_* node){
+
+template <typename Key_T, typename T>
+typename Tree<Key_T,T>::node_* Tree<Key_T,T>::iterator_::getNext(node_* node){
     if(!node)
         return nullptr;
     if(node->right_)
@@ -15,14 +16,14 @@ typename Tree<T>::node_* Tree<T>::iterator_::getNext(node_* node){
             if(!parent->parent_)
                 break;
         }
-        if(parent->data_>node->data_)
+        if(parent->key_>node->key_)
             node= parent;
     }
     return node;
 }
 
-template <typename T>
-typename Tree<T>::node_* Tree<T>::iterator_::getPrev( node_* node){
+template <typename Key_T, typename T>
+typename Tree<Key_T,T>::node_* Tree<Key_T,T>::iterator_::getPrev( node_* node){
     if(!node)
         return nullptr;
     if(node->left_)
@@ -36,45 +37,45 @@ typename Tree<T>::node_* Tree<T>::iterator_::getPrev( node_* node){
             if(!parent->parent_)
                 break;
         }
-        if(parent->data_<node->data_)
+        if(parent->key_<node->key_)
             node= parent;
     }
     return node;
 }
 
 
-template <typename T>
-typename Tree<T>::iterator_& Tree<T>::iterator_::operator=(const iterator_& other){
+template <typename Key_T, typename T>
+typename Tree<Key_T,T>::iterator_& Tree<Key_T,T>::iterator_::operator=(const iterator_& other){
     element_=other.element_;
     return *this;
 }
 
-template <typename T>
-typename Tree<T>::iterator_& Tree<T>::iterator_::operator=(const Tree<T>& tree){
+template <typename Key_T, typename T>
+typename Tree<Key_T,T>::iterator_& Tree<Key_T,T>::iterator_::operator=(const Tree<Key_T,T>& tree){
     element_=tree.root_;
     return *this;
 }
 
-template <typename T>
-typename Tree<T>::iterator_& Tree<T>::iterator_::operator=(const node_*& node){
+template <typename Key_T, typename T>
+typename Tree<Key_T,T>::iterator_& Tree<Key_T,T>::iterator_::operator=(const node_*& node){
     element_=node;
     return *this;
 }
 
-template <typename T>
-typename Tree<T>::iterator_& Tree<T>::iterator_::operator++(){
+template <typename Key_T, typename T>
+typename Tree<Key_T,T>::iterator_& Tree<Key_T,T>::iterator_::operator++(){
     element_=getNext(element_);
     return *this;
 }
 
-template <typename T>
-typename Tree<T>::iterator_& Tree<T>::iterator_::operator--(){
+template <typename Key_T, typename T>
+typename Tree<Key_T,T>::iterator_& Tree<Key_T,T>::iterator_::operator--(){
     element_=getPrev(element_);
     return *this;
 }
 
-template <typename T>
-typename Tree<T>::iterator_& Tree<T>::iterator_::operator+=(int n){
+template <typename Key_T, typename T>
+typename Tree<Key_T,T>::iterator_& Tree<Key_T,T>::iterator_::operator+=(int n){
     
     if(n>=0){
         while(n ){
@@ -87,8 +88,8 @@ typename Tree<T>::iterator_& Tree<T>::iterator_::operator+=(int n){
     return *this;
 }
 
-template <typename T>
-typename Tree<T>::iterator_& Tree<T>::iterator_::operator-=(int n){
+template <typename Key_T, typename T>
+typename Tree<Key_T,T>::iterator_& Tree<Key_T,T>::iterator_::operator-=(int n){
     if(n>=0){
         while(n ){
             element_=getPrev(element_);
@@ -100,32 +101,47 @@ typename Tree<T>::iterator_& Tree<T>::iterator_::operator-=(int n){
     return *this;
 }
 
-template <typename T>
-typename Tree<T>::iterator_ Tree<T>::iterator_::operator++(int){
+template <typename Key_T, typename T>
+typename Tree<Key_T,T>::iterator_ Tree<Key_T,T>::iterator_::operator++(int){
     iterator_ temp = *this;
   operator++();
   return temp;
 }
 
-template <typename T>
-typename Tree<T>::iterator_ Tree<T>::iterator_::operator--(int){
+template <typename Key_T, typename T>
+typename Tree<Key_T,T>::iterator_ Tree<Key_T,T>::iterator_::operator--(int){
     iterator_ temp = *this;
     operator--();
     return temp;
 }
 
-template <typename T>
-typename Tree<T>::const_reference Tree<T>::iterator_::operator*()const{
-    if(!element_)
-        throw std::out_of_range("Iterator is out of range");    
+template <typename Key_T, typename T> 
+auto Tree<Key_T,T>::iterator_::getPair()const{
+    ifElement();
+    return std::make_pair(const_cast<const_key_type&>(element_->key_), const_cast<const_value_type&>(element_->data_));
+}
+
+template <typename Key_T, typename T> 
+inline typename Tree<Key_T,T>::const_key_type& Tree<Key_T,T>::iterator_::getKey()const{
+    ifElement();
+    return element_->key_;
+}
+template <typename Key_T, typename T>
+inline typename Tree<Key_T,T>::const_value_type& Tree<Key_T,T>::iterator_::getValue()const{
+    ifElement();
     return element_->data_;
+}
+
+template <typename Key_T, typename T>
+inline void Tree<Key_T,T>::iterator_::ifElement()const{
+    if (!element_)
+        throw std::out_of_range("Iterator is out of range");
 
 }
 
-// template <typename T>
-// typename Tree<T>::const_pointer Tree<T>::iterator_::operator->()const{
+// template <typename Key_T, typename T>
+// typename Tree<Key_T,T>::const_pointer Tree<Key_T,T>::iterator_::operator->()const{
 //     if(!element_)
 //         throw std::out_of_range("Iterator is out of range");  
 //     return &(element_->data_);
 // }
-
